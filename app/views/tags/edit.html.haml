@@ -1,0 +1,15 @@
+%h1
+  Tags controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/tags/edit.html.erb
+= error_messages_for @tag
+
+= form_for(@tag, :action => url(:tag, @tag)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:tag, @tag)
+|
+= link_to 'Back', url(:tags)

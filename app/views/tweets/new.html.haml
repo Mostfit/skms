@@ -1,0 +1,13 @@
+%h1 Tweets controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/tweets/new.html.erb
+
+= error_messages_for @tweet
+
+= form_for(@tweet, :action => url(:tweets) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:tweets)

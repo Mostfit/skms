@@ -1,0 +1,15 @@
+%h1
+  Tweets controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/tweets/edit.html.erb
+= error_messages_for @tweet
+
+= form_for(@tweet, :action => url(:tweet, @tweet)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:tweet, @tweet)
+|
+= link_to 'Back', url(:tweets)
