@@ -1,13 +1,11 @@
 %h1
   Tweets controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/tweets/index.html.erb
 %table
   %tr
   - for tweet in @tweets
     %tr
+      %td
+        = tweet.content
       %td
         = link_to 'Show', url(:tweet, tweet)
       %td

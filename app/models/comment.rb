@@ -5,6 +5,6 @@ class Comment
   property :content, String, :length=>100, :nullable=>false
   property :created, DateTime
 
-  belongs_to :post
+  belongs_to :tweet
 
 end
