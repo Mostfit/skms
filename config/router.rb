@@ -29,8 +29,6 @@ Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
   resources :tags
   resources :comments
-  resources :commentses
-  resources :commentses
   resources :tweets
   # RESTful routes
   # resources :posts

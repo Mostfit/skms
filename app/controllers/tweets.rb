@@ -25,10 +25,13 @@ class Tweets < Application
     display @tweet
   end
 
-  def create(tweet)
-    @tweet = Tweet.new(tweet)
+  def create()
+    debugger
+    @tweet = Tweet.new()
+    @tweet.content=params[:tweet]
+    @tweet.created=DateTime.now
     if @tweet.save
-      redirect resource(@tweet), :message => {:notice => "Tweet was successfully created"}
+      redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
     else
       message[:error] = "Tweet failed to be created"
       render :new

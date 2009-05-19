@@ -1,5 +1,8 @@
 %h1
-  Tweets controller, index action
+  Twitter
+%form{:action=>'tweets/create', :method=>'POST'}
+  %input{:type=>'text',:name=>'tweet'}
+  %input{:type=>'submit',:value=>'Update'}
 %table
   %tr
   - for tweet in @tweets
