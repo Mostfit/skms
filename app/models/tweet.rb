@@ -12,5 +12,6 @@ class Tweet
       :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension"
   has n, :comments
   has n, :tags
+  belongs_to :user
   
 end

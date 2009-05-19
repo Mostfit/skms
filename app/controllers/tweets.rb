@@ -30,6 +30,7 @@ class Tweets < Application
     @tweet = Tweet.new()
     @tweet.content=params[:tweet]
     @tweet.created=DateTime.now
+    @tweet.user=session.user
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
     else

@@ -3,15 +3,15 @@
 %form{:action=>'tweets/create', :method=>'POST'}
   %input{:type=>'text',:name=>'tweet'}
   %input{:type=>'submit',:value=>'Update'}
-%table
-  %tr
-  - for tweet in @tweets
-    %tr
-      %td
-        = tweet.content
-      %td
-        = link_to 'Show', url(:tweet, tweet)
-      %td
-        = link_to 'Edit', url(:edit_tweet,  tweet)
+- for tweet in @tweets
+  %div.tweet
+    %div.content
+      = tweet.content
+      %br
+      = tweet.user.login
+    %div.show
+      = link_to 'Show', url(:tweet, tweet)
+    %div.edit
+      = link_to 'Edit', url(:edit_tweet,  tweet)
 
 = link_to 'New', url(:new_tweet)
