@@ -1,14 +1,15 @@
-%h1
-  Tweets controller, edit action
-%p
-  Edit this file in
-  %tt
-    app/views/tweets/edit.html.erb
+=@tweet.content
+%br
+-@tweet.comments.each do |comment|
+  =comment.content
 = error_messages_for @tweet
 
-= form_for(@tweet, :action => url(:tweet, @tweet)) do
+= form_for(@comment, :action=>url(:comments) ) do
   %p
-    = submit "Update"
+    = hidden_field :name=>'tweet', :value=>@tweet.id
+    = text_field :name=>'comment'
+  %p
+    = submit "Comment"
 
 = link_to 'Show', url(:tweet, @tweet)
 |

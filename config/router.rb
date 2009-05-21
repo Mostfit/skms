@@ -27,7 +27,6 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
-  resources :commentses
   resources :tags
   resources :comments
   resources :tweets
@@ -44,5 +43,5 @@ Merb::Router.prepare do
   default_routes
   
   # Change this for your home page to be available at /
-  match('/').to(:controller => 'entrance', :action =>'index')
+  match('/').to(:controller => 'tweets', :action =>'index')
 end

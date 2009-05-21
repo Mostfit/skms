@@ -1,5 +1,3 @@
-%h1
-  Twitter
 %form{:action=>'tweets/create', :method=>'POST'}
   %input{:type=>'text',:name=>'tweet'}
   %input{:type=>'submit',:value=>'Update'}
@@ -9,8 +7,8 @@
       = tweet.content
       %br
       = tweet.user.login
-    %div.show
-      = link_to 'Show', url(:tweet, tweet)
+      %br
+      == #{tweet.comments.count} Comments
     %div.edit
       = link_to 'Edit', url(:edit_tweet,  tweet)
 

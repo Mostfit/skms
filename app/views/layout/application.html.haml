@@ -1,9 +1,34 @@
 !!! Strict
-%html{ html_attrs("en_us") }
+%html{ "xml:lang" => "en", :lang => "en", :xmlns => "http://www.w3.org/1999/xhtml" }
   %head
-    %title
-      Fresh Merb App
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
-    %link{ :href => "/stylesheets/master.css", :rel => "stylesheet", :media => "screen", :type => "text/css", :charset => "utf-8" }/
+    %title
+      = 'Office Twitter' + (catch_content(:title) ? '' : ": #{catch_content(:title)}")
+    %link{ :rel => "icon", :type => "image/ico", :href => "/favicon.ico" }/
+    = css_include_tag :screen, :media => "screen, projection"
+    = css_include_tag :print, :media => "print"
+    ~ "<!--[if IE]>\n  <link rel='Stylesheet' href='/stylesheets/ie.css' type='text/css' media='screen, projection'>\n<![endif]-->"
+    = css_include_tag :style, :media => "screen, projection"
   %body
-    = catch_content :for_layout
+    .spacer/
+    .container
+      #header
+      #subheader
+        #title
+          Office Twitter
+        #right-nav
+          - if session.authenticated?
+            == logged in as <b>#{session.user.login}</b> (#{link_to 'log out', url(:logout)})
+          - else
+            existing users can
+            %b= link_to 'login', url(:login)
+            to proceed
+
+        = catch_content :for_layout
+
+      %p
+        %br/
+        %br/
+
+    #footer
+      == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.

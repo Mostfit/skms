@@ -29,9 +29,10 @@ class Comments < Application
     @comment = Comment.new
     @comment.content=params[:comment]
     @comment.created_at=DateTime.now
-    @comment.created_by=session.user
+    @comment.user=session.user
+    @comment.tweet=Tweet.get params[:tweet]
     if @comment.save
-      redirect resource(@comment), :message => {:notice => "Comment was successfully created"}
+      redirect url(:tweets), :message => {:notice => "Comment was successfully created"}
     else
       message[:error] = "Comment failed to be created"
       render :new
