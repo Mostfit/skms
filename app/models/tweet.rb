@@ -4,7 +4,7 @@ class Tweet
 
   property :id, Serial
   property :content, Text, :nullable=>false
-  property :created, DateTime, :nullable=>false
+  property :created_at, DateTime, :nullable=>false
   
   has_attached_file :file,
       :styles => {:medium => "300x300>", :thumb => "60x60#"},

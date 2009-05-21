@@ -25,8 +25,11 @@ class Comments < Application
     display @comment
   end
 
-  def create(comment)
-    @comment = Comment.new(comment)
+  def create()
+    @comment = Comment.new
+    @comment.content=params[:comment]
+    @comment.created_at=DateTime.now
+    @comment.created_by=session.user
     if @comment.save
       redirect resource(@comment), :message => {:notice => "Comment was successfully created"}
     else

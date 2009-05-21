@@ -11,11 +11,21 @@
 class User
   include DataMapper::Resource
   
-  property :id,     Serial
-  property :login,  String
-  property :first_name, String
-  property :last_name, String
+  property :id,         Serial
+  property :login,      String
+  property :first_name, String,   :nullable=>false
+  property :last_name,  String,   :nullable=>false
+  property :created_at, DateTime, :nullable=>false
+  property :admin,      Boolean,  :nullable=>false, :default=>false
 
   has n, :tweets
+  has n, :comments
+
+  validates_format :login, :with=>/^[A-Za-z0-9_]+$/
+  validates_length :login, :min=>3
+  
+  def admin?
+    self.admin==true
+  end
   
 end

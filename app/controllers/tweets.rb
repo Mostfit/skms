@@ -26,10 +26,9 @@ class Tweets < Application
   end
 
   def create()
-    debugger
     @tweet = Tweet.new()
     @tweet.content=params[:tweet]
-    @tweet.created=DateTime.now
+    @tweet.created_at=DateTime.now
     @tweet.user=session.user
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}

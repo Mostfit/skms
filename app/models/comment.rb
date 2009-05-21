@@ -6,5 +6,8 @@ class Comment
   property :created, DateTime
 
   belongs_to :tweet
+  belongs_to :user
+
+  validates_format :with=>/^[A-Za-z0-9_*:)(-]+$/
 
 end
