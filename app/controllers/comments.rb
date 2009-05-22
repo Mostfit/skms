@@ -25,10 +25,8 @@ class Comments < Application
     display @comment
   end
 
-  def create()
-    @comment = Comment.new
-    @comment.content=params[:comment]
-    @comment.created_at=DateTime.now
+  def create(comment)
+    @comment = Comment.new(comment)
     @comment.user=session.user
     @comment.tweet=Tweet.get params[:tweet]
     if @comment.save

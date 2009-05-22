@@ -4,11 +4,8 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
     %title
       = 'Office Twitter' + (catch_content(:title) ? '' : ": #{catch_content(:title)}")
-    %link{ :rel => "icon", :type => "image/ico", :href => "/favicon.ico" }/
-    = css_include_tag :screen, :media => "screen, projection"
-    = css_include_tag :print, :media => "print"
-    ~ "<!--[if IE]>\n  <link rel='Stylesheet' href='/stylesheets/ie.css' type='text/css' media='screen, projection'>\n<![endif]-->"
-    = css_include_tag :style, :media => "screen, projection"
+    = css_include_tag :screen
+    = css_include_tag :master
   %body
     .spacer/
     .container

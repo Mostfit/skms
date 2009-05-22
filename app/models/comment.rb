@@ -3,7 +3,7 @@ class Comment
   
   property :id, Serial
   property :content, String, :length=>100, :nullable=>false
-  property :created_at, DateTime
+  timestamps :at
 
   belongs_to :tweet
   belongs_to :user

@@ -10,16 +10,20 @@
 # You will need to setup your database and create a user.
 class User
   include DataMapper::Resource
+  include Paperclip::Resource
   
   property :id,         Serial
   property :login,      String
   property :first_name, String,   :nullable=>false
   property :last_name,  String,   :nullable=>false
-  property :created_at, DateTime, :nullable=>false
   property :admin,      Boolean,  :nullable=>false, :default=>false
+  timestamps :at
 
   has n, :tweets
   has n, :comments
+
+  has_attached_file :image,
+      :styles => {:medium => "300x300>", :thumb => "60x60#"}
 
   validates_format :login, :with=>/^[A-Za-z0-9_]+$/
   validates_length :login, :min=>3

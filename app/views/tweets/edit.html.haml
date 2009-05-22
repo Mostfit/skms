@@ -4,13 +4,19 @@
   =comment.content
 = error_messages_for @tweet
 
-= form_for(@comment, :action=>url(:comments) ) do
+= form_for(Comment.new, :action=>url(:comments) ) do
   %p
     = hidden_field :name=>'tweet', :value=>@tweet.id
-    = text_field :name=>'comment'
+    = text_field :content
   %p
     = submit "Comment"
 
-= link_to 'Show', url(:tweet, @tweet)
+= form_for(@tweet, :action=>resource(@tweet), :html =>'multiparttrue') do
+  %p
+    = file_field :file
+  %p
+    = submit "Attach File"
+
+= link_to 'Show', url('tweets/index')
 |
 = link_to 'Back', url(:tweets)
