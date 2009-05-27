@@ -39,4 +39,6 @@
         = file_field :file
       %p
         = submit "Attach File"
+    - if @tweet.file?
+      = @tweet.file_file_name
 
