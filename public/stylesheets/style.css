@@ -61,7 +61,7 @@ div.submit{
 }
 
 div.tweet{
-  min-height:100px;
+  height:125px;
 }
 
 div.user{
@@ -84,6 +84,13 @@ div.extra{
 }
 
 textarea.comment{
-  rows:5;
-  cols:500;
+}
+
+div.left{
+  float:left;
+  width:65%
+}
+
+div.right{
+  float:right;
 }

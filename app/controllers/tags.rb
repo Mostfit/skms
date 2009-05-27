@@ -27,6 +27,7 @@ class Tags < Application
 
   def create(tag)
     @tag = Tag.new(tag)
+    @tag.tweets=Tweet.all(:id=>( params[:tweet]))
     if @tag.save
       redirect resource(@tag), :message => {:notice => "Tag was successfully created"}
     else
