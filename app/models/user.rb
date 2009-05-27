@@ -23,7 +23,7 @@ class User
   has n, :comments
 
   has_attached_file :image,
-      :styles => {:medium => "300x300>", :thumb => "60x60#"}
+      :styles => {:thumb => "100x100"}
 
   validates_format :login, :with=>/^[A-Za-z0-9_]+$/
   validates_length :login, :min=>3

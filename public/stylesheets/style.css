@@ -1,0 +1,89 @@
+body{
+  color:#444444;
+  font-family:"Calibri","Verdana","Arial","sans-serif";
+  font-size:0.9em;
+  line-height:1.6em;
+  margin:0;
+  padding:0;
+}
+
+div.container{
+  margin:30px auto;
+  min-height:900px;
+  width:960px;
+}
+
+div.header{
+  width:100%
+}
+
+div.body{
+  min-height:950px;
+  overflow:auto;
+  width:100%;
+}
+
+div.footer{
+  height:100px;
+}
+
+div.nav-panel{
+}
+
+ul.nav-panel {
+  font-weight:bold;
+  line-height:40px;
+  margin:0;
+  padding:0;
+  white-space:nowrap;
+  float:right;
+}
+
+li.nav-panel {
+  display:inline;
+  float:left;
+  list-style-type:none;
+}
+
+form.form{
+  width:68%;
+  margin-left:10%;
+  height:100px;
+}
+
+div.textarea{
+  margin-left:10%;
+}
+
+div.submit{
+  margin-top:10px;
+  float:right;
+}
+
+div.tweet{
+  min-height:100px;
+}
+
+div.user{
+  float:left;
+  height:100px;
+}
+
+div.content{
+  margin-left:75px;
+}
+
+div.view{
+  padding:5px;
+}
+
+div.tags{
+}
+
+div.extra{
+}
+
+textarea.comment{
+  rows:5;
+  cols:500;
+}

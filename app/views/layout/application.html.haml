@@ -4,28 +4,25 @@
     %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }/
     %title
       = 'Office Twitter' + (catch_content(:title) ? '' : ": #{catch_content(:title)}")
-    = css_include_tag :screen
+    = css_include_tag :style
     = css_include_tag :master
   %body
-    .spacer/
     .container
-      #header
-      #subheader
-        #title
-          Office Twitter
-        #right-nav
+      .header
+        .nav-panel#header-panel
           - if session.authenticated?
-            == logged in as <b>#{session.user.login}</b> (#{link_to 'log out', url(:logout)})
-          - else
-            existing users can
-            %b= link_to 'login', url(:login)
-            to proceed
-
+            %ul.nav-panel#header-panel
+              %li.nav-panel#header-panel
+                = link_to 'Home', url(:tweets) 
+                &nbsp
+              %li.nav-panel#header-panel
+                = link_to 'Settings', url(:users) 
+                &nbsp
+              %li.nav-panel#header-panel
+                = link_to 'Logout', url(:logout)
+        .banner
+          = image_tag 'logo_intellecap.gif'
+      .body
         = catch_content :for_layout
-
-      %p
-        %br/
-        %br/
-
-    #footer
-      == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.
+      .footer
+        == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.

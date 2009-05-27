@@ -1,18 +1,27 @@
-=form_for(Tweet.new, :action=>url(:tweets)) do
-  =text_field :content, :size=>40
-  =submit 'Update'
+=form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+  .textarea
+    =text_area :content, :size=>40, :rows=>2, :cols=>80
+  .submit
+    =submit 'Update'
 
-- for tweet in @tweets
-  %div.tweet
-    %div.user
-      #display the image
-      = tweet.user.login
-    %div.content
-      = tweet.content
-      %br
-      = link_to 'View', url(:edit_tweet,  tweet)
-    %div.extra
-      == #{tweet.comments.count} Comments
-      -tweet.tags.each do |tag|
-        =tag.name
-    %hr
+.updates
+  - for tweet in @tweets
+    %div.tweet
+      %div.user
+        %div.image
+          = image_tag tweet.user.image.url(:thumb), :height=>'100px'
+        %p#login
+          = tweet.user.login
+      %div.content
+        %p.content
+          = tweet.content
+        %div.view
+          = link_to 'View', url(:edit_tweet,  tweet)
+      %div.tags
+        -tweet.tags.each do |tag|
+          =tag.name
+      %div.extra
+        == #{tweet.comments.count} Comments
+        - if tweet.file?
+          == Attachments
+      %hr
