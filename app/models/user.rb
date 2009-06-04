@@ -13,10 +13,10 @@ class User
   include Paperclip::Resource
   
   property :id,         Serial
-  property :login,      String
-  property :first_name, String,   :nullable=>false
-  property :last_name,  String,   :nullable=>false
-  property :admin,      Boolean,  :nullable=>false, :default=>false
+  property :name, String, :nullable => false
+  property :email, String, :nullable => false 
+  property :identity_url, String, :nullable => false
+
   timestamps :at
 
   has n, :tweets
@@ -25,11 +25,9 @@ class User
   has_attached_file :image,
       :styles => {:thumb => "100x100"}
 
-  validates_format :login, :with=>/^[A-Za-z0-9_]+$/
-  validates_length :login, :min=>3
-  
-  def admin?
-    self.admin==true
-  end
+  validates_is_unique :identity_url
+  validates_is_unique :email
+
+  def password_required?; false end 
   
 end

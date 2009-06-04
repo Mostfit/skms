@@ -10,4 +10,8 @@ class Exceptions < Merb::Controller
     render :format => :html
   end
 
+  def unauthenticated
+    render
+  end
+
 end
