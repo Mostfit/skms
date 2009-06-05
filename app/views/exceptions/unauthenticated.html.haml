@@ -8,9 +8,9 @@
     %br/
     A twitter clone for the office
   %p
-    Authorized user proceed by logging in:
+    Authorized user proceed by logging in
 
   = error_messages_for session.authentication
   %form{:action => url(:openid)}
-    %input{:name=>'openid_url', :type=>'text'}
-    %input{:type => 'submit',:name => 'login'}
+    %input{:name=>'openid_url', :value=>'https://www.google.com/accounts/o8/id', :type=>'hidden'}
+    %input{:type => 'submit',:name => 'login', :value=>'Log in using Google'}

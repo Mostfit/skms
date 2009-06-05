@@ -22,8 +22,12 @@ class Users < Application
   end
 
   def login
-    # if the user is logged in, then redirect them to their profile
-    redirect url(:tweets), :message => { :notice => 'You are now logged in' }
+    user=session.user
+    if user.created_at==DateTime.now
+      redirect url(:user,user.id), :message => { :notice => 'You are now logged in' }
+    else
+      redirect url(:tweets), :message => { :notice => 'You are now logged in' }
+    end
   end
 
 end

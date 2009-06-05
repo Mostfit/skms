@@ -13,9 +13,8 @@ class User
   include Paperclip::Resource
   
   property :id,         Serial
-  property :name, String, :nullable => false
-  property :email, String, :nullable => false 
-  property :identity_url, String, :nullable => false
+  property :name, String
+  property :email, String, :nullable => false, :format=> :email_address
 
   timestamps :at
 
@@ -25,7 +24,6 @@ class User
   has_attached_file :image,
       :styles => {:thumb => "100x100"}
 
-  validates_is_unique :identity_url
   validates_is_unique :email
 
   def password_required?; false end 
