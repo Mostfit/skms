@@ -27,6 +27,11 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :groups
+  resources :poll_choices
+  resources :votes
+  resources :polls
+  resources :groups
     resources :users
     resources :tweets
     resources :tags

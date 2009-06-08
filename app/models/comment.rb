@@ -2,12 +2,11 @@ class Comment
   include DataMapper::Resource
   
   property :id, Serial
-  property :content, String, :length=>100, :nullable=>false
+  property :content, Text, :nullable=>false
   timestamps :at
 
   belongs_to :tweet
   belongs_to :user
-
-  validates_format :with=>/^[A-Za-z0-9_*:)(-]+$/
+  belongs_to :poll
 
 end

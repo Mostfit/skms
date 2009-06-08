@@ -1,0 +1,13 @@
+%h1 PollChoices controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/poll_choices/new.html.erb
+
+= error_messages_for @poll_choice
+
+= form_for(@poll_choice, :action => url(:poll_choices) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:poll_choices)

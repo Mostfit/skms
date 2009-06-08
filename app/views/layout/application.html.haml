@@ -23,6 +23,7 @@
         .banner
           = image_tag 'logo_intellecap.gif'
       .body
-        = catch_content :for_layout
+        .body-left
+          = catch_content :for_layout
       .footer
         == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.

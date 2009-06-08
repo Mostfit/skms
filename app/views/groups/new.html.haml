@@ -1,0 +1,13 @@
+%h1 Groups controller, new action
+
+%p 
+  Edit this file in 
+  %tt app/views/groups/new.html.erb
+
+= error_messages_for @group
+
+= form_for(@group, :action => url(:groups) ) do
+  %p
+    = submit "Create"
+
+= link_to 'Back', url(:groups)

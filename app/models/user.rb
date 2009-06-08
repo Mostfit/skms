@@ -12,19 +12,31 @@ class User
   include DataMapper::Resource
   include Paperclip::Resource
   
-  property :id,         Serial
+  property :id, Serial
   property :name, String
+  property :nick, String
   property :email, String, :nullable => false, :format=> :email_address
+  property :admin, Boolean, :default => false, :nullable => false
 
   timestamps :at
 
   has n, :tweets
   has n, :comments
+  has n, :polls
+  has n, :votes
+  has n, :groups, :through => Resource
 
   has_attached_file :image,
-      :styles => {:thumb => "100x100"}
+  :styles => {:medium => "200x200>", :thumb => "60x60#"},
+  :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
+  :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension",
+  :default_url => "/images/no_photo2.jpg"
 
   validates_is_unique :email
+  validates_format :name, :with=>/^[A-Za-z ]+$/
+  validates_format :nick, :with=>/^[A-Za-z0-9_-]+$/
+  validates_format :email, :format => :email_address
+  validates_length :name, :nick, :min_length => 3
 
   def password_required?; false end 
   

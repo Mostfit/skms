@@ -1,0 +1,16 @@
+%h1
+  PollChoices controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/poll_choices/index.html.erb
+%table
+  %tr
+  - for poll_choice in @poll_choices
+    %tr
+      %td
+        = link_to 'Show', url(:poll_choice, poll_choice)
+      %td
+        = link_to 'Edit', url(:edit_poll_choice,  poll_choice)
+
+= link_to 'New', url(:new_poll_choice)

@@ -1,0 +1,15 @@
+%h1
+  PollChoices controller, edit action
+%p
+  Edit this file in
+  %tt
+    app/views/poll_choices/edit.html.erb
+= error_messages_for @poll_choice
+
+= form_for(@poll_choice, :action => url(:poll_choice, @poll_choice)) do
+  %p
+    = submit "Update"
+
+= link_to 'Show', url(:poll_choice, @poll_choice)
+|
+= link_to 'Back', url(:poll_choices)
