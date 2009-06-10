@@ -13,9 +13,9 @@ class User
   include Paperclip::Resource
   
   property :id, Serial
-  property :name, String
-  property :nick, String
-  property :email, String, :nullable => false, :format=> :email_address
+  property :name, String,   :format => /^[A-Za-z0-9 ]+$/
+  property :nick, String,   :format => /^[A-Za-z0-9_-]+$/
+  property :email, String,  :nullable => false, :format=> :email_address
   property :admin, Boolean, :default => false, :nullable => false
 
   timestamps :at
@@ -24,20 +24,18 @@ class User
   has n, :comments
   has n, :polls
   has n, :votes
-  has n, :groups, :through => Resource
+  has n, :memberships
+  has n, :groups, :class_name => 'Group', :through => :memberships, :child_key => [:group_id]
+  has n, :groups_moderated, :class_name => 'Group', :through => Resource
 
   has_attached_file :image,
-  :styles => {:medium => "200x200>", :thumb => "60x60#"},
+  :styles => {:medium => "300x300>", :thumb => "60x60#"},
   :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
-  :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension",
-  :default_url => "/images/no_photo2.jpg"
+  :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension"
 
   validates_is_unique :email
-  validates_format :name, :with=>/^[A-Za-z ]+$/
-  validates_format :nick, :with=>/^[A-Za-z0-9_-]+$/
-  validates_format :email, :format => :email_address
-  validates_length :name, :nick, :min_length => 3
+  validates_length :name, :nick, :min_length => 3, :allow_nil => true
 
   def password_required?; false end 
-  
+
 end

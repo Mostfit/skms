@@ -10,6 +10,7 @@ class Tweet
       :styles => {:medium => "300x300>", :thumb => "60x60#"},
       :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
       :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension"
+
   has n, :comments
   has n, :tags, :through=>Resource
   belongs_to :user
