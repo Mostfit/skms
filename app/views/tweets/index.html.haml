@@ -1,24 +1,24 @@
-=form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
-  .textarea
-    =text_area :content, :size=>40, :rows=>2, :cols=>80
-  .submit
-    =submit 'Update'
+.top-form
+  = partial('status')
 
 .updates
   - for tweet in @tweets
-    %div.tweet
-      %div.user
-        %div.image
-          = image_tag tweet.user.image.url(:thumb), :height=>'100px'
-      %div.content
+    .tweet
+      .user
+        .image
+          = image_tag tweet.user.image.url(:thumb), :height=>'60px'
+        .nick
+          -if tweet.user.nick
+            = tweet.user.nick
+      .content
         %p.content
           = tweet.content
-        %div.view
+        .view
           = link_to 'View', url(:edit_tweet,  tweet)
-      %div.tags
+      .tags
         -tweet.tags.each do |tag|
           =tag.name
-      %div.extra
+      .extra
         == #{tweet.comments.count} Comments
         - if tweet.file?
           == Attachments

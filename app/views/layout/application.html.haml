@@ -5,7 +5,7 @@
     %title
       = 'Office Twitter' + (catch_content(:title) ? '' : ": #{catch_content(:title)}")
     = css_include_tag :style
-    = css_include_tag :master
+    /= css_include_tag :master
   %body
     .container
       .header
@@ -22,8 +22,14 @@
                 = link_to 'Logout', url(:logout)
         .banner
           = image_tag 'logo_intellecap.gif'
+
+      .after-header
+        = catch_content :for_after_header
+
       .body
         .body-left
           = catch_content :for_layout
+        .body-right
+          = catch_content :for_right_sidebar
       .footer
         == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.

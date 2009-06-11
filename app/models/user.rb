@@ -31,7 +31,8 @@ class User
   has_attached_file :image,
   :styles => {:medium => "300x300>", :thumb => "60x60#"},
   :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
-  :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension"
+  :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension",
+  :default_url => "/images/default.jpg"
 
   validates_is_unique :email
   validates_length :name, :nick, :min_length => 3, :allow_nil => true
