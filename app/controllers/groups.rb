@@ -2,7 +2,7 @@ class Groups < Application
   # provides :xml, :yaml, :js
 
   def index
-    @groups = Group.all
+    @groups = Group.all('memberships.user_id' => params[:user_id])
     display @groups
   end
 

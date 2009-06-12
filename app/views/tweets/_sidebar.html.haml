@@ -1,0 +1,20 @@
+%form
+  %input{:type => 'text', :name => 'search', :value => 'Search'}
+  %ul.search-options.no-bullets
+    %li
+      %input{:type => 'checkbox', :name => 'search-tag', :value => 'tag', :title => 'Tag'}
+      == Only Tags
+    %li
+      %input{:type => 'checkbox', :name => 'search-group', :value => 'group', :title => 'Group'}
+      == Only Groups
+    %li
+      %input{:type => 'checkbox', :name => 'search-all', :value => 'all', :title => 'All'}
+      == Everything
+
+%ul.no-bullets
+  %li
+    = link_to 'Home'
+  %li
+    = link_to "@#{session.user.nick}"
+  %li
+    = link_to 'Groups', url(:groups, :user_id => session.user.id)

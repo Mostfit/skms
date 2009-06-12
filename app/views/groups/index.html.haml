@@ -1,16 +1,2 @@
-%h1
-  Groups controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/groups/index.html.erb
-%table
-  %tr
-  - for group in @groups
-    %tr
-      %td
-        = link_to 'Show', url(:group, group)
-      %td
-        = link_to 'Edit', url(:edit_group,  group)
-
-= link_to 'New', url(:new_group)
+-@groups.each do |group|
+  = group.name

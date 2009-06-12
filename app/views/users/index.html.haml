@@ -1,7 +1,11 @@
--message.each do |key,value|
-  = value
-= form_for(@user, :action=>resource(@user), :html =>'multiparttrue') do
-  %p
-    = file_field :image
-  %p
-    = submit "Attach File"
+.details
+  = image_tag @user.image.url(:medium), :height=>'100px'
+  %ol.details
+    %li 
+      = @user.name
+    %li 
+      = @user.nick
+    %li 
+      = @user.email
+
+  

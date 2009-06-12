@@ -37,8 +37,11 @@ div.top-form{
 
 
 div.body-right{
-  width:30%;
+  padding:5px;
+  width:28%;
   float:right;
+  background:#252429;
+  min-height:950px;
 }
 
 div.footer{
@@ -120,4 +123,8 @@ div.left{
 
 div.right{
   float:right;
+}
+
+ul.no-bullets{
+  list-style-type:none;
 }
