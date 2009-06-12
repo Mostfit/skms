@@ -21,6 +21,7 @@ class User
   timestamps :at
 
   has n, :tweets
+  has n, :replies
   has n, :comments
   has n, :polls
   has n, :votes

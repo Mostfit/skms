@@ -2,14 +2,14 @@ class Groups < Application
   # provides :xml, :yaml, :js
 
   def index
-    @groups = Group.all('memberships.user_id' => params[:user_id])
+    @groups = params[:user_id] ? Group.all('memberships.user_id' => params[:user_id]) : Group.all 
     display @groups
   end
 
   def show(id)
     @group = Group.get(id)
     raise NotFound unless @group
-    display @group
+    display @grou
   end
 
   def new

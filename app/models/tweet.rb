@@ -3,6 +3,7 @@ class Tweet
   include Paperclip::Resource
 
   property :id, Serial
+  property :discriminator, Discriminator, :nullable => false
   property :content, Text, :nullable=>false
   timestamps :at
 
@@ -13,6 +14,13 @@ class Tweet
 
   has n, :comments
   has n, :tags, :through=>Resource
+  belongs_to :user
+
+end
+
+class Reply < Tweet
+  include DataMapper::Resource
+
   belongs_to :user
 
 end

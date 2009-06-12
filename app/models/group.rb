@@ -1,5 +1,6 @@
 class Group
   include DataMapper::Resource
+  include Paperclip::Resource
   
   property :id, Serial
   property :name, String, :nullable => false
@@ -9,6 +10,12 @@ class Group
   has n,   :memberships
   has n,   :members, :class_name => 'User', :through => :memberships, :child_key => [:user_id]
   has n,   :moderators, :class_name => 'User', :through => Resource
+
+  has_attached_file :image,
+    :styles => {:medium => "300x300>", :thumb => "60x60#"},
+    :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
+    :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension",
+    :default_url => "/images/default_group.jpg"
 
 end
 
