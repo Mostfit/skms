@@ -1,8 +1,0 @@
-=@tweet.content
-%br
--@tweet.comments.each do |comment|
-  =comment.content
-
-= link_to 'Edit',  url(:edit_tweet,  @tweet)
-|
-= link_to 'Back', url(:tweets)

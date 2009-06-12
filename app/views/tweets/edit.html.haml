@@ -1,44 +1,18 @@
-.left
-  %div.tweet
-    %div.user
-      %div.image
-        = image_tag @tweet.user.image.url(:thumb), :height=>'100px'
-      %p#login
-        = @tweet.user.login
-    %div.content
-      %p.content
-        = @tweet.content
-  .comment
-    %h3 Comments
-    -@tweet.comments.each do |comment|
-      %ol
-        %li=comment.content
-    = error_messages_for @tweet
-    = form_for(Comment.new, :action=>url(:comments) ) do
-      %p
-        = hidden_field :name=>'tweet', :value=>@tweet.id
-        = text_area :content, :class=>"comment", :row=>"5", :cols=>"80"
-      %p
-        = submit "Comment"
-  = link_to 'Back', url(:tweets)
-.right
-  %div.tags
-    %h4 Tags
-    = form_for(Tag.new, :action=>url(:tags)) do
-      %p
-        = hidden_field :name=>'tweet', :value=>@tweet.id
-        = text_field :name, :class=>"comment", :row=>"5", :cols=>"80"
-      %p
-        = submit "Tag"
-
-      -@tweet.tags.each do |tag|
-        =tag.name
-  .attachment
-    = form_for(@tweet, :action=>resource(@tweet), :html =>'multiparttrue') do
-      %p
-        = file_field :file
-      %p
-        = submit "Attach File"
-    - if @tweet.file?
-      = @tweet.file_file_name
-
+.tweet
+  .user
+    = image_tag @tweet.user.image.url(:thumb), :height=>'50px'
+    %span.user-nick
+      -if @tweet.user.nick
+        = @tweet.user.nick
+  .content
+    %p.content
+      = @tweet.content
+.comment
+  %h3 Comments
+  = render :template => 'comments/index', :layout => false
+.attachment
+  %h3 Attachments
+  = partial 'attachment'
+.tags
+  %h3 Tags
+  = render :template => 'tags/index', :layout => false

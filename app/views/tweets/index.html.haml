@@ -5,16 +5,14 @@
   - for tweet in @tweets
     .tweet
       .user
-        .image
-          = image_tag tweet.user.image.url(:thumb), :height=>'60px'
-        .nick
+        = image_tag tweet.user.image.url(:thumb), :height=>'50px'
+        %span.user-nick
           -if tweet.user.nick
             = tweet.user.nick
       .content
         %p.content
           = tweet.content
-        .view
-          = link_to 'View', url(:edit_tweet,  tweet)
+        = link_to 'View', url(:edit_tweet,  tweet)
       .tags
         -tweet.tags.each do |tag|
           =tag.name

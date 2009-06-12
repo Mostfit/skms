@@ -1,16 +1,11 @@
-%h1
-  Comments controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/comments/index.html.erb
-%table
-  %tr
-  - for comment in @comments
-    %tr
-      %td
-        = link_to 'Show', url(:comment, comment)
-      %td
-        = link_to 'Edit', url(:edit_comment,  comment)
-
-= link_to 'New', url(:new_comment)
+-@tweet.comments.each do |comment|
+  %ol
+    %li=comment.content
+= error_messages_for @tweet
+= form_for(Comment.new, :action=>url(:comments) ) do
+  %p
+    = hidden_field :name=>'tweet', :value=>@tweet.id
+    = text_area :content, :class=>"comment", :row=>"5", :cols=>"80"
+  %p
+    = submit "Comment"
+= link_to 'Back', url(:tweets)

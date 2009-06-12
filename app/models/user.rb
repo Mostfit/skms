@@ -35,7 +35,6 @@ class User
   :default_url => "/images/default.jpg"
 
   validates_is_unique :email
-  validates_length :name, :nick, :min_length => 3, :allow_nil => true
 
   def password_required?; false end 
 

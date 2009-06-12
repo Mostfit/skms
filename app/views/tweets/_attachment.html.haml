@@ -1,0 +1,9 @@
+.attachment
+  = form_for(@tweet, :action=>resource(@tweet), :html =>'multiparttrue') do
+    %p
+      = file_field :file
+    %p
+      = submit "Attach File"
+  - if @tweet.file?
+    = @tweet.file_file_name
+

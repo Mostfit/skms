@@ -91,7 +91,9 @@ div.tweet{
 
 div.user{
   float:left;
-  height:100px;
+  min-height:60px;
+  width:50px;
+  padding:1px;
 }
 
 div.content{

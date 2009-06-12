@@ -1,16 +1,10 @@
-%h1
-  Tags controller, index action
-%p
-  Edit this file in
-  %tt
-    app/views/tags/index.html.erb
-%table
-  %tr
-  - for tag in @tags
-    %tr
-      %td
-        = link_to 'Show', url(:tag, tag)
-      %td
-        = link_to 'Edit', url(:edit_tag,  tag)
+.tags
+  = form_for(Tag.new, :action=>url(:tags)) do
+    %p
+      = hidden_field :name=>'tweet', :value=>@tweet.id
+      = text_field :name, :class=>"comment", :row=>"5", :cols=>"80"
+    %p
+      = submit "Tag"
 
-= link_to 'New', url(:new_tag)
+    -@tweet.tags.each do |tag|
+      =tag.name
