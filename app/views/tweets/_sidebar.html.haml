@@ -15,6 +15,6 @@
   %li
     = link_to 'Home'
   %li
-    = link_to "@#{session.user.nick}"
+    = link_to "@#{session.user.nick}", url(:replies)
   %li
     = link_to 'My Groups', url(:groups, :user_id => session.user.id)

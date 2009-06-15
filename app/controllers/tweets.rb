@@ -2,22 +2,9 @@ class Tweets < Application
   # provides :xml, :yaml, :js
 
   def index
-    debugger
     @tweets = Tweet.all
     display @tweets
   end
-
-  def show(id)
-    @tweet = Tweet.get(id)
-    raise NotFound unless @tweet
-    display @tweet
-  end
-
- # def new
- #   only_provides :html
- #   @tweet = Tweet.new
- #   display @tweet
- # end
 
   def edit(id)
     only_provides :html
@@ -27,8 +14,11 @@ class Tweets < Application
   end
 
   def create(tweet)
-    @tweet = Tweet.new(tweet)
+    debugger
+    klass = tweet[:content].index("@#{session.user.nick}")? Kernel::const_get("Reply"): Kernel::const_get("Tweet")
+    @tweet = klass.new(tweet)
     @tweet.user=session.user
+    @tweet.discriminator=klass
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
     else
@@ -55,6 +45,11 @@ class Tweets < Application
     else
       raise InternalServerError
     end
+  end
+
+  def replies
+    @tweets = Reply.all('user.nick' => session.user.nick)
+    display @tweets, 'tweets/index'
   end
 
 end # Tweets

@@ -6,7 +6,7 @@
 # To load and set the order of strategy processing
 
 Merb::Slices::config[:"merb-auth-slice-password"][:no_default_strategies] = true
-Merb::Authentication.activate!(:default_openid)
+Merb::Authentication.activate!(:google_federated_login)
 
 #Merb::Authentication.activate!(:default_password_form)
 #Merb::Authentication.activate!(:default_basic_auth)

@@ -50,5 +50,6 @@ Merb::Router.prepare do
     
     # Change this for your home page to be available at /
     match('/').to(:controller => 'tweets', :action =>'index')
-    match('/openid/login').to(:controller => 'users',   :action => 'login'   ).name(:openid)
+    match('/openid/login').to(:controller => 'users', :action => 'login').name(:openid)
+    match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies)
 end

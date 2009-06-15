@@ -3,7 +3,7 @@ class Tweet
   include Paperclip::Resource
 
   property :id, Serial
-  property :discriminator, Discriminator, :nullable => false
+  property :discriminator, Discriminator, :default => 'Tweet', :nullable => false
   property :content, Text, :nullable=>false
   timestamps :at
 
@@ -19,8 +19,10 @@ class Tweet
 end
 
 class Reply < Tweet
-  include DataMapper::Resource
 
   belongs_to :user
 
 end
+
+#class DirectMessage < Tweet
+#end
