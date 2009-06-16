@@ -1,13 +1,15 @@
-%h1 Groups controller, new action
-
-%p 
-  Edit this file in 
-  %tt app/views/groups/new.html.erb
-
+%h4 Create a new Group
 = error_messages_for @group
 
 = form_for(@group, :action => url(:groups) ) do
-  %p
-    = submit "Create"
+  %ul
+    %li
+      = text_field :name, :label => 'Name : '
+    %li
+      = text_area :description, :size=>40, :rows=>2, :cols=>90, :label => 'Description : '
+    %li
+      = check_box :protected, :label => 'Protected'
+    %li
+      = submit "Create"
 
 = link_to 'Back', url(:groups)

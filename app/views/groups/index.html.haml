@@ -1,10 +1,17 @@
--@groups.each do |group|
-  .group
-    = image_tag group.image.url(:thumb), :height=>'80px'
-    %span.group-name
-      = group.name
-  .purpose
-    %p.purpose
-      = group.purpose
+.groups
+  -for group in @groups
+    .group.element-container
+      .imgn
+        = image_tag group.image.url(:thumb), :height=>'50px'
+        %span.name
+          = group.name
+      .content
+        %p.content
+          = group.description
+        = link_to 'View', url(:group, group)
+      .tags
+        -group.tags.each do |tag|
+          =tag.name
+      %hr
 
-- throw_content :for_sidebar, partial('tweets/sidebar')
+- throw_content :for_sidebar, partial('sidebar')

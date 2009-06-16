@@ -42,7 +42,7 @@ Merb::Router.prepare do
     resources :users
     resources :tweets
     resources :tags
-    resources :comment
+    resources :comments
     # RESTful routes
     # resources :posts
     

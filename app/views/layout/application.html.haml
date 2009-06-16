@@ -16,7 +16,7 @@
                 = link_to 'Home', url(:tweets) 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Profile', url(:users) 
+                = link_to 'Profile', url(:user, session.user) 
                 &nbsp
               %li.nav-panel#header-panel
                 = link_to 'Groups', url(:groups) 
@@ -39,10 +39,9 @@
           - if session.authenticated?
             .current-user
               = image_tag session.user.image.url(:thumb), :height=>'50px'
-              %span.user-nick
+              %span.name
                 -if session.user.nick
-                  %h4 
-                    =session.user.nick
+                  =session.user.nick
           = catch_content :for_sidebar
       .footer
         == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.

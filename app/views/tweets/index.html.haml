@@ -3,8 +3,8 @@
 
 .updates
   - for tweet in @tweets
-    .tweet
-      .user
+    .tweet.element-container
+      .imgn
         = image_tag tweet.user.image.url(:thumb), :height=>'50px'
         %span.user-nick
           -if tweet.user.nick

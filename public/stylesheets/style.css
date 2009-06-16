@@ -89,10 +89,9 @@ div.top-form form.form input.submit{
 }
 
 div.tweet{
-  height:125px;
 }
 
-div.user{
+div.imgn{
   float:left;
   min-height:60px;
   width:50px;
@@ -125,6 +124,11 @@ div.right{
   float:right;
 }
 
-ul.no-bullets{
+ul{
   list-style-type:none;
+}
+
+
+div.element-container{
+  min-height:125px;
 }

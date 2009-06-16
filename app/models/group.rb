@@ -4,12 +4,13 @@ class Group
   
   property :id, Serial
   property :name, String, :nullable => false
-  property :purpose, Text
+  property :description, Text
   property :protected, Boolean, :default => false, :nullable => false
 
   has n,   :memberships
   has n,   :members, :class_name => 'User', :through => :memberships, :child_key => [:user_id]
   has n,   :moderators, :class_name => 'User', :through => Resource
+  has n,   :tags, :through=>Resource
 
   has_attached_file :image,
     :styles => {:medium => "300x300>", :thumb => "60x60#"},

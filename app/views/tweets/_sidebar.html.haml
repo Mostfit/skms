@@ -11,12 +11,15 @@
       %input{:type => 'checkbox', :name => 'search-all', :value => 'all', :title => 'All'}
       == Everything
 
-%ul.no-bullets
-  %li
-    = link_to 'Home'
-  %li
+%ul.nav-panel
+  %li.nav-panel
+    = link_to 'Home', url(:tweets)
+    &nbsp
+  %li.nav-panel
     = link_to "@#{session.user.nick}", url(:replies)
-  %li
+    &nbsp
+  %li.nav-panel
     = link_to 'My Groups', url(:groups, :user_id => session.user.id)
-  %li
+    &nbsp
+  %li.nav-panel
     = link_to 'My Polls', url(:polls, :user_id => session.user.id)

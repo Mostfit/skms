@@ -30,10 +30,10 @@ class Comments < Application
     @comment.user=session.user
     @comment.tweet=Tweet.get params[:tweet]
     if @comment.save
-      redirect url(:tweets), :message => {:notice => "Comment was successfully created"}
+      redirect url(:edit_tweet,  @comment.tweet), :message => {:notice => "Comment was successfully created"}
     else
       message[:error] = "Comment failed to be created"
-      render :new
+      redirect url(:edit_tweet,  tweet)
     end
   end
 

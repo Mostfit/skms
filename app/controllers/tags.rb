@@ -12,12 +12,6 @@ class Tags < Application
     display @tag
   end
 
-  def new
-    only_provides :html
-    @tag = Tag.new
-    display @tag
-  end
-
   def edit(id)
     only_provides :html
     @tag = Tag.get(id)
@@ -29,7 +23,7 @@ class Tags < Application
     @tag = Tag.new(tag)
     @tag.tweets=Tweet.all(:id=>( params[:tweet]))
     if @tag.save
-      redirect resource(@tag), :message => {:notice => "Tag was successfully created"}
+      redirect url(:edit_tweet,  @tag.tweets[0]), :message => {:notice => "Comment was successfully created"}
     else
       message[:error] = "Tag failed to be created"
       render :new
