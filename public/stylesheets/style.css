@@ -43,8 +43,8 @@ div.body{
 
 div.body-left{
   background-color:#fff;
-  width:70%;
-  padding:5px;
+  width:68%;
+  padding-left:20px;
   float:left;
   min-height:950px;
 }
@@ -97,10 +97,6 @@ a, a:hover, a:visited {
 }
 
 a{
-  color:#2FC2EF;
-}
-
-a:visited{
   color: #AAAAAA;
 }
 
@@ -109,9 +105,14 @@ form.form{
 }
 
 div.top-form form.form input#submit{
+  background-image:url(/images/round-btn.gif);
+  border:medium none navajoWhite;
+  color:#AAAAAA;
+  cursor:pointer;
   float:right;
-  margin-right:7%;
-  background:url(/images/round-btn.gif) norepeat scroll 0 0;
+  height:32px;
+  margin-right:28px;
+  width:115px;
 }
 
 div.top-form form.form textarea#tweet_content{
@@ -169,4 +170,9 @@ div.element-container{
   -moz-border-radius-bottomright:5px;
   -moz-border-radius-topleft:5px;
   -moz-border-radius-topright:5px;
+}
+
+span.black{
+  color:#333333;
+  font-weight:normal;
 }
