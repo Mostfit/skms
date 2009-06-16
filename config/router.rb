@@ -27,15 +27,22 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+
+  match(%r{^/polls/([a-z]+)$}).to(:controller => 'polls', :action => "[1]").name(:poll_action) #does 'my','closed', etc
+
+  resources :polls do
+    resources :poll_choices do
+      resources :votes
+    end
+  end
+
+  resources :events
   resources :groups
-  resources :poll_choices
-  resources :votes
-  resources :polls
   resources :groups
     resources :users
     resources :tweets
     resources :tags
-    resources :comments
+    resources :comment
     # RESTful routes
     # resources :posts
     
@@ -52,4 +59,7 @@ Merb::Router.prepare do
     match('/').to(:controller => 'tweets', :action =>'index')
     match('/openid/login').to(:controller => 'users', :action => 'login').name(:openid)
     match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies)
+    match('/search').to(:controller => 'search', :action => 'search').name(:search)
+    match("/polls/:id/publish").to(:controller => 'polls', :action => 'publish').name(:publish_poll)
+    match("/polls/:id/vote").to(:controller => 'polls', :action => 'vote').name(:vote)
 end

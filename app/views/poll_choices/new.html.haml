@@ -1,13 +1,13 @@
-%h1 PollChoices controller, new action
+%h1 
+  New choice for poll:
+  = @poll.topic
 
-%p 
-  Edit this file in 
-  %tt app/views/poll_choices/new.html.erb
 
 = error_messages_for @poll_choice
 
-= form_for(@poll_choice, :action => url(:poll_choices) ) do
+= form_for(@poll_choice, :action => resource(@poll, :poll_choices) ) do
+  = text_field :text
   %p
     = submit "Create"
 
-= link_to 'Back', url(:poll_choices)
+= link_to 'Back', resource(@poll, :poll_choices)

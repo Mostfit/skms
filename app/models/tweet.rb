@@ -24,5 +24,3 @@ class Reply < Tweet
 
 end
 
-#class DirectMessage < Tweet
-#end

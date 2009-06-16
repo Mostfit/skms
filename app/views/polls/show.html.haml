@@ -1,10 +1,74 @@
-%h1
-  Polls controller, show action
-%p
-  Edit this file in
-  %tt
-    app/views/polls/show.html.erb
+.post-summary
+  .post_header
+    .user-thumbnail
+      = image_tag @poll.user.image.url(:thumb)
+    .post-info
+      %h1
+        Poll:
+        = @poll.topic
+      %p.info
+        Started by 
+        = @poll.user.name
+    .post-menu
+      - if @poll.user == session.user
+        = link_to '[Edit]', resource(@poll, :edit)
+        |
+        %b
+          This poll is 
+          = @poll.status
+        - if @poll.status == :unpublished
+          = link_to '[Publish]', url(:publish_poll, @poll.id)
 
-= link_to 'Edit',  url(:edit_poll,  @poll)
-|
-= link_to 'Back', url(:polls)
+%p
+  = @poll.description
+%hr
+
+%b
+  Choices [
+  - if @poll.editable_by? session.user
+    = link_to 'Add a choice', resource(@poll, :poll_choices, :new)
+  ]
+= form_for(@poll, :action => url(:vote, @poll)) do
+  %table{:style => 'background-color: lightyellow;padding: 2px; border: purple 1px solid;'}
+    - @poll.poll_choices.each do |choice|
+      %tr
+        %td
+          .poll_choice{ :valign => "top", :style => 'vertical-align:top;'}
+            = radio_button :name => 'vote', :value => choice.id
+            %b
+              = choice.text
+        %td.voter_thumbnails{:style => 'color: #700; font-size: 40px; background: lightyellow;'}
+          [
+          - choice.votes.each do |vote|
+            = image_tag vote.user.image.url(:thumb), :alt => vote.user.name, :title => vote.user.name
+          ]
+          (
+          = choice.votes.size
+          votes)
+        %td
+          - if choice.deletable_by? session.user
+            = link_to 'delete', url(:delete_poll_poll_choice, @poll.id, choice.id)
+  %br
+  = submit 'Vote'
+  - @ov = Vote.all('poll_choice.poll_id' => @poll.id, :user_id => session.user.id)[0]
+  - if @ov
+    .tip
+      You have already voted for
+      = @ov.poll_choice.text + ". "
+      Voting again will change your vote
+%p
+
+%p.post-menu
+  %b
+    %table
+      - @poll.comments.each do |comment|
+        %tr
+          %td.pic
+            = image_tag comment.author.image.url(:thumb), :width => '50', :height => '50'
+          %td.comment
+            = "by #{link_to comment.author.name, resource(comment.author)} on #{comment.created_at}"
+            %br
+            = RedCloth.new(comment.text).to_html
+
+
+

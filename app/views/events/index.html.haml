@@ -1,0 +1,16 @@
+%h1
+  Events controller, index action
+%p
+  Edit this file in
+  %tt
+    app/views/events/index.html.erb
+%table
+  %tr
+  - for event in @events
+    %tr
+      %td
+        = link_to 'Show', url(:event, event)
+      %td
+        = link_to 'Edit', url(:edit_event,  event)
+
+= link_to 'New', url(:new_event)

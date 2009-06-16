@@ -1,0 +1,21 @@
+%table
+  %tr
+    %th
+      Topic
+    %td
+      = text_field :topic
+  %tr
+    %th
+      Closing Date (YYYY-MM-DD)
+    %td
+      = text_field :closing_date
+  %tr
+    %th
+      Description
+    %td
+      = text_area :description, :rows => 15, :cols => 45
+  %tr
+    %th
+      Others can edit choices
+    %td
+      = select :editable, :collection => [[:false,"no"],[:true,"yes"]]

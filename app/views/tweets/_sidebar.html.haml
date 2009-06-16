@@ -1,5 +1,5 @@
-%form
-  %input{:type => 'text', :name => 'search', :value => 'Search'}
+%form{:method => 'POST', :action => url(:search)}
+  %input{:type => 'text', :name => 'search'}
   %ul.search-options.no-bullets
     %li
       %input{:type => 'checkbox', :name => 'search-tag', :value => 'tag', :title => 'Tag'}
@@ -18,3 +18,5 @@
     = link_to "@#{session.user.nick}", url(:replies)
   %li
     = link_to 'My Groups', url(:groups, :user_id => session.user.id)
+  %li
+    = link_to 'My Polls', url(:polls, :user_id => session.user.id)

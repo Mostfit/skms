@@ -1,13 +1,9 @@
-%h1 Polls controller, new action
-
-%p 
-  Edit this file in 
-  %tt app/views/polls/new.html.erb
+.articles
+  %h1 New Poll
 
 = error_messages_for @poll
 
 = form_for(@poll, :action => url(:polls) ) do
-  %p
-    = submit "Create"
+  = partial :fields
+  = submit "Create"
 
-= link_to 'Back', url(:polls)

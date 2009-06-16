@@ -1,0 +1,17 @@
+%h1.top
+  Are you sure?
+%p
+  == You are about to remove "#{@poll_choice.text}"
+  %p
+  Please confirm this action...
+
+= form_for(@poll_choice, :action => resource(@poll, @poll_choice), :method => 'delete') do
+  %table.form
+    %tr
+      %td{ :width => "160" }
+        &nbsp;
+      %td
+        = submit 'I\'m sure. Remove this poll choice.'
+  %p
+  %br/
+
