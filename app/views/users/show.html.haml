@@ -1,10 +1,2 @@
--message.each do |key,value|
-  = value
-= form_for(@user, :action=>resource(@user), :html =>'multiparttrue') do
-  %p
-    = file_field :image
-  %p
-    = submit "Attach Image"
-
 = partial 'details'
 - throw_content :for_sidebar, partial('sidebar')

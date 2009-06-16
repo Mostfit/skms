@@ -30,4 +30,9 @@ class Users < Application
     end
   end
 
+  def edit(id)
+    @user=User.get id
+    display @user
+  end
+
 end

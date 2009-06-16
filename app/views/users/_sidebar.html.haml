@@ -1,8 +1,8 @@
 %ul
   %li
-    = link_to 'View Profile'
+    = link_to 'View Profile', url(:user, session.user)
   %li
-    = link_to 'Edit Profile'
+    = link_to 'Edit Profile', url(:edit_user, session.user)
   %li
     = link_to 'Settings'
   %li

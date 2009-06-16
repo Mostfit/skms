@@ -11,7 +11,7 @@
       .header
         .nav-panel#header-panel
           - if session.authenticated?
-            %ul.nav-panel#header-panel
+            %ul.nav-panel.round#header-panel
               %li.nav-panel#header-panel
                 = link_to 'Home', url(:tweets) 
                 &nbsp
@@ -30,18 +30,18 @@
               %li.nav-panel#header-panel
                 = link_to 'Logout', url(:logout)
         .banner
-          = image_tag 'logo_intellecap.gif'
+          = image_tag 'banner.gif', :height => '100px', :width => '200px', :class => 'round'
+
+        - if session.authenticated?
+          -if session.user.nick
+            .current-user.round
+              %h1{:style => "margin-top: 0px; margin-bottom: 0px;"}
+                =session.user.nick
 
       .body
-        .body-left
+        .body-left.round
           = catch_content :for_layout
-        .body-right
-          - if session.authenticated?
-            .current-user
-              = image_tag session.user.image.url(:thumb), :height=>'50px'
-              %span.name
-                -if session.user.nick
-                  =session.user.nick
+        .body-right.round
           = catch_content :for_sidebar
-      .footer
+      .footer.round
         == &copy; 2009 Intellecap &mdash; This software is released under the #{link_to 'GNU Affero General Public License', 'http://www.gnu.org/licenses/agpl.html'}.
