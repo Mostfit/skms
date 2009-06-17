@@ -4,23 +4,23 @@
 .top-form
   = partial('status')
 
-.updates
+%ol.updates
   - for tweet in @tweets
-    .tweet.element-container
-      .imgn
+    %li
+      %span.imgn
         = image_tag tweet.user.image.url(:thumb), :height=>'50px'
-        %span.user-nick
-          -if tweet.user.nick
-            = tweet.user.nick
-      .content
-        %p.content
+      %span.body
+        -if tweet.user.nick
+          %strong
+            = link_to tweet.user.nick, url(:user, tweet.user)
+        %span.content
           = tweet.content
-        = link_to 'View', url(:edit_tweet,  tweet)
-      .tags
-        -tweet.tags.each do |tag|
-          =tag.name
-      .extra
-        == #{tweet.comments.count} Comments
-        - if tweet.file?
-          == Attachments
+        %span.meta
+          = link_to 'View', url(:edit_tweet,  tweet)
+          -tweet.tags.each do |tag|
+            =tag.name
+          == #{tweet.comments.count} Comments
+          - if tweet.file?
+            == Attachments
+      %span.actions
 - throw_content :for_sidebar, partial('sidebar')

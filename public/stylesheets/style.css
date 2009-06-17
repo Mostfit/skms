@@ -26,7 +26,7 @@ div.banner{
 }
 
 div.current-user{
-  background:#090909 none repeat scroll 0 0;
+  background:#111111 none repeat scroll 0 0;
   position:relative;
   left:200px;
   top:-100px;
@@ -42,7 +42,7 @@ div.body{
 }
 
 div.body-left{
-  background-color:#F7F7F7;
+  background-color:#FFFFFF;
   width:68%;
   padding-left:20px;
   float:left;
@@ -70,12 +70,23 @@ div.footer{
   white-space:nowrap;
 }
 
-div.nav-panel{
+div#header-panel{
+  left:345px;
+  position:absolute;
+  top:90px;
+}
+
+div.search{
+  background-color:#111111;
+  position:absolute;
+  right:10%;
+  top:5%;
+  width:20%;
 }
 
 ul.nav-panel {
   line-height:40px;
-  background:#090909;
+  background:#222222;
   margin:0;
   padding:0px 10px;
   white-space:nowrap;
@@ -123,25 +134,38 @@ div.top-form form.form textarea#tweet_content{
 div.tweet{
 }
 
-div.imgn{
-  float:left;
-  min-height:60px;
+span.imgn{
+  display:block;
+  height:50px;
+  margin:0 10px 0 5px;
+  overflow:hidden;
   width:50px;
-  padding:1px;
 }
 
-div.content{
-  margin-left:75px;
+span.body{
+  display:block;
+  margin-left:65px;
+  min-height:50px;
+  overflow:hidden;
+  position:absolute;
+  top:10px;
 }
 
-div.view{
-  padding:5px;
+span.meta{
+  color:#999999;
+  display:block;
+  font-family:georgia;
+  font-size:0.8em;
+  font-style:italic;
+  margin:3px 0 0;
 }
 
-div.tags{
-}
-
-div.extra{
+span.actions{
+  border-width:0;
+  line-height:1.25em;
+  position:absolute;
+  right:5px;
+  top:0.5em;
 }
 
 textarea.comment{
@@ -160,8 +184,15 @@ ul{
   list-style-type:none;
 }
 
+ol.updates{
+  padding-left:0px;
+  list-style-image:none;
+  list-style-position:outside;
+  list-style-type:none;
+  margin-right:20px;
+}
 
-div.element-container{
+span.element-container{
   border-bottom:1px dashed #D2DADA;
   line-height:1.1em;
   padding:0.7em 0 0.6em;
@@ -178,4 +209,17 @@ div.element-container{
 span.black{
   color:#333333;
   font-weight:normal;
+}
+
+ol.updates li:hover, ol.updates li.hover {
+  background-color:#F7F7F7;
+}
+ol.updates > li:first-child {
+  border-top:1px dashed #D2DADA;
+}
+ol.updates > li {
+  border-bottom:1px dashed #D2DADA;
+  line-height:1.1em;
+  padding:0.7em 0 0.6em;
+  position:relative;
 }

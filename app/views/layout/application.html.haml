@@ -9,6 +9,20 @@
   %body
     .container
       .header
+        .search.round
+          %form{:method => 'POST', :action => url(:search)}
+            %input{:type => 'text', :name => 'search'}
+            %ul.search-options.no-bullets
+              %li
+                %input{:type => 'checkbox', :name => 'search-tag', :value => 'tag', :title => 'Tag'}
+                == Only Tags
+              %li
+                %input{:type => 'checkbox', :name => 'search-group', :value => 'group', :title => 'Group'}
+                == Only Groups
+              %li
+                %input{:type => 'checkbox', :name => 'search-all', :value => 'all', :title => 'All'}
+                == Everything
+
         .nav-panel#header-panel
           - if session.authenticated?
             %ul.nav-panel.round#header-panel
