@@ -8,11 +8,11 @@
   - for tweet in @tweets
     %li
       %span.imgn
-        = image_tag tweet.user.image.url(:thumb), :height=>'50px'
+        = image_tag tweet.made_by.image.url(:thumb), :height=>'50px'
       %span.body
-        -if tweet.user.nick
+        -if tweet.made_by.nick
           %strong
-            = link_to tweet.user.nick, url(:user, tweet.user)
+            = link_to tweet.made_by.nick, url(:user, tweet.made_by)
         %span.content
           = tweet.content
         %span.meta

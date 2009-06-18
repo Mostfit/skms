@@ -1,4 +1,4 @@
-anurag:
+user1:
   :id: 1
   :name: anurag
   :nick: yeban
@@ -6,7 +6,7 @@ anurag:
   :admin: true
   :bio: The first user. Developer, tester and the administrator.
 
-siddharth:
+user2:
   :id: 2
   :name: siddharth
   :nick: sid
@@ -14,7 +14,7 @@ siddharth:
   :admin: false
   :bio: The second user. Boss, Chief Geek.
 
-piyush:
+user3:
   :id: 3
   :name: piyush
   :nick: pr
@@ -22,7 +22,7 @@ piyush:
   :admin: false
   :bio: The third user. Captain Geek, Lisp, Java, C and PHP Hacker.
 
-nipra:
+user4:
   :id: 4
   :name: nikhil
   :nick: nipra
@@ -30,7 +30,7 @@ nipra:
   :admin: false
   :bio: The fourth user. Lisp Hacker.
 
-neha:
+user5:
   :id: 5
   :name: neha
   :nick: neha

@@ -2,64 +2,65 @@ tweet1:
   :id: 1
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 1
+  :made_by_id: 1
 
 tweet2:
   :id: 2
   :discriminator: Tweet
   :content: This one seems to be a nice app.
-  :user_id: 1
+  :made_by_id: 1
 
-tweet3:
+reply1:
   :id: 3
   :discriminator: Reply
   :content: @yeban it indeed is a great app.
-  :user_id: 1
+  :made_by_id: 2
+  :for_id: 1
 
 tweet4:
   :id: 4
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 2
+  :made_by_id: 2
 
 tweet5:
   :id: 5
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 2
+  :made_by_id: 2
 
 tweet6:
   :id: 6
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 3
+  :made_by_id: 3
 
 tweet7:
   :id: 7
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 3
+  :made_by_id: 3
 
 tweet8:
   :id: 8
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 3
+  :made_by_id: 3
 
 tweet9:
   :id: 9
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 3
+  :made_by_id: 3
 
 tweet10:
   :id: 10
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 4
+  :made_by_id: 4
 
 tweet11:
   :id: 11
   :discriminator: Tweet
   :content: Hello World. The first tweet.
-  :user_id: 5
+  :made_by_id: 5

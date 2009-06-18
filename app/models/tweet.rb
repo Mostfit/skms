@@ -14,13 +14,13 @@ class Tweet
 
   has n, :comments
   has n, :tags, :through=>Resource
-  belongs_to :user
+  belongs_to :made_by, :class_name => 'User', :child_key => [:made_by_id] 
 
 end
 
 class Reply < Tweet
 
-  belongs_to :user
+  belongs_to :for, :class_name => 'User', :child_key => [:for_id]
 
 end
 

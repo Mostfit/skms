@@ -19,11 +19,12 @@ task :load_fixtures do
   files = ['users', 'tweets']
 
   files.each do |name|
-    klass = Kernel::const_get(name.to_s.singularize.camel_case)
     yml_file =  "/fixtures/#{name}.yml"
     puts "\nLoading: #{yml_file}"
     entries = YAML::load_file(Merb.root / yml_file)
     entries.each do |name, entry|
+      n = name.sub(/\d+/,'')
+      klass = Kernel::const_get(n.to_s.camel_case)
       k = klass::new(entry)
       puts "#{k} :#{name}"
 
