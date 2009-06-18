@@ -1,0 +1,13 @@
+.group
+  %span.imgn
+    = image_tag @group.image.url(:thumb), :height=>'50px'
+  %span.body
+    %strong
+      = link_to @group.name, url(:group, @group)
+    %span.content
+      = @group.description
+    %span.meta
+      = link_to 'View',  url(:group, @group)
+      - @group.tags.each do |tag|
+        =tag.name
+  %span.actions

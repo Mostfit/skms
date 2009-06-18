@@ -9,7 +9,7 @@ class Groups < Application
   def show(id)
     @group = Group.get(id)
     raise NotFound unless @group
-    display @grou
+    display @group
   end
 
   def new

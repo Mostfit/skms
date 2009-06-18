@@ -1,2 +1,15 @@
-= partial 'details'
+%ol.list.users
+  -for user in @users
+    %li
+      %span.imgn
+        = image_tag user.image.url(:thumb), :height=>'50px'
+      %span.body
+        %strong
+          = link_to user.name, url(:user, user)
+        %span.content
+          = user.bio
+        %span.meta
+          = link_to 'View',  url(:user, user)
+      %span.actions
+
 - throw_content :for_sidebar, partial('sidebar')

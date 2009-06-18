@@ -1,8 +1,8 @@
 class Users < Application
 
   def index
-    @user=session.user
-    display @user
+    @users=User.all
+    display @users
   end
 
   def show(id)

@@ -1,0 +1,39 @@
+anurag:
+  :id: 1
+  :name: anurag
+  :nick: yeban
+  :email: anurag.priyam@intellecap.net
+  :admin: true
+  :bio: The first user. Developer, tester and the administrator.
+
+siddharth:
+  :id: 2
+  :name: siddharth
+  :nick: sid
+  :email: svs@intellecap.net
+  :admin: false
+  :bio: The second user. Boss, Chief Geek.
+
+piyush:
+  :id: 3
+  :name: piyush
+  :nick: pr
+  :email: piyush.ranjan@intellecap.net
+  :admin: false
+  :bio: The third user. Captain Geek, Lisp, Java, C and PHP Hacker.
+
+nipra:
+  :id: 4
+  :name: nikhil
+  :nick: nipra
+  :email: nipra@intellecap.net
+  :admin: false
+  :bio: The fourth user. Lisp Hacker.
+
+neha:
+  :id: 5
+  :name: neha
+  :nick: neha
+  :email: neha.kumari@intellecap.net
+  :admin: false
+  :bio: The fifth user. Not a real geek.

@@ -17,6 +17,7 @@ class User
   property :nick, String,   :format => /^[A-Za-z0-9_-]+$/
   property :email, String,  :nullable => false, :format=> :email_address
   property :admin, Boolean, :default => false, :nullable => false
+  property :bio, Text
 
   timestamps :at
 
