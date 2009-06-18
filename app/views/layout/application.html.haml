@@ -9,20 +9,6 @@
   %body
     .container
       .header
-        .search.round
-          %form{:method => 'POST', :action => url(:search)}
-            %input{:type => 'text', :name => 'search'}
-            %ul.search-options.no-bullets
-              %li
-                %input{:type => 'checkbox', :name => 'search-tag', :value => 'tag', :title => 'Tag'}
-                == Only Tags
-              %li
-                %input{:type => 'checkbox', :name => 'search-group', :value => 'group', :title => 'Group'}
-                == Only Groups
-              %li
-                %input{:type => 'checkbox', :name => 'search-all', :value => 'all', :title => 'All'}
-                == Everything
-
         .nav-panel#header-panel
           - if session.authenticated?
             %ul.nav-panel.round#header-panel
@@ -30,7 +16,10 @@
                 = link_to 'Home', url(:tweets) 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Profile', url(:user, session.user) 
+                = link_to "@#{session.user.nick}", url(:replies)
+                &nbsp
+              %li.nav-panel#header-panel
+                = link_to 'Profile', url(:profile, session.user.nick) 
                 &nbsp
               %li.nav-panel#header-panel
                 = link_to 'Groups', url(:groups) 

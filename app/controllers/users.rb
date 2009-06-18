@@ -35,4 +35,10 @@ class Users < Application
     display @user
   end
 
+  def profile(nick)
+    @user = User.first(:nick => nick)
+    @tweets = @user.tweets
+    display @tweets
+  end
+
 end

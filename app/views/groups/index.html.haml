@@ -1,17 +1,17 @@
-.groups
+%ol.groups
   -for group in @groups
-    .group.element-container
-      .imgn
+    %li
+      %span.imgn
         = image_tag group.image.url(:thumb), :height=>'50px'
-        %span.name
-          = group.name
-      .content
-        %p.content
+      %span.body
+        %strong
+          = link_to group.name, url(:group, group)
+        %span.content
           = group.description
-        = link_to 'View', url(:group, group)
-      .tags
-        -group.tags.each do |tag|
-          =tag.name
-      %hr
+        %span.meta
+          = link_to 'View',  url(:group, group)
+          - group.tags.each do |tag|
+            =tag.name
+      %span.actions
 
 - throw_content :for_sidebar, partial('sidebar')

@@ -76,14 +76,6 @@ div#header-panel{
   top:90px;
 }
 
-div.search{
-  background-color:#111111;
-  position:absolute;
-  right:10%;
-  top:5%;
-  width:20%;
-}
-
 ul.nav-panel {
   line-height:40px;
   background:#222222;
@@ -184,7 +176,7 @@ ul{
   list-style-type:none;
 }
 
-ol.updates{
+ol.updates, ol.groups{
   padding-left:0px;
   list-style-image:none;
   list-style-position:outside;
@@ -211,13 +203,13 @@ span.black{
   font-weight:normal;
 }
 
-ol.updates li:hover, ol.updates li.hover {
+ol.updates li:hover, ol.updates li.hover,ol.groups li:hover, ol.groups li.hover  {
   background-color:#F7F7F7;
 }
-ol.updates > li:first-child {
+ol.updates > li:first-child, ol.groups > li:first-child  {
   border-top:1px dashed #D2DADA;
 }
-ol.updates > li {
+ol.updates > li, ol.groups > li  {
   border-bottom:1px dashed #D2DADA;
   line-height:1.1em;
   padding:0.7em 0 0.6em;
