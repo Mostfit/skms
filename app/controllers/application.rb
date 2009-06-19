@@ -19,7 +19,7 @@ class Application < Merb::Controller
       email_users.each do |user|
         debugger
         Merb.logger.info "Sending mail to #{user.email}"
-        send_mail (MailMailer, template, {
+        send_mail(MailMailer, template, {
                  :from => 'loyola90@loyola90.net',
                  :to   => user.email,
                  :subject => "[loyola90] #{email_subject}",

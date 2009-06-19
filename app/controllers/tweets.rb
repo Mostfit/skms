@@ -17,7 +17,7 @@ class Tweets < Application
     debugger
     klass = tweet[:content].index("@#{session.user.nick}")? Kernel::const_get("Reply"): Kernel::const_get("Tweet")
     @tweet = klass.new(tweet)
-    @tweet.user=session.user
+    @tweet.made_by=session.user
     @tweet.discriminator=klass
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}

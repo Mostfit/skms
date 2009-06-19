@@ -11,7 +11,7 @@ class Group
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
   has n,   :moderators, :through => :moderations, :child_key => [:user_id]
-  has n,   :tags, :through=>Resource
+  has_tags
 
   has_attached_file :image,
     :styles => {:medium => "300x300>", :thumb => "60x60#"},

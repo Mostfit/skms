@@ -27,6 +27,7 @@
 
 Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do
+  resources :tags
 
   match(%r{^/polls/([a-z]+)$}).to(:controller => 'polls', :action => "[1]").name(:poll_action) #does 'my','closed', etc
 
