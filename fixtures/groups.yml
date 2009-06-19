@@ -1,0 +1,31 @@
+group1:
+  :id: 1
+  :name: IT
+  :description: This is the IT team at Intellecap. We beleive in open source and money.
+  :protected: false
+
+group2:
+  :id: 2
+  :name: BAG
+  :description: The Buisness Advisory Group at Intellecap. We work as consultants.
+  :protected: true
+
+group3:
+  :id: 3
+  :name: KAG
+  :description: The Knowledge Advisory Group at Intellecap.
+  :protected: true
+  
+group4:
+  :id: 4
+  :name: Music 
+  :description: For all the Music lover at Intellecap.
+  :protected: false
+
+group5:
+  :id: 5
+  :name: Sankalp
+  :description: This is a temporary group, for the people involved in the organisation and management of Sankalp.
+  :protected: true
+
+

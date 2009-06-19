@@ -1,0 +1,47 @@
+membership1:
+  :user_id: 1
+  :group_id: 1
+
+membership2:
+  :user_id: 1
+  :group_id: 4
+
+membership3:
+  :user_id: 2
+  :group_id: 1
+
+membership4:
+  :user_id: 2
+  :group_id: 4
+
+membership5:
+  :user_id: 3
+  :group_id: 1
+
+membership6:
+  :user_id: 4
+  :group_id: 1
+
+membership7:
+  :user_id: 5
+  :group_id: 1
+
+membership8:
+  :user_id: 6
+  :group_id: 3
+
+membership9:
+  :user_id: 6
+  :group_id: 5
+
+membership10:
+  :user_id: 7
+  :group_id: 2
+
+membership12:
+  :user_id: 10
+  :group_id: 2
+
+membership11:
+  :user_id: 9
+  :group_id: 3

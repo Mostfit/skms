@@ -8,8 +8,9 @@ class Group
   property :protected, Boolean, :default => false, :nullable => false
 
   has n,   :memberships
-  has n,   :members, :class_name => 'User', :through => :memberships, :child_key => [:user_id]
-  has n,   :moderators, :class_name => 'User', :through => Resource
+  has n,   :members, :through => :memberships, :child_key => [:user_id]
+  has n,   :moderations
+  has n,   :moderators, :through => :moderations, :child_key => [:user_id]
   has n,   :tags, :through=>Resource
 
   has_attached_file :image,
@@ -27,7 +28,19 @@ class Membership
   property :user_id,  Integer, :key => true
   property :group_id,  Integer, :key => true
 
-  belongs_to :group
+  belongs_to :group, :child_key => [:group_id]
   belongs_to :member, :class_name => 'User', :child_key => [:user_id]
+
+end
+
+class Moderation
+  include DataMapper::Resource
+
+  property :user_id,  Integer, :key => true
+  property :group_id,  Integer, :key => true
+  property :owner, Boolean, :default => false
+
+  belongs_to :group, :child_key => [:group_id]
+  belongs_to :moderator, :class_name => 'User', :child_key => [:user_id]
 
 end

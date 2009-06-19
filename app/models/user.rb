@@ -27,8 +27,9 @@ class User
   has n, :polls
   has n, :votes
   has n, :memberships
-  has n, :groups, :class_name => 'Group', :through => :memberships, :child_key => [:group_id]
-  has n, :groups_moderated, :class_name => 'Group', :through => Resource
+  has n, :groups, :through => :memberships, :child_key => [:group_id]
+  has n, :moderations
+  has n, :groups_moderated, :through => :moderations, :child_key => [:group_id]
 
   has_attached_file :image,
   :styles => {:medium => "300x300>", :thumb => "60x60#"},

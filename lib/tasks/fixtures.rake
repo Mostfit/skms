@@ -16,7 +16,7 @@ desc "Load fixtures"
 task :load_fixtures do
 
   DataMapper.auto_migrate! if Merb.orm == :datamapper
-  files = ['users', 'tweets']
+  files = ['users', 'tweets', 'groups', 'memberships']
 
   files.each do |name|
     yml_file =  "/fixtures/#{name}.yml"

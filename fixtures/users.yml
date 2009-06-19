@@ -37,3 +37,43 @@ user5:
   :email: neha.kumari@intellecap.net
   :admin: false
   :bio: The fifth user. Not a real geek.
+
+user6:
+  :id: 6
+  :name: Rashmi
+  :nick: rp
+  :email: rashmi.pillai@intellecap.net
+  :admin: false
+  :bio: Member of the KAG. Manages Sankalp
+
+user7:
+  :id: 7
+  :name: Yatnesh
+  :nick: jam
+  :email: yatnesh@intellecap.net
+  :admin: false
+  :bio: Member of the BAG.
+
+user8:
+  :id: 8
+  :name: Scott 
+  :nick: rp
+  :email: scott@intellecap.net
+  :admin: false
+  :bio: Member of no group. Lawyer by proffession.
+
+user9:
+  :id: 9
+  :name: Aparajita 
+  :nick: appu
+  :email: appu@intellecap.net
+  :admin: false
+  :bio: VP of the KAG.
+
+user10:
+  :id: 10
+  :name: Vibhu 
+  :nick: vibhu
+  :email: vibhu@intellecap.net
+  :admin: false
+  :bio: Memeber of the BAG. An intern.
