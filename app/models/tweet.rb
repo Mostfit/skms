@@ -13,7 +13,7 @@ class Tweet
       :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension"
 
   has n, :comments
-  has_tags
+  has_tags #comes from the dm-tags plugin
   belongs_to :made_by, :class_name => 'User', :child_key => [:made_by_id] 
 
   default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything

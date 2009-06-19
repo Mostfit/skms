@@ -19,7 +19,7 @@
         = link_to poll.topic, resource(poll)
       %td
         by
-        = link_to poll.user.name, resource(poll.user)
+        = link_to poll.user.nick, resource(poll.user)
       %td
         = Vote.all('poll_choice.poll_id' => poll.id).count
         votes

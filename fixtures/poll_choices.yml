@@ -1,0 +1,59 @@
+PollChoice1:
+  :id: 1
+  :text: Vim
+  :poll_id: 1
+
+PollChoice2:
+  :id: 2
+  :text: Emacs
+  :poll_id: 1
+
+PollChoice3:
+  :id: 3
+  :text: Rocks. Continue it.
+  :poll_id: 2
+
+PollChoice4:
+  :id: 4
+  :text: Waste. Stop it.
+  :poll_id: 2
+
+PollChoice5:
+  :id: 5
+  :text: Lets see.
+  :poll_id: 2
+
+PollChoice6:
+  :id: 6
+  :text: Nice. I like it.
+  :poll_id: 3
+
+PollChoice7:
+  :id: 7
+  :text: I hate it.
+  :poll_id: 3
+
+PollChoice8:
+  :id: 8
+  :text: Just Bearable.
+  :poll_id: 3
+
+PollChoice9:
+  :id: 9
+  :text: January
+  :poll_id: 4
+
+PollChoice10:
+  :id: 10
+  :text: March
+  :poll_id: 4
+
+PollChoice11:
+  :id: 11
+  :text: Rock
+  :poll_id: 5
+
+PollChoice12:
+  :id: 12
+  :text: are cheap.
+  :poll_id: 5

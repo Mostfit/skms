@@ -1,0 +1,44 @@
+poll1:
+  :id: 1
+  :topic: Which is the best editor?
+  :description: The linux users group is divided into its group of editor users. Vote which one do you use, or like the best?
+  :published: true
+  :closing_date: 2010-06-08
+  :editable: false 
+  :user_id: 1
+
+poll2:
+  :id: 2
+  :topic: Sankalp is
+  :description: The event which provides a platform for the MFIs to come together
+  :published: true
+  :closing_date: 2010-06-08
+  :editable: false 
+  :user_id: 6
+
+poll3:
+  :id: 3
+  :topic: Working environment at Intellecap is
+  :description: The linux users group is divided into its group of editor users. Vote which one do you use, or like the best?
+  :published: true
+  :closing_date: 2010-06-08
+  :editable: true 
+  :editable: false 
+  :user_id: 2
+
+poll4:
+  :id: 4
+  :topic: When should the company party be?
+  :published: true
+  :closing_date: 2010-06-08
+  :editable: true 
+  :user_id: 10
+
+poll5:
+  :id: 5
+  :topic: Interns
+  :description: A general opinion about the smart and talented interns at Intellecap.
+  :published: false
+  :closing_date: 2010-06-08
+  :editable: true 
+  :user_id: 3
