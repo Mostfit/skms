@@ -2,7 +2,7 @@ group1:
   :id: 1
   :name: IT
   :description: This is the IT team at Intellecap. We beleive in open source and money.
-  :protected: false
+  :protected: true
 
 group2:
   :id: 2
