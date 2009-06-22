@@ -1,4 +1,4 @@
-%ol.groups
+%ol.list
   - @groups.each do |group|
     %li
       %span.imgn
@@ -14,6 +14,6 @@
             =tag.name
           = group.protected? ? 'Private': 'Open'
       %span.actions
-        = link_to 'Join', url(:join, group, session.user)
+        = link_to 'Leave', url(:leave, group, session.user)
 
 - throw_content :for_sidebar, partial('sidebar')

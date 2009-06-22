@@ -55,23 +55,17 @@ class Groups < Application
     end
   end
 
-  def join(user_id, group_id)
-    @group = Group.get(group_id)
+  def join(id, user_id)
+    @group = Group.get(id)
     raise NotFound unless @group
-    membership = Membership.new({:user_id => user_id, :group_id => group_id})
+    membership = Membership.new({:user_id => user_id, :group_id => id})
     membership.approved = true unless @group.protected?
     membership.save
     redirect url(:groups)
   end
 
-  def membership(user_id)
-    debugger
-    @groups = Group.all('memberships.user_id' => user_id) 
-    display @groups
-  end
-
-  def leave(user_id, group_id)
-    membership = Membership.all(:user_id => user_id, :group_id => group_id)
+  def leave(id, user_id)
+    membership = Membership.all(:user_id => user_id, :group_id => id)
     if membership.destroy!
       redirect url(:groups)
     else

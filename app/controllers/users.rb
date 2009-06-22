@@ -41,4 +41,10 @@ class Users < Application
     display @tweets
   end
 
+  def membership(id)
+    debugger
+    @groups = Group.all('memberships.user_id' => id) 
+    display @groups
+  end
+
 end
