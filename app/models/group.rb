@@ -4,7 +4,7 @@ class Group
   
   property :id, Serial
   property :name, String, :nullable => false
-  property :description, Text
+  property :description, Text, :lazy => false
   property :protected, Boolean, :default => false, :nullable => false
 
   timestamps :at

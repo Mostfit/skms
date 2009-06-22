@@ -65,6 +65,7 @@ class Groups < Application
   end
 
   def membership(user_id)
+    debugger
     @groups = Group.all('memberships.user_id' => user_id) 
     display @groups
   end
