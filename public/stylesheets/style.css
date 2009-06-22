@@ -141,6 +141,7 @@ span.body{
   overflow:hidden;
   position:absolute;
   top:10px;
+  width:88%;
 }
 
 span.meta{

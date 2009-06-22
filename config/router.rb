@@ -64,4 +64,7 @@ Merb::Router.prepare do
     match("/polls/:id/publish").to(:controller => 'polls', :action => 'publish').name(:publish_poll)
     match("/polls/:id/vote").to(:controller => 'polls', :action => 'vote').name(:vote)
     match("/:nick").to(:controller => 'users', :action => 'profile').name(:profile)
+    match('/join/:user_id/:group_id').to(:controller => 'groups', :action => 'join').name(:join)
+    match('/leave/:user_id/:group_id').to(:controller => 'groups', :action => 'leave').name(:leave)
+    match('/memberships/:user_id').to(:controller => 'groups', :action => 'membership').name(:membership)
 end

@@ -15,5 +15,6 @@
           = group.protected? ? 'Private': 'Open'
       %span.actions
         = link_to 'Join', url(:join, session.user, group)
+        = link_to 'Leave', url(:leave, session.user, group)
 
 - throw_content :for_sidebar, partial('sidebar')

@@ -12,5 +12,5 @@
       - @group.tags.each do |tag|
         =tag.name
   %span.actions
-    = link_to 'Join'
+    = link_to 'Join', url(:join, session.user, @group)
 - throw_content :for_sidebar, partial('sidebar')

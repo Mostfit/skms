@@ -2,7 +2,7 @@ class Groups < Application
   # provides :xml, :yaml, :js
 
   def index
-    @groups = params[:user_id] ? Group.all('memberships.user_id' => params[:user_id]) : Group.all 
+    @groups = Group.all 
     display @groups
   end
 
@@ -50,6 +50,29 @@ class Groups < Application
     raise NotFound unless @group
     if @group.destroy
       redirect resource(:groups)
+    else
+      raise InternalServerError
+    end
+  end
+
+  def join(user_id, group_id)
+    @group = Group.get(group_id)
+    raise NotFound unless @group
+    membership = Membership.new({:user_id => user_id, :group_id => group_id})
+    membership.approved = true unless @group.protected?
+    membership.save
+    redirect url(:groups)
+  end
+
+  def membership(user_id)
+    @groups = Group.all('memberships.user_id' => user_id) 
+    display @groups
+  end
+
+  def leave(user_id, group_id)
+    membership = Membership.all(:user_id => user_id, :group_id => group_id)
+    if membership.destroy!
+      redirect url(:groups)
     else
       raise InternalServerError
     end

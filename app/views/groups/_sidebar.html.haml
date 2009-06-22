@@ -4,4 +4,4 @@
   %li
     = link_to 'Groups Owned'
   %li
-    = link_to 'Memberships', url(:groups)
+    = link_to 'Memberships', url(:membership, :user_id => session.user.id)
