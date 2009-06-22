@@ -14,7 +14,7 @@
           %strong
             = link_to tweet.made_by.nick, url(:user, tweet.made_by)
         %span.content
-          = tweet.content
+          = tweet.content[0..139]
         %span.meta
           = link_to 'View', url(:edit_tweet,  tweet)
           -tweet.tags.each do |tag|

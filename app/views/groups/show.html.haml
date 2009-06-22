@@ -1,3 +1,4 @@
+%h3 Group
 .group
   %span.imgn
     = image_tag @group.image.url(:thumb), :height=>'50px'
@@ -11,3 +12,5 @@
       - @group.tags.each do |tag|
         =tag.name
   %span.actions
+    = link_to 'Join'
+- throw_content :for_sidebar, partial('sidebar')

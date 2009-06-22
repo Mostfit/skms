@@ -14,7 +14,7 @@ class User
   
   property :id, Serial
   property :name, String,   :format => /^[A-Za-z0-9 ]+$/
-  property :nick, String,   :format => /^[A-Za-z0-9_-]+$/
+  property :nick, String,   :format => /^[A-Za-z0-9_-]+$/, :nullable => false, :unique => true
   property :email, String,  :nullable => false, :format=> :email_address
   property :admin, Boolean, :default => false, :nullable => false
   property :bio, Text

@@ -1,6 +1,8 @@
 require 'cgi'
 class Application < Merb::Controller
+  
   before :ensure_authenticated
+
   def ensure_is_admin
     raise NotPrivileged unless session.user.right.index(:admin)
   end

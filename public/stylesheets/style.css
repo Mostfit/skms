@@ -215,3 +215,7 @@ ol.updates > li, ol.groups > li, ol.list > li  {
   padding:0.7em 0 0.6em;
   position:relative;
 }
+
+div.group{
+  position:relative;
+}

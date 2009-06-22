@@ -1,9 +1,9 @@
 .tweet
   .user
-    = image_tag @tweet.user.image.url(:thumb), :height=>'50px'
+    = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px'
     %span.user-nick
-      -if @tweet.user.nick
-        = @tweet.user.nick
+      -if @tweet.made_by.nick
+        = @tweet.made_by.nick
   .content
     %p.content
       = @tweet.content
@@ -15,4 +15,3 @@
   = partial 'attachment'
 .tags
   %h3 Tags
-  = render :template => 'tags/index', :layout => false

@@ -7,6 +7,8 @@ class Group
   property :description, Text
   property :protected, Boolean, :default => false, :nullable => false
 
+  timestamps :at
+
   has n,   :memberships
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
@@ -18,6 +20,8 @@ class Group
     :url => "/uploads/:class/:id/:attachment/:style/:basename.:extension",
     :path => "#{Merb.root}/public/uploads/:class/:id/:attachment/:style/:basename.:extension",
     :default_url => "/images/default_group.jpg"
+
+  default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything
 
 end
 
