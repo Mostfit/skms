@@ -73,4 +73,10 @@ class Groups < Application
     end
   end
 
+  def approve(id, user_id)
+    membership = Membership.all(:user_id => user_id, :group_id => id)
+    raise NotPreveliged unless memberhip.can_be_approved_by(user_id) 
+    memberhip.approved = true
+  end
+
 end # Groups

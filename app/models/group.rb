@@ -13,6 +13,7 @@ class Group
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
   has n,   :moderators, :through => :moderations, :child_key => [:user_id]
+  has n,   :gm, :class_name => 'GroupMessage', :child_key => [:for_id]
   has_tags #comes from the dm-tags plugin
 
   has_attached_file :image,
@@ -28,12 +29,17 @@ end
 class Membership
   include DataMapper::Resource
 
-  property :approved, Boolean
+  property :approved, Boolean, :nullable => false, :default => Proc.new { |r, p| not Group.get(r.group_id).protected? } #if group is protected, approved = false and vice verca
   property :user_id,  Integer, :key => true
   property :group_id,  Integer, :key => true
 
   belongs_to :group, :child_key => [:group_id]
   belongs_to :member, :class_name => 'User', :child_key => [:user_id]
+
+  def can_be_approved_by? user_id
+    moderations = Moderation.all :group_id => self.group_id, :user_id => user_id
+    return true unless moderations
+  end
 
 end
 

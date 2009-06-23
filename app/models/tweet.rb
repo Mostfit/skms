@@ -1,10 +1,10 @@
-class Tweet
+class Tweet #address your network. everyone hears it.
   include DataMapper::Resource
   include Paperclip::Resource
 
   property :id, Serial
   property :discriminator, Discriminator, :default => 'Tweet', :nullable => false
-  property :content, Text, :nullable=>false
+  property :content, Text, :nullable=>false, :lazy => false
   timestamps :at
 
   has_attached_file :file,
@@ -20,9 +20,20 @@ class Tweet
 
 end
 
-class Reply < Tweet
+class Reply < Tweet #address a person. everyone hears it.
 
   belongs_to :for, :class_name => 'User', :child_key => [:for_id]
 
 end
 
+class PrivateMessage < Tweet #whisper to a person. only he hears it.
+
+  belongs_to :for, :class_name => 'User', :child_key => [:for_id]
+
+end
+
+class GroupMessage < Tweet #speak only to the group. only group members hear it.
+
+  belongs_to :for, :class_name => 'Group', :child_key => [:for_id]
+
+end
