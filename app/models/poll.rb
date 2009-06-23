@@ -28,5 +28,4 @@ class Poll
     end
   end
 
-
 end

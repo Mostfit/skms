@@ -59,7 +59,6 @@ class Groups < Application
     @group = Group.get(id)
     raise NotFound unless @group
     membership = Membership.new({:user_id => user_id, :group_id => id})
-    membership.approved = true unless @group.protected?
     membership.save
     redirect url(:groups)
   end

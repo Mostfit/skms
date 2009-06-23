@@ -30,10 +30,20 @@ class PrivateMessage < Tweet #whisper to a person. only he hears it.
 
   belongs_to :for, :class_name => 'User', :child_key => [:for_id]
 
+  #a user is authorised to see the private messages if it is 'for' him
+  def is_authorised? user_id
+    self.for_id == user_id
+  end
+
 end
 
 class GroupMessage < Tweet #speak only to the group. only group members hear it.
 
   belongs_to :for, :class_name => 'Group', :child_key => [:for_id]
+
+  #a user is authorised to see the group messages if he is a part of the group
+  def is_authorised? user_id
+    return true unless Membership.all(:group_id => self.for_id, :user_id => user_id)
+  end
 
 end

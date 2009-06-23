@@ -1,0 +1,26 @@
+%h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+  %span.black
+    What are you doing?
+.top-form
+  = partial('status')
+
+%ol.updates
+  - for reply in @replies
+    %li
+      %span.imgn
+        = image_tag reply.made_by.image.url(:thumb), :height=>'50px'
+      %span.body
+        -if reply.made_by.nick
+          %strong
+            = link_to reply.made_by.nick, url(:user, reply.made_by)
+        %span.content
+          = reply.content[0..139]
+        %span.meta
+          = link_to 'View', url(:edit_tweet, reply)
+          -reply.tags.each do |tag|
+            =tag.name
+          == #{reply.comments.count} Comments
+          - if reply.file?
+            == Attachments
+      %span.actions
+- throw_content :for_sidebar, partial('sidebar')

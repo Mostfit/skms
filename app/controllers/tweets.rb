@@ -47,9 +47,5 @@ class Tweets < Application
     end
   end
 
-  def replies
-    @tweets = Reply.all('for.nick' => session.user.nick)
-    display @tweets, 'tweets/index'
-  end
 
 end # Tweets

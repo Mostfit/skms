@@ -35,8 +35,6 @@ Merb::Router.prepare do
   match('/login').to(:controller => 'users', :action => 'login').name(:openid) #for google federated login
     
   match('/').to(:controller => 'tweets', :action =>'index') #to match the home page
-
-  match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies) #the @reply feature
   match('/search').to(:controller => 'search', :action => 'search').name(:search) #not yet fixed
 
   #generates url of the form /polls/1/publish, where 1 refers to the poll's id. :id will be available in the params hash
@@ -56,6 +54,8 @@ Merb::Router.prepare do
   match('/user') do |user|
     user.match('/:id/memberships(/:group_id)').to(:controller => 'users', :action => 'membership').name(:memberships)
     user.match('/:nick').to(:controller => 'users', :action => 'profile').name(:profile)
+    user.match('/:id/replies').to(:controller => 'users', :action => 'replies').name(:replies) #the @reply feature
+    user.match('/:id/pms').to(:controller => 'users', :action => 'private_messages').name(:private_messages) #the @reply feature
   end
 
 end
