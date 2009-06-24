@@ -78,4 +78,10 @@ class Groups < Application
     memberhip.approved = true
   end
 
+  def membership
+    @groups = Group.all('memberships.user_id' => session.user.id) 
+    display @groups
+  end
+
+
 end # Groups

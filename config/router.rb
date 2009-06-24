@@ -47,17 +47,15 @@ Merb::Router.prepare do
   match('/group') do |group|
     group.match('/:id/join/:user_id').to(:controller => 'groups', :action => 'join').name(:join)
     group.match('/:id/leave/:user_id').to(:controller => 'groups', :action => 'leave').name(:leave)
-    group.match('/:id/leave/:user_id').to(:controller => 'groups', :action => 'approve').name(:approve)
+    group.match('/:id/approve/:user_id').to(:controller => 'groups', :action => 'approve').name(:approve)
   end
+  match('/memberships').to(:controller => 'groups', :action => 'membership').name(:memberships)
 
   #generates url of the form /user/1/memberships/4, where 1 is the user's id and 4 is the group's id (optional) of which the user is a member. :id and :group_id will be available in the params hash
-  match('/user') do |user|
-    user.match('/:id/memberships(/:group_id)').to(:controller => 'users', :action => 'membership').name(:memberships)
-    user.match('/:nick').to(:controller => 'users', :action => 'profile').name(:profile)
-    user.match('/:id/replies').to(:controller => 'users', :action => 'replies').name(:replies) #the @reply feature
-    user.match('/:id/pms').to(:controller => 'users', :action => 'private_messages').name(:private_messages) #the @reply feature
-  end
-
+  match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies) #the @reply feature
+  match('/pms').to(:controller => 'tweets', :action => 'private_messages').name(:private_messages) #the @reply feature
   match('/tweets/:id/tag').to(:controller => 'tweets', :action => 'tag').name(:tag)
+
+  match('/:nick').to(:controller => 'users', :action => 'profile').name(:profile)
 
 end

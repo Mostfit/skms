@@ -2,7 +2,7 @@ class Tweets < Application
   # provides :xml, :yaml, :js
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all :discriminator => [Tweet, Reply]
     display @tweets
   end
 
@@ -37,9 +37,11 @@ class Tweets < Application
     end
   end
 
-  def destroy(id)
+  def delete(id)
+    debugger
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
+    raise NotPrivileged unless (session.user.id == @tweet.can_delete?)
     if @tweet.destroy
       redirect resource(:tweets)
     else
@@ -58,5 +60,16 @@ class Tweets < Application
       display @tweet, :edit
     end
   end
+
+  def replies
+    @replies = Reply.all :for_id => session.user.id
+    display @replies
+  end
+
+  def private_messages
+    @pms = PrivateMessage.all :for_id => session.user.id
+    display @pms
+  end
+
 
 end # Tweets

@@ -1,7 +1,5 @@
 class Users < Application
 
-  before :ensure_is_authorised
-
   def ensure_is_authorised
     true
   end
@@ -43,23 +41,8 @@ class Users < Application
 
   def profile(nick)
     @user = User.first(:nick => nick)
-    @tweets = @user.tweets
+    @tweets = @user.tweets :discriminator => [Tweet, Reply]
     display @tweets
-  end
-
-  def membership(id)
-    @groups = Group.all('memberships.user_id' => id) 
-    display @groups
-  end
-
-  def replies(id)
-    @replies = Reply.all :for_id => id
-    display @replies
-  end
-
-  def private_messages(id)
-    @pms = PrivateMessage.all :for_id => id
-    display @pms
   end
 
 end

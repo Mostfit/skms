@@ -16,11 +16,17 @@
         %span.content
           = reply.content[0..139]
         %span.meta
-          = link_to 'View', url(:edit_tweet, reply)
-          -reply.tags.each do |tag|
-            =tag.name
+          - if not reply.tags.empty?
+            == Tags:- 
+            - reply.tag_list.each do |tag|
+              = tag
+            %br
           == #{reply.comments.count} Comments
           - if reply.file?
-            == Attachments
+            = link_to "1 Attachment", reply.file.url
       %span.actions
+        = link_to 'More', url(:edit_tweet, reply)
+        %br
+        - if session.user.id == reply.can_delete
+          = link_to 'Delete', url(:delete_tweet, reply)
 - throw_content :for_sidebar, partial('sidebar')
