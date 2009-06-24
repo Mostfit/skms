@@ -31,7 +31,7 @@ class Tweets < Application
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
     if @tweet.update_attributes(tweet)
-       redirect resource(@tweet)
+       redirect url(:edit_tweet, @tweet)
     else
       display @tweet, :edit
     end
@@ -47,5 +47,16 @@ class Tweets < Application
     end
   end
 
+  def tag(id, tweet)
+    debugger
+    @tweet = Tweet.get(id)
+    raise NotFound unless @tweet
+    tweet[:tag_list] = @tweet.tag_list.join(',') + ',' + tweet[:tag_list]
+    if @tweet.update_attributes(tweet)
+       redirect url(:edit_tweet, @tweet)
+    else
+      display @tweet, :edit
+    end
+  end
 
 end # Tweets

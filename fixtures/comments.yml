@@ -1,0 +1,36 @@
+comment1:
+  :id: 1
+  :content: A comment for the first tweet
+  :user_id: 2
+  :tweet_id: 1
+
+comment2:
+  :id: 2
+  :content: We still have to add features.
+  :user_id: 3
+  :tweet_id: 2
+
+comment3:
+  :id: 3
+  :content: I will also fork the project and add to it.
+  :user_id: 5
+  :tweet_id: 2
+
+comment4:
+  :id: 4
+  :content: Why did you not make it in LISP? LISP systmes are more stable and robust.
+  :user_id: 4
+  :tweet_id: 2
+
+comment5:
+  :id: 5
+  :content: So that we can hire more programmers in case we need one. Also Ruby brings down the development time compared to lisp. More stable and robust compared to what? Ruby is scalable, and easier to develop, what else do we need?
+  :user_id: 2
+  :tweet_id: 2
+
+comment6:
+  :id: 6
+  :content: Nipra is just out of his world of LISP. Let him see more.
+  :user_id: 3
+  :tweet_id: 2
+

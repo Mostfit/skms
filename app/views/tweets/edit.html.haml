@@ -1,17 +1,37 @@
+%h3 Tweet
 .tweet
-  .user
+  %span.imgn
     = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px'
-    %span.user-nick
-      -if @tweet.made_by.nick
-        = @tweet.made_by.nick
-  .content
-    %p.content
+  %span.body
+    -if @tweet.made_by.nick
+      %strong
+    %span.content
       = @tweet.content
+    %span.actions
+      = link_to 'Delete', url(:delete_tweet, @tweet)
 .comment
   %h3 Comments
   = render :template => 'comments/index', :layout => false
 .attachment
   %h3 Attachments
-  = partial 'attachment'
+  = form_for(@tweet, :action => url(:tweet, @tweet), :html =>'multiparttrue') do
+    %p
+      = file_field :file
+    %p
+      = submit "Attach File"
+  - if @tweet.file?
+    = @tweet.file_file_name
 .tags
   %h3 Tags
+  = form_for(@tweet, :action => url(:tag, @tweet), :html =>'multiparttrue') do
+    %p
+      = text_field :tag_list
+    %p
+      = submit "Tag"
+
+  - if @tweet.tags
+    - @tweet.tag_list.each do |tag|
+      = tag
+      %br
+
+= link_to 'Back', url(:tweets)

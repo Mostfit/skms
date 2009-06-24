@@ -58,4 +58,6 @@ Merb::Router.prepare do
     user.match('/:id/pms').to(:controller => 'users', :action => 'private_messages').name(:private_messages) #the @reply feature
   end
 
+  match('/tweets/:id/tag').to(:controller => 'tweets', :action => 'tag').name(:tag)
+
 end

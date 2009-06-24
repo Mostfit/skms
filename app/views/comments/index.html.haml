@@ -1,11 +1,22 @@
--@tweet.comments.each do |comment|
-  %ol
-    %li=comment.content
 = error_messages_for @tweet
-= form_for(Comment.new, :action=>url(:comments) ) do
+= form_for(Comment.new, :action=>url(:tweets_comments) ) do
   %p
     = hidden_field :name=>'tweet', :value=>@tweet.id
     = text_area :content, :class=>"comment", :row=>"5", :cols=>"80"
   %p
     = submit "Comment"
-= link_to 'Back', url(:tweets)
+
+%ol.list.comments
+  -@tweet.comments.each do |comment|
+    %li
+      %span.imgn
+        = image_tag comment.user.image.url(:thumb), :height=>'50px'
+      %span.body
+        -if comment.user.nick
+          %strong
+            = link_to comment.user.nick, url(:profile, comment.user.nick)
+        %span.content
+          = comment.content
+        %span.meta
+          - if comment.file?
+            == Attachments

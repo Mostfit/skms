@@ -12,11 +12,11 @@
       %span.body
         -if tweet.made_by.nick
           %strong
-            = link_to tweet.made_by.nick, url(:user, tweet.made_by)
+            = link_to tweet.made_by.nick, url(:profile, tweet.made_by.nick)
         %span.content
           = tweet.content[0..139]
         %span.meta
-          = link_to 'View', url(:edit_tweet, tweet)
+          = link_to 'More', url(:edit_tweet, tweet)
           -tweet.tags.each do |tag|
             =tag.name
           == #{tweet.comments.count} Comments

@@ -124,6 +124,8 @@ div.top-form form.form textarea#tweet_content{
 }
 
 div.tweet{
+  position: relative;
+  margin-top: 5px;
 }
 
 span.imgn{
@@ -202,6 +204,10 @@ span.element-container{
 span.black{
   color:#333333;
   font-weight:normal;
+}
+
+ol.comments{
+  padding-left: 2%;
 }
 
 ol.updates li:hover, ol.updates li.hover,ol.groups li:hover, ol.groups li.hover,  ol.list li.hover  {
