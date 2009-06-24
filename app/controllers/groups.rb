@@ -1,5 +1,5 @@
 class Groups < Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
 
   def index
     @groups = Group.all 

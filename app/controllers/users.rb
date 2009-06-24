@@ -1,4 +1,5 @@
 class Users < Application
+  provides :xml
 
   def ensure_is_authorised
     true

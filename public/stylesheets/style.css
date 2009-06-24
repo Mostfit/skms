@@ -128,6 +128,11 @@ div.tweet{
   margin-top: 5px;
 }
 
+span.nick{
+  position: absolute;
+  padding-left: 3%;
+}
+
 span.imgn{
   display:block;
   height:50px;
@@ -179,7 +184,7 @@ ul{
   list-style-type:none;
 }
 
-ol.updates, ol.groups, ol.list{
+ol.list{
   padding-left:0px;
   list-style-image:none;
   list-style-position:outside;
@@ -210,19 +215,44 @@ ol.comments{
   padding-left: 2%;
 }
 
-ol.updates li:hover, ol.updates li.hover,ol.groups li:hover, ol.groups li.hover,  ol.list li.hover  {
+ol.list > li:hover {
   background-color:#F7F7F7;
 }
-ol.updates > li:first-child, ol.groups > li:first-child, ol.list > li:first-child    {
+
+ol.list > li:first-child    {
   border-top:1px dashed #D2DADA;
 }
-ol.updates > li, ol.groups > li, ol.list > li  {
+
+ol.list > li  {
   border-bottom:1px dashed #D2DADA;
   line-height:1.1em;
   padding:0.7em 0 0.6em;
   position:relative;
 }
 
+ol#profile > li {
+  min-height: 50px;
+}
+
+ol#profile > li:first-child {
+  border-top: none;
+  height: 100px;
+}
+
+ol#profile > li:first-child > span.body{
+  width: 80%;
+  height: 100px;
+}
+
+ol#profile > li:first-child > span.body > span.content {
+  font-size: 1.5em;
+}
+
 div.group{
   position:relative;
+}
+
+div.user{
+  position: relative;
+  margin-top: 2%;
 }

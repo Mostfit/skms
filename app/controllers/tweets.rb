@@ -1,5 +1,5 @@
 class Tweets < Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
 
   def index
     @tweets = Tweet.all :discriminator => [Tweet, Reply]

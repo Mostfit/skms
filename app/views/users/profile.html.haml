@@ -1,18 +1,14 @@
-%h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
-  %span.black
-    What are you doing?
-.top-form
-  = partial('status')
+.user
+  %span
+    = image_tag @user.image.url(:thumb), :height=>'60px'
+  %span.nick
+    %h1{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+      = @user.nick
 
-%ol.updates
+%ol.list#profile
   - for tweet in @tweets
     %li
-      %span.imgn
-        = image_tag tweet.made_by.image.url(:thumb), :height=>'50px'
       %span.body
-        -if tweet.made_by.nick
-          %strong
-            = link_to tweet.made_by.nick, url(:user, tweet.made_by)
         %span.content
           = tweet.content
         %span.meta
@@ -26,6 +22,7 @@
             = link_to "1 Attachment", tweet.file.url
       %span.actions
         = link_to 'More', url(:edit_tweet, tweet)
+        %br
         - if session.user.id == tweet.can_delete
           = link_to 'Delete', url(:delete_tweet, tweet)
 
