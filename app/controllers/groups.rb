@@ -55,6 +55,18 @@ class Groups < Application
     end
   end
 
+  def tag(id, group)
+    debugger
+    @group = Group.get(id)
+    raise NotFound unless @group
+    group[:tag_list] = @group.tag_list.join(',') + ',' + group[:tag_list]
+    if @group.update_attributes(group)
+       redirect url(:group, @group)
+    else
+      display @group, :edit
+    end
+  end
+
   def join(id, user_id)
     @group = Group.get(id)
     raise NotFound unless @group
@@ -73,15 +85,19 @@ class Groups < Application
   end
 
   def approve(id, user_id)
-    membership = Membership.all(:user_id => user_id, :group_id => id)
-    raise NotPreveliged unless memberhip.can_be_approved_by(user_id) 
-    memberhip.approved = true
+    membership = Membership.all(:user_id => user_id, :group_id => id)[0]
+    membership.update_attributes :approved => true
+    redirect url :memberships
   end
 
   def membership
-    @groups = Group.all('memberships.user_id' => session.user.id) 
+    @groups = Group.all('memberships.user_id' => session.user.id, 'memberships.approved' => true) 
     display @groups
   end
 
+  def owned
+    @groups = Group.all('moderations.user_id' => session.user.id, 'moderations.owner' => true) 
+    display @groups
+  end
 
 end # Groups

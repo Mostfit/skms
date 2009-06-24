@@ -23,7 +23,7 @@
     = @tweet.file_file_name
 .tags
   %h3 Tags
-  = form_for(@tweet, :action => url(:tag, @tweet), :html =>'multiparttrue') do
+  = form_for(@tweet, :action => url(:tag_tweet, @tweet), :html =>'multiparttrue') do
     %p
       = text_field :tag_list
     %p

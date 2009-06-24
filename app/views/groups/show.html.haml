@@ -13,4 +13,29 @@
         =tag.name
   %span.actions
     = link_to 'Join', url(:join, session.user, @group)
+%br
+%br
+%table
+  %theader These users require your approval
+  - @group.users_requiring_approval.each do |user|
+    %tr
+      %td
+        = user.nick
+      %td
+        = link_to 'Approve', url(:approve, @group, user)
+
+.group_messages
+
+.tag
+  = form_for(@group, :action => url(:tag_group, @group), :html =>'multiparttrue') do
+    %p
+      = text_field :tag_list
+    %p
+      = submit "Tag"
+
+  - if @group.tags
+    - @group.tag_list.each do |tag|
+      = tag
+
+%br
 - throw_content :for_sidebar, partial('sidebar')

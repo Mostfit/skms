@@ -1,0 +1,19 @@
+%ol.list
+  - @groups.each do |group|
+    %li
+      %span.imgn
+        = image_tag group.image.url(:thumb), :height=>'50px'
+      %span.body
+        %strong
+          = link_to group.name, url(:group, group)
+        %span.content
+          = group.description
+        %span.meta
+          = link_to 'View',  url(:group, group)
+          - group.tags.each do |tag|
+            =tag.name
+          = group.protected? ? 'Private': 'Open'
+      %span.actions
+        = link_to 'Leave', url(:leave, group, session.user)
+
+- throw_content :for_sidebar, partial('sidebar')

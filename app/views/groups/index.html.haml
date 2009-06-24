@@ -1,3 +1,4 @@
+%h2 Groups
 %ol#groups.list
   - @groups.each do |group|
     %li
@@ -7,13 +8,21 @@
         %strong
           = link_to group.name, url(:group, group)
         %span.content
-          = group.description
+          = group.description[0..139]
         %span.meta
-          = link_to 'View',  url(:group, group)
-          - group.tags.each do |tag|
-            =tag.name
-          = group.protected? ? 'Private': 'Open'
+          == Owner:- #{link_to group.owner.nick, url(:profile, group.owner.nick)}
+          = group.protected? ? 'Moderated': 'Open'
+          - if group.protected?
+            == Moderators:-
+            - group.moderators.each do |moderator|
+              = link_to moderator.nick, url(:profile, moderator.nick)
+          - if not group.tags.empty?
+            == Tags:- 
+            - group.tag_list.each do |tag|
+              = tag
       %span.actions
+        = link_to 'View',  url(:group, group)
+        %br
         = link_to 'Join', url(:join, group, session.user)
 
 - throw_content :for_sidebar, partial('sidebar')

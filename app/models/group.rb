@@ -24,6 +24,22 @@ class Group
 
   default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything
 
+  def moderators
+    User.all 'moderations.group_id' => self.id
+  end
+
+  def owner
+    User.first 'moderations.group_id' => self.id, 'moderations.owner' => true
+  end
+
+  def pending_membership
+    Membership.all :group_id => self.id, :approved => false
+  end
+
+  def users_requiring_approval
+    User.all 'memberships.group_id' => self.id, 'memberships.approved' => false
+  end
+
 end
 
 class Membership
