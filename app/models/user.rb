@@ -32,4 +32,27 @@ class User
 
   def password_required?; false end 
 
+  def is_moderator? group
+    return true if Moderation.first(:user_id => self.id, :group_id => group.id)
+    false
+  end
+
+  def groups_moderated
+    Group.all 'moderations.user_id' => self.id
+  end
+
+  def is_owner? group
+    return true if Moderation.first(:user_id => self.id, :group_id => group.id, :owner => true)
+    false
+  end
+
+  def groups_owned
+    Group.all 'moderations.user_id' => self.id, 'moderations.owner' => true
+  end
+
+  def is_subscribed? group
+    return true if Membership.all(:user_id => self.id, :group_id => group.id, :approved => true)
+    false
+  end
+
 end

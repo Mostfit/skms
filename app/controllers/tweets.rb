@@ -28,6 +28,7 @@ class Tweets < Application
   end
 
   def update(id,tweet)
+    debugger
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
     if @tweet.update_attributes(tweet)

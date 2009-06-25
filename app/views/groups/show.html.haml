@@ -8,23 +8,28 @@
     %span.content
       = @group.description
     %span.meta
-      = link_to 'View',  url(:group, @group)
-      - @group.tags.each do |tag|
-        =tag.name
+      - if not @group.tags.nil?
+        == Tags:-
+        - @group.tag_list.each do |tag|
+          = tag
   %span.actions
     = link_to 'Join', url(:join, session.user, @group)
 %br
 %br
-%table
-  %theader These users require your approval
-  - @group.users_requiring_approval.each do |user|
-    %tr
-      %td
-        = user.nick
-      %td
-        = link_to 'Approve', url(:approve, @group, user)
+- if session.user.is_moderator? @group
+  %table
+    %theader These users require your approval
+    - @group.users_requiring_approval.each do |user|
+      %tr
+        %td
+          = user.nick
+        %td
+          = link_to 'Approve', url(:approve, @group, user)
 
-.group_messages
+- if session.user.is_subscribed? @group
+  .group_messages
+    - @group.gms.each do |gm|
+      = gm.content
 
 .tag
   = form_for(@group, :action => url(:tag_group, @group), :html =>'multiparttrue') do
@@ -33,7 +38,7 @@
     %p
       = submit "Tag"
 
-  - if @group.tags
+  - if not @group.tags.nil?
     - @group.tag_list.each do |tag|
       = tag
 

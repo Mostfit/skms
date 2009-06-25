@@ -13,7 +13,7 @@ class Group
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
   has n,   :moderators, :through => :moderations, :child_key => [:user_id]
-  has n,   :gm, :class_name => 'GroupMessage', :child_key => [:for_id]
+  has n,   :gms, :class_name => 'GroupMessage', :child_key => [:for_id]
   has_tags #comes from the dm-tags plugin
 
   has_attached_file :image,
@@ -24,19 +24,23 @@ class Group
 
   default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything
 
-  def moderators
+  def is_moderated?
+    self.protected
+  end
+
+  def moderators #returns all the moderators of the group
     User.all 'moderations.group_id' => self.id
   end
 
-  def owner
+  def members #returns all the members of the group
+    User.all 'memberships.group_id' => self.id, 'memberships.approved' => true
+  end
+
+  def owner #returns the owner of the group
     User.first 'moderations.group_id' => self.id, 'moderations.owner' => true
   end
 
-  def pending_membership
-    Membership.all :group_id => self.id, :approved => false
-  end
-
-  def users_requiring_approval
+  def pending_members #returns all the members of the group whose membership is pending
     User.all 'memberships.group_id' => self.id, 'memberships.approved' => false
   end
 
