@@ -47,9 +47,9 @@ Merb::Router.prepare do
   match('/group/owned(/:id)').to(:controller => 'groups', :action => 'owned').name(:groups_owned)
   #generates url of the form /group/1/join/4, where 1 is the group's id and 4 is the user's id who has to join the group. :id and :user_id will be available in the params hash
   match('/group') do |group|
-    group.match('/:id/join/:user_id').to(:controller => 'groups', :action => 'join').name(:join)
-    group.match('/:id/leave/:user_id').to(:controller => 'groups', :action => 'leave').name(:leave)
-    group.match('/:id/approve/:user_id').to(:controller => 'groups', :action => 'approve').name(:approve)
+    group.match('/:id/join').to(:controller => 'groups', :action => 'join').name(:join)
+    group.match('/:id/leave').to(:controller => 'groups', :action => 'leave').name(:leave)
+    group.match('/:id/approve').to(:controller => 'groups', :action => 'approve').name(:approve)
   end
 
   #generates url of the form /user/1/memberships/4, where 1 is the user's id and 4 is the group's id (optional) of which the user is a member. :id and :group_id will be available in the params hash

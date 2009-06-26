@@ -5,6 +5,8 @@
     %title
       = 'Office Twitter' + (catch_content(:title) ? '' : ": #{catch_content(:title)}")
     = css_include_tag :style
+    = js_include_tag :jquery
+    = js_include_tag :application
     /= css_include_tag :master
   %body
     .container

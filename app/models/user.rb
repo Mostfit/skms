@@ -50,6 +50,10 @@ class User
     Group.all 'moderations.user_id' => self.id, 'moderations.owner' => true
   end
 
+  def member_of
+    Group.all('memberships.user_id' => self.id, 'memberships.approved' => true) 
+  end
+
   def is_subscribed? group
     return true if Membership.all(:user_id => self.id, :group_id => group.id, :approved => true)
     false

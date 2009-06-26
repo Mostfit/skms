@@ -256,3 +256,44 @@ div.user{
   position: relative;
   margin-top: 2%;
 }
+
+div.member_list {
+  float:right;
+  width:30%
+}
+
+div.group_messages {
+  float:left;
+  width:60%
+}
+
+div.tag {
+  position:absolute;
+}
+
+table.table .cell {
+  border:1px solid;
+}
+
+ul#tabs {
+border-bottom: .5em solid #000;
+margin: 0;
+padding: 0;
+}
+
+ul#tabs li {
+display:inline;
+border-top: .1em solid #000;
+border-left: .1em solid #000;
+border-right: .1em solid #000;
+}
+
+ul#tabs li a {
+text-decoration: none;
+padding: 0.25em 1em;
+color: #000;
+} 
+
+.hidden{
+  display:none;
+}

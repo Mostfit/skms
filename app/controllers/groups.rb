@@ -67,16 +67,17 @@ class Groups < Application
     end
   end
 
-  def join(id, user_id)
+  def join(id)
     @group = Group.get(id)
     raise NotFound unless @group
-    membership = Membership.new({:user_id => user_id, :group_id => id})
-    membership.save
-    redirect url(:groups)
+    membership = Membership.new({:user_id => session.user.id, :group_id => id})
+    if membership.save
+      redirect url(:groups)
+    end
   end
 
-  def leave(id, user_id)
-    membership = Membership.all(:user_id => user_id, :group_id => id)
+  def leave(id)
+    membership = Membership.all(:user_id => session.user.id, :group_id => id)
     if membership.destroy!
       redirect url(:groups)
     else
@@ -84,19 +85,19 @@ class Groups < Application
     end
   end
 
-  def approve(id, user_id)
+  def approve(id)
     membership = Membership.all(:user_id => user_id, :group_id => id)[0]
     membership.update_attributes :approved => true
     redirect url :memberships
   end
 
   def membership
-    @groups = Group.all('memberships.user_id' => session.user.id, 'memberships.approved' => true) 
+    @groups = session.user.member_of
     display @groups
   end
 
   def owned
-    @groups = Group.all('moderations.user_id' => session.user.id, 'moderations.owner' => true) 
+    @groups = session.user.groups_owned
     display @groups
   end
 

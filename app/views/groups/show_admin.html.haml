@@ -1,0 +1,29 @@
+%h3 Group
+.group
+  %span.imgn
+    = image_tag @group.image.url(:thumb), :height=>'50px'
+  %span.body
+    %strong
+      = link_to @group.name, url(:group, @group)
+    %span.content
+      = @group.description
+    %span.meta
+      - if not @group.tags.nil?
+        == Tags:-
+        - @group.tag_list.each do |tag|
+          = tag
+  %span.actions
+    = link_to 'Join', url(:join, session.user, @group)
+%br
+%br
+
+- if session.user.is_moderator? @group
+  .admin
+    %table.table
+      %theader These users require your approval
+      - @group.pending_members.each do |user|
+        %tr
+          %td.cell
+            = user.nick
+          %td.cell
+            = link_to 'Approve', url(:approve, @group)

@@ -9,11 +9,12 @@
         %span.content
           = group.description
         %span.meta
-          = link_to 'View',  url(:group, group)
           - group.tags.each do |tag|
             =tag.name
           = group.protected? ? 'Private': 'Open'
       %span.actions
-        = link_to 'Leave', url(:leave, group, session.user)
+        = link_to 'View',  url(:group, group)
+        %br
+        = link_to 'Leave', url(:leave, group)
 
 - throw_content :for_sidebar, partial('sidebar')
