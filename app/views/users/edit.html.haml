@@ -1,1 +1,18 @@
-- partial 'fields'
+-message.each do |key,value|
+  = value
+= form_for(@user, :action=>resource(@user), :html =>'multiparttrue') do
+  %ol.list
+    %li
+      = text_field :name, :label => 'Name : '
+    %li
+      = text_field :nick, :label => 'Nick : '
+    %li
+      = text_field :email, :label => 'Nick : '
+    %li
+      = file_field :image, :label => 'URL of your Image : '
+    %li
+      = text_field :bio, :label => 'Bio : ', :value => ''
+    %li
+      = submit "Save"
+
+- throw_content :for_sidebar, partial('sidebar')

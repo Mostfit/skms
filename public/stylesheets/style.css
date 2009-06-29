@@ -289,3 +289,15 @@ ul#tabs li {
 .hidden{
   display:none;
 }
+
+div.details{
+  width: 60%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+ol#details{
+  position:relative;
+  top:-70px;
+  left: 70px;
+}

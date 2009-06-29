@@ -12,8 +12,8 @@ class User
   timestamps :at
 
   has n, :tweets, :class_name => 'Tweet', :child_key => [:made_by_id]
-  has n, :replies, :class_name => 'Reply', :child_key => [:for_id]
-  has n, :pm, :class_name => 'PrivateMessage', :child_key => [:for_id]
+  has n, :replies, :class_name => 'Tweet', :child_key => [:for_user_id]
+  has n, :pm, :class_name => 'Tweet', :child_key => [:only_for_user_id]
   has n, :comments
   has n, :polls
   has n, :votes

@@ -4,6 +4,6 @@
   %li
     = link_to 'Edit Profile', url(:edit_user, session.user)
   %li
-    = link_to 'Settings'
+    = link_to 'My Groups', url(:memberships)
   %li
-    = link_to 'Groups'
+    = link_to 'My polls', "/polls/my"

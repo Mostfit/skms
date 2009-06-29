@@ -25,7 +25,7 @@
   %h3 Tags
   = form_for(@tweet, :action => url(:tag_tweet, @tweet), :html =>'multiparttrue') do
     %p
-      = text_field :tag_list
+      = text_field :tag_list, :value => ''
     %p
       = submit "Tag"
 

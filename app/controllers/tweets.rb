@@ -2,6 +2,8 @@ class Tweets < Application
   provides :xml, :yaml, :js
 
   def index
+    @users = User.all
+    @tweet = Tweet.new
     @tweets = Tweet.all :discriminator => [Tweet, Reply]
     display @tweets
   end

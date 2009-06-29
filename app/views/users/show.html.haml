@@ -1,2 +1,11 @@
-= partial 'details'
+.details
+  = image_tag @user.image.url(:medium), :height=>'50px'
+  %ol.list#details
+    %li 
+      == Name:- #{@user.name}
+    %li 
+      == Nick:- #{@user.nick}
+    %li 
+      == Email:- #{@user.email}
+
 - throw_content :for_sidebar, partial('sidebar')

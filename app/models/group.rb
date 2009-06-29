@@ -13,7 +13,7 @@ class Group
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
   has n,   :moderators, :through => :moderations, :child_key => [:user_id]
-  has n,   :gms, :class_name => 'GroupMessage', :child_key => [:for_id]
+  has n,   :gms, :class_name => 'Tweet', :child_key => [:only_for_group_id]
   has_tags #comes from the dm-tags plugin
 
   has_attached_file :image,
