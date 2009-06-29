@@ -258,13 +258,9 @@ div.user{
 }
 
 div.member_list {
-  float:right;
-  width:30%
 }
 
 div.group_messages {
-  float:left;
-  width:60%
 }
 
 div.tag {
@@ -276,23 +272,19 @@ table.table .cell {
 }
 
 ul#tabs {
-border-bottom: .5em solid #000;
-margin: 0;
-padding: 0;
+  border-bottom: .5em solid #000;
+  margin: 0;
+  padding: 0;
 }
 
 ul#tabs li {
-display:inline;
-border-top: .1em solid #000;
-border-left: .1em solid #000;
-border-right: .1em solid #000;
+  cursor: pointer;
+  display:inline;
+  border-top: .1em solid #000;
+  border-left: .1em solid #000;
+  border-right: .1em solid #000;
+  padding:1%;
 }
-
-ul#tabs li a {
-text-decoration: none;
-padding: 0.25em 1em;
-color: #000;
-} 
 
 .hidden{
   display:none;

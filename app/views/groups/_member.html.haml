@@ -1,47 +1,45 @@
 .tabbed
   %ul#tabs
-    %li#tab1
-      %a{:href => '#group_messages'}
-        Group Messages
-    %li#tab2
-      %a{:href => '#member_list'}
-        Members
+    %li#tab1 Group Messages
+    %li#tab2 Members
 
-  .group_messages
-    %h5 Group Messages
-    %ol#group_messages.list
-      - @group.gms.each do |gm|
-        %li
-          %span.imgn
-            = image_tag gm.made_by.image.url(:thumb), :height=>'50px'
-          %span.body
-            -if gm.made_by.nick
-              %strong
-                = link_to gm.made_by.nick, url(:profile, gm.made_by.nick)
-            %span.content
-              = gm.content[0..139]
-            %span.meta
-              - if not gm.tags.empty?
-                == Tags:- 
-                - gm.tag_list.each do |tag|
-                  = tag
-                %br
-              == #{gm.comments.count} Comments
-              - if gm.file?
-                = link_to "1 Attachment", gm.file.url
-          %span.actions
-            = link_to 'More', url(:edit_tweet, gm)
-            %br
-            - if session.user.id == gm.can_delete
-              = link_to 'Delete', url(:delete_tweet, gm)
-  .member_list.hidden
-    %h5 Members
-    %ol#member_list.list
-      - @group.members.each do |member|
-        %li
-          %span.imgn
-            = image_tag member.image.url(:thumb), :height=>'50px'
-          %span.body
-            -if member.nick
-              %strong
-                = link_to member.nick, url(:profile, member.nick)
+  - if not @group.gms.empty?
+    #group_messages
+      %h5 Group Messages
+      %ol#group_messages.list
+        - @group.gms.each do |gm|
+          %li
+            %span.imgn
+              = image_tag gm.made_by.image.url(:thumb), :height=>'50px'
+            %span.body
+              -if gm.made_by.nick
+                %strong
+                  = link_to gm.made_by.nick, url(:profile, gm.made_by.nick)
+              %span.content
+                = gm.content[0..139]
+              %span.meta
+                - if not gm.tags.empty?
+                  == Tags:- 
+                  - gm.tag_list.each do |tag|
+                    = tag
+                  %br
+                == #{gm.comments.count} Comments
+                - if gm.file?
+                  = link_to "1 Attachment", gm.file.url
+            %span.actions
+              = link_to 'More', url(:edit_tweet, gm)
+              %br
+              - if session.user.id == gm.can_delete
+                = link_to 'Delete', url(:delete_tweet, gm)
+  - if not @group.members.empty?
+    #member_list.hidden
+      %h5 Members
+      %ol#member_list.list
+        - @group.members.each do |member|
+          %li
+            %span.imgn
+              = image_tag member.image.url(:thumb), :height=>'50px'
+            %span.body
+              -if member.nick
+                %strong
+                  = link_to member.nick, url(:profile, member.nick)

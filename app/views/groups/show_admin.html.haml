@@ -27,3 +27,7 @@
             = user.nick
           %td.cell
             = link_to 'Approve', url(:approve, @group)
+  .tag
+    = form_for(@group, :action => url(:tag_group, @group), :html =>'multiparttrue') do
+      = text_field :tag_list, :value => ''
+      = submit "Tag"

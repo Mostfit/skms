@@ -8,6 +8,12 @@
     %span.content
       = @group.description
     %span.meta
+      == Owner:- #{link_to @group.owner.nick, url(:profile, @group.owner.nick)}
+      = @group.protected? ? 'Moderated': 'Open'
+      - if @group.protected?
+        == Moderators:-
+        - @group.moderators.each do |moderator|
+          = link_to moderator.nick, url(:profile, moderator.nick)
       - if not @group.tags.nil?
         == Tags:-
         - @group.tag_list.each do |tag|
@@ -18,9 +24,4 @@
 - if (session.user.is_subscribed?(@group))
   = partial 'member'
 
-  .tag
-    = form_for(@group, :action => url(:tag_group, @group), :html =>'multiparttrue') do
-      = text_field :tag_list, :value => ''
-      = submit "Tag"
-%br
 - throw_content :for_sidebar, partial('sidebar')
