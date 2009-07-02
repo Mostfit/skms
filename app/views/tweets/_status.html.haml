@@ -1,6 +1,0 @@
-%h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
-  %span.black
-    What are you doing?
-= form_for(@tweet, :action=>url(:tweets), :class=>'form') do
-  =text_area :content, :size=>40, :rows=>2, :cols=>90
-  =submit 'Update'

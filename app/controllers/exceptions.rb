@@ -10,10 +10,6 @@ class Exceptions < Merb::Controller
     render :format => :html
   end
 
-  def unauthenticated
-    render
-  end
-
   def not_privileged
     if request.env['HTTP_REFERER'] 
       redirect request.env['HTTP_REFERER'], :message => { :error => 'Sorry, not enough privileges to do this' }

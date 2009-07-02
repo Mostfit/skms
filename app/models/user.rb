@@ -12,8 +12,7 @@ class User
   timestamps :at
 
   has n, :tweets, :class_name => 'Tweet', :child_key => [:made_by_id]
-  has n, :replies, :class_name => 'Tweet', :child_key => [:for_user_id]
-  has n, :pm, :class_name => 'Tweet', :child_key => [:only_for_user_id]
+  has n, :messages, :class_name => 'Tweet', :through => Resource
   has n, :comments
   has n, :polls
   has n, :votes
@@ -57,6 +56,14 @@ class User
   def is_subscribed? group
     return true if Membership.all(:user_id => self.id, :group_id => group.id, :approved => true)
     false
+  end
+
+  def replies
+    Tweet.all 'for_users.user_id' => self, :protected => false
+  end
+
+  def private_messages
+    Tweet.all 'for_users.user_id' => self, :protected => true
   end
 
 end

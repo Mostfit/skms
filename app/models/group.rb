@@ -13,7 +13,7 @@ class Group
   has n,   :members, :through => :memberships, :child_key => [:user_id]
   has n,   :moderations
   has n,   :moderators, :through => :moderations, :child_key => [:user_id]
-  has n,   :gms, :class_name => 'Tweet', :child_key => [:only_for_group_id]
+  has n,   :group_messages, :class_name => 'Tweet', :child_key => [:for_group_id]
   has_tags #comes from the dm-tags plugin
 
   has_attached_file :image,
@@ -42,6 +42,10 @@ class Group
 
   def pending_members #returns all the members of the group whose membership is pending
     User.all 'memberships.group_id' => self.id, 'memberships.approved' => false
+  end
+
+  def messages
+    self.group_messages
   end
 
 end

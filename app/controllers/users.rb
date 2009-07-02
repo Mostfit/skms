@@ -1,10 +1,6 @@
 class Users < Application
   provides :xml
 
-  def ensure_is_authorised
-    true
-  end
-
   def index
     @users=User.all
     display @users
@@ -42,7 +38,7 @@ class Users < Application
 
   def profile(nick)
     @user = User.first(:nick => nick)
-    @tweets = @user.tweets :discriminator => [Tweet, Reply]
+    @tweets = @user.tweets
     display @tweets
   end
 

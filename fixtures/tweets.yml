@@ -12,7 +12,6 @@ tweet3:
   :id: 3
   :content: @yeban it indeed is a great app.
   :made_by_id: 2
-  :for_user_id: 1
 
 tweet4:
   :id: 4

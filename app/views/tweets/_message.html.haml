@@ -1,7 +1,0 @@
-%h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
-  %span.black
-    Send a private message to :
-= form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
-  = select :name => 'for', :collection => User.all.map { |x| [x.id.to_s, x.nick.to_s] }
-  = text_area :content, :size=>40, :rows=>2, :cols=>90
-  = submit 'Update'

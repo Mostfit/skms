@@ -1,5 +1,10 @@
 .top-form
-  = partial('message')
+  %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+    %span.black
+      Send a private tweet to:
+  = form_for(@tweet, :action=>url(:tweets), :class=>'form') do
+    = select :for_user, :collection => User.all.map {|x| [x.id.to_s, x.nick.to_s]}
+    = partial 'fields', :action => 'send'
 
 %ol.list#pms
   - for pm in @pms

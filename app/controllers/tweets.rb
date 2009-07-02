@@ -2,9 +2,8 @@ class Tweets < Application
   provides :xml, :yaml, :js
 
   def index
-    @users = User.all
-    @tweet = Tweet.new
-    @tweets = Tweet.all :discriminator => [Tweet, Reply]
+    @tweet = Tweet.new #for the creation of a new tweet
+    @tweets = Tweet.all :protected => false
     display @tweets
   end
 
@@ -16,7 +15,6 @@ class Tweets < Application
   end
 
   def create(tweet)
-    debugger
     klass = tweet[:content].index("@#{session.user.nick}")? Kernel::const_get("Reply"): Kernel::const_get("Tweet")
     @tweet = klass.new(tweet)
     @tweet.made_by=session.user
@@ -65,12 +63,12 @@ class Tweets < Application
   end
 
   def replies
-    @replies = Reply.all :for_id => session.user.id
+    @replies = session.user.replies
     display @replies
   end
 
   def private_messages
-    @pms = PrivateMessage.all :for_id => session.user.id
+    @pms = Tweet.all :for_user_id => session.user.id, :protected => true
     display @pms
   end
 
