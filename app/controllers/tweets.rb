@@ -42,10 +42,11 @@ class Tweets < Application
         group = Group.get params[:for_group].to_i
       else
         name = content.split[1]
-        user = Group.all(:name => name)[0]
+        group = Group.all(:name => name)[0]
       end
-        raise NotFound unless group # raise error if the user does not exist
-        # if the group exists
+        raise NotFound unless group # raise error if the group does not exist
+        raise NotPriviliged unless session.user.is_member? group
+        # if the group exists and the user is a member
         @tweet.for_group = group
         @tweet.protected = true
     elsif is_reply # create a reply, it may be for more than one user

@@ -21,7 +21,7 @@
   %span.actions
     = link_to 'Join', url(:join, @group)
 %br
-- if (session.user.is_subscribed?(@group))
+- if (session.user.is_member?(@group))
   = partial 'member'
 
 - throw_content :for_sidebar, partial('sidebar')

@@ -53,7 +53,7 @@ class User
     Group.all('memberships.user_id' => self.id, 'memberships.approved' => true) 
   end
 
-  def is_subscribed? group
+  def is_member? group
     return true if Membership.all(:user_id => self.id, :group_id => group.id, :approved => true)
     false
   end
