@@ -59,11 +59,19 @@ class User
   end
 
   def replies
-    Tweet.all 'for_users.user_id' => self, :protected => false
+    Tweet.all 'for_users.user_id' => self.id, :protected => false
   end
 
   def private_messages
-    Tweet.all 'for_users.user_id' => self, :protected => true
+    Tweet.all 'for_users.user_id' => self.id, :protected => true
+  end
+
+  def group_messages
+    messages = {}
+    self.member_of.each do |group|
+      messages[group.name] = group.messages
+    end
+    return messages
   end
 
 end

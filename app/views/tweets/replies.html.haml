@@ -1,8 +1,9 @@
-%h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
-  %span.black
-    What are you doing?
 .top-form
-  = partial('status')
+  %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+    %span.black
+      what are you doing?
+  = form_for(@tweet, :action=>url(:tweets), :class=>'form') do
+    = partial 'fields', :action => 'update'
 
 %ol.list#replies
   - for reply in @replies
@@ -27,6 +28,6 @@
       %span.actions
         = link_to 'More', url(:edit_tweet, reply)
         %br
-        - if session.user.id == reply.can_delete
+        - if session.user.id == reply.made_by_id
           = link_to 'Delete', url(:delete_tweet, reply)
 - throw_content :for_sidebar, partial('sidebar')

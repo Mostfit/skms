@@ -3,11 +3,11 @@
     %li#tab1 Group Messages
     %li#tab2 Members
 
-  - if not @group.gms.empty?
+  - if not @group.messages.empty?
     #group_messages
       %h5 Group Messages
       %ol#group_messages.list
-        - @group.gms.each do |gm|
+        - @group.messages.each do |gm|
           %li
             %span.imgn
               = image_tag gm.made_by.image.url(:thumb), :height=>'50px'
@@ -29,7 +29,7 @@
             %span.actions
               = link_to 'More', url(:edit_tweet, gm)
               %br
-              - if session.user.id == gm.can_delete
+              - if session.user.id == gm.made_by.id
                 = link_to 'Delete', url(:delete_tweet, gm)
   - if not @group.members.empty?
     #member_list.hidden

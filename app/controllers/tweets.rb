@@ -2,7 +2,6 @@ class Tweets < Application
   provides :xml, :yaml, :js
 
   def index
-    @tweet = Tweet.new #for the creation of a new tweet
     @tweets = Tweet.all :protected => false
     display @tweets
   end
@@ -15,10 +14,43 @@ class Tweets < Application
   end
 
   def create(tweet)
-    klass = tweet[:content].index("@#{session.user.nick}")? Kernel::const_get("Reply"): Kernel::const_get("Tweet")
-    @tweet = klass.new(tweet)
+    debugger
+    @tweet = Tweet.new(tweet)
     @tweet.made_by=session.user
-    @tweet.discriminator=klass
+
+    # find out if the tweet is a private message or a group message or a reply
+    content = tweet[:content].strip
+    is_pm = params[:for_users] || content.index('pm ')
+    is_gm = params[:for_group] || content.index('gm ')
+    is_reply = content.index('@')
+
+    if is_pm # if it is a private message
+      # find the user it is intended for
+      if params[:for_users]
+        user = User.get params[:for_users].to_i
+      else
+        nick = content.split[1]
+        user = User.all(:nick => nick)[0]
+      end
+        raise NotFound unless user # raise error if the user does not exist
+        # if the user exists
+        @tweet.for_users << user
+        @tweet.protected = true
+    elsif is_gm # create a group message
+      # find the group it is intended for
+      if params[:for_group] #create a group message
+        group = Group.get params[:for_group].to_i
+      else
+        name = content.split[1]
+        user = Group.all(:name => name)[0]
+      end
+        raise NotFound unless group # raise error if the user does not exist
+        # if the group exists
+        @tweet.for_group = group
+        @tweet.protected = true
+    elsif is_reply # create a reply, it may be for more than one user
+    end
+
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
     else
@@ -68,7 +100,8 @@ class Tweets < Application
   end
 
   def private_messages
-    @pms = Tweet.all :for_user_id => session.user.id, :protected => true
+    @pms = session.user.private_messages
+    @gms = session.user.group_messages
     display @pms
   end
 

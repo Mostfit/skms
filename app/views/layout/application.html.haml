@@ -15,28 +15,28 @@
           - if session.authenticated?
             %ul.nav-panel.round#header-panel
               %li.nav-panel#header-panel
-                = link_to 'Home', url(:tweets) 
+                = link_to 'Home', url(:tweets), :title => 'Home' 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to "@#{session.user.nick}", url(:replies)
+                = link_to "@#{session.user.nick}", url(:replies), :title => 'Replies'
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'PM', url(:private_messages)
+                = link_to 'Messages', url(:private_messages), :title => 'Private and Group Messages'
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Profile', url(:profile, session.user.nick) 
+                = link_to 'Profile', url(:profile, session.user.nick), :title => 'Settings'
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Groups', url(:groups) 
+                = link_to 'Groups', url(:groups), :title => 'Join, Create or Manage groups' 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Polls', url(:polls) 
+                = link_to 'Polls', url(:polls), :title => 'Create, See or Vote on a Poll' 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Users', url(:users) 
+                = link_to 'Users', url(:users), :title => 'See all the users in your office network' 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Logout', url(:logout)
+                = link_to 'Logout', url(:logout), :title => 'Logout'
         .banner
           = image_tag 'banner.gif', :height => '100px', :width => '200px', :class => 'round'
 

@@ -1,33 +1,34 @@
-.top-form
-  %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
-    %span.black
-      Send a private tweet to:
-  = form_for(@tweet, :action=>url(:tweets), :class=>'form') do
-    = select :for_user, :collection => User.all.map {|x| [x.id.to_s, x.nick.to_s]}
-    = partial 'fields', :action => 'send'
+.tabbed
+  %ul#tabs
+    %li#tab1 Private Messages
+    %li#tab2 Group Messages
 
-%ol.list#pms
-  - for pm in @pms
-    %li
-      %span.imgn
-        = image_tag pm.made_by.image.url(:thumb), :height=>'50px'
-      %span.body
-        -if pm.made_by.nick
-          %strong
-            = link_to pm.made_by.nick, url(:user, pm.made_by)
-        %span.content
-          = pm.content[0..139]
-        %span.meta
-          - if not pm.tags.empty?
-            == Tags:- 
-            - pm.tag_list.each do |tag|
-              = tag
-            %br
-          == #{pm.comments.count} Comments
-          - if pm.file?
-            = link_to "1 Attachment", pm.file.url
-      %span.actions
-        = link_to 'View', url(:edit_tweet, pm)
-        - if session.user.id == pm.can_delete
-          = link_to 'Delete', url(:delete_tweet, tweet)
+  #private_messages
+    %h5 Private Messages
+    .top-form
+      %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+        %span.black
+          Send a private tweet to:
+      = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+        = select :name => 'for_users', :collection => User.all.map {|x| [x.id.to_s, x.nick.to_s]}
+        = partial 'fields', :action => 'send'
+
+    %ol.list#pms
+      = partial 'message', :messages => @pms
+  #group_messages
+    %h5 Group Messages
+    .top-form
+      %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+        %span.black
+          Send a group message to:
+      = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+        = select :name => 'for_group', :collection => session.user.member_of.map {|x| [x.id.to_s, x.name.to_s]}
+        = partial 'fields', :action => 'send'
+
+    %ol.list#pms
+      - @gms.each do |k,v|
+        %h5 
+          = k
+          = partial 'message', :messages => v
+
 - throw_content :for_sidebar, partial('sidebar')
