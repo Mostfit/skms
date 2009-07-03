@@ -14,6 +14,7 @@ class Tweets < Application
   end
 
   def create(tweet)
+    debugger
 
     # find out if the tweet is a private message or a group message or a reply
     content = tweet[:content].strip
@@ -55,6 +56,19 @@ class Tweets < Application
         @tweet.for_group = group
         @tweet.protected = true
     elsif is_reply # create a reply, it may be for more than one user
+      users = []
+      content.split.each do |word|
+        if word.match(/\@\w+/)
+          nick = word.match(/\w+/)
+          users << User.first(:nick => nick.to_s)
+        end # if ends
+      end # do ends
+
+      @tweet = Tweet.new
+      @tweet.content = content
+      @tweet.made_by=session.user
+      @tweet.for_users = users
+
     else # a normal tweet
       @tweet = Tweet.new
       @tweet.content = content

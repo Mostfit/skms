@@ -4,7 +4,6 @@
     %li#tab2 Group Messages
 
   #private_messages
-    %h5 Private Messages
     %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
       %span.black
         Send a private tweet to:
@@ -15,7 +14,6 @@
       = partial 'message', :messages => @pms
 
   #group_messages.hidden
-    %h5 Group Messages
     %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
       %span.black
         Send a group message to:
@@ -24,8 +22,6 @@
       = partial 'fields', :action => 'send'
     %ol.list#gms
       - @gms.each do |k,v|
-        %h5 
-          = k
-          = partial 'message', :messages => v
+        = partial 'message', :messages => v
 
 - throw_content :for_sidebar, partial('sidebar')
