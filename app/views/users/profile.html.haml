@@ -23,7 +23,7 @@
       %span.actions
         = link_to 'More', url(:edit_tweet, tweet)
         %br
-        - if session.user.id == tweet.can_delete
+        - if session.user.id == tweet.made_by.id
           = link_to 'Delete', url(:delete_tweet, tweet)
 
 - throw_content :for_sidebar, partial('sidebar')

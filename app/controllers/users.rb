@@ -38,7 +38,7 @@ class Users < Application
 
   def profile(nick)
     @user = User.first(:nick => nick)
-    @tweets = @user.tweets
+    @tweets = @user.tweets(:protected => false)
     display @tweets
   end
 

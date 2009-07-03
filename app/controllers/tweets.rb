@@ -109,7 +109,7 @@ class Tweets < Application
     display @replies
   end
 
-  def private_messages
+  def messages #group or private messages
     @pms = session.user.private_messages
     @gms = session.user.group_messages
     display @pms

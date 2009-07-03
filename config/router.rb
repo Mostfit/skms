@@ -54,7 +54,7 @@ Merb::Router.prepare do
 
   #generates url of the form /user/1/memberships/4, where 1 is the user's id and 4 is the group's id (optional) of which the user is a member. :id and :group_id will be available in the params hash
   match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies) #the @reply feature
-  match('/pms(.:format)').to(:controller => 'tweets', :action => 'private_messages').name(:private_messages) #the @reply feature
+  match('/messages(.:format)').to(:controller => 'tweets', :action => 'messages').name(:messages) #the @reply feature
   match('/tweets/:id/tag').to(:controller => 'tweets', :action => 'tag').name(:tag_tweet)
   match('/groups/:id/tag').to(:controller => 'groups', :action => 'tag').name(:tag_group)
 

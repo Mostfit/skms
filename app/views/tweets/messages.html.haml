@@ -1,0 +1,31 @@
+.tabbed
+  %ul#tabs
+    %li#tab1 Private Messages
+    %li#tab2 Group Messages
+
+  #private_messages
+    %h5 Private Messages
+    %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+      %span.black
+        Send a private tweet to:
+    = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+      = select :name => 'for_users', :collection => User.all.map {|x| [x.id.to_s, x.nick.to_s]}
+      = partial 'fields', :action => 'send'
+    %ol.list#pms
+      = partial 'message', :messages => @pms
+
+  #group_messages.hidden
+    %h5 Group Messages
+    %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+      %span.black
+        Send a group message to:
+    = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+      = select :name => 'for_group', :collection => session.user.member_of.map {|x| [x.id.to_s, x.name.to_s]}
+      = partial 'fields', :action => 'send'
+    %ol.list#gms
+      - @gms.each do |k,v|
+        %h5 
+          = k
+          = partial 'message', :messages => v
+
+- throw_content :for_sidebar, partial('sidebar')
