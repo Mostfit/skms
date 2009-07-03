@@ -20,4 +20,10 @@ class Tweet #address your network. everyone hears it.
 
   default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything
 
+  # if the tweet is longer than 120 chars, it returns the first 117 chars appended with ...
+  def excerpt
+    return content if content.length <= 120
+    content[0..116] + '...'
+  end
+
 end

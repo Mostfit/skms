@@ -160,7 +160,7 @@ span.meta{
   margin:3px 0 0;
 }
 
-span.actions{
+span.actions, span.actions_container{
   border-width:0;
   line-height:1.25em;
   position:absolute;

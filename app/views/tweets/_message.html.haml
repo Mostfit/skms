@@ -1,5 +1,5 @@
 - for message in messages
-  %li
+  %li.status
     %span.imgn
       = image_tag message.made_by.image.url(:thumb), :height=>'50px'
     %span.body
@@ -7,7 +7,7 @@
         %strong
           = link_to message.made_by.nick, url(:profile, message.made_by.nick)
       %span.content
-        = message.content[0..139]
+        = message.excerpt
       %span.meta
         - if not message.tags.empty?
           == Tags:- 
@@ -17,7 +17,7 @@
         == #{message.comments.count} Comments
         - if message.file?
           = link_to "1 Attachment", message.file.url
-    %span.actions
+    %span.actions.hidden
       = link_to 'More', url(:edit_tweet, message)
       %br
       - if session.user.id == message.made_by_id

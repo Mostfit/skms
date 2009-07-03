@@ -14,10 +14,13 @@ class Tweets < Application
   end
 
   def create(tweet)
-    debugger
+    # create a new tweet
+    @tweet = Tweet.new
+    @tweet.made_by=session.user
+
+    content = tweet[:content].strip
 
     # find out if the tweet is a private message or a group message or a reply
-    content = tweet[:content].strip
     is_pm = params[:for_users] || content.index('pm ')
     is_gm = params[:for_group] || content.index('gm ')
     is_reply = content.index('@')
@@ -32,10 +35,8 @@ class Tweets < Application
       end
         raise NotFound unless user # raise error if the user does not exist
         # if the user exists
-        @tweet = Tweet.new
         content = content.sub(/pm #{nick} /, '')
         @tweet.content = content
-        @tweet.made_by=session.user
         @tweet.for_users << user
         @tweet.protected = true
     elsif is_gm # create a group message
