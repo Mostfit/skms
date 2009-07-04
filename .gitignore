@@ -21,3 +21,4 @@ gems/gems/*
 gems/specifications/*
 merb_profile_results
 public/uploads*
+tags

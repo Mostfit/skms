@@ -78,6 +78,10 @@ class Tweets < Application
 
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
+      send_mail(NotifyMailer, :notify_on_event, {:from => 'anurag08priyam@gmail.com',
+                                        :to => 'anurag08priyam@gmail.com',
+                                        :subject => 'Test mail'},
+                                       {:user => @user })
     else
       message[:error] = "Tweet failed to be created"
       render :index
