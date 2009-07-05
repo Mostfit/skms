@@ -1,7 +1,8 @@
 $(document).ready(function(){
-  $("ul#tabs li").click(function(event){
-    $("div.tabbed div").addClass("hidden");
-    $("div.tabbed div:eq(" + $('ul#tabs li').index(this)  + ")").removeClass("hidden");
+  $(".tab-menu li").click(function(event){
+    var search = '#fragment'+ $('.tab-menu li').index(this);
+    $("div.fragment").addClass("hidden");
+    $(search).removeClass("hidden");
   });
 
   $('li.menu_title').mouseover(function(){

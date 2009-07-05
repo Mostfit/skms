@@ -53,7 +53,7 @@ div.body-right{
   min-height:950px;
 }
 
-div.top_text {
+div.top-text {
   background-color:#111111;
   padding:7px;
   float:left;
@@ -64,9 +64,6 @@ div#header-panel{
   position: relative;
   left: 20px;
   top: 30px;
-}
-
-div.top-form{
 }
 
 ul.nav-panel {
@@ -96,22 +93,25 @@ a{
   color: #AAAAAA;
 }
 
-form.form{
-  height:100px;
+div.top-form {
+  min-height: 120px;
+  padding-right: 10px;
 }
 
-div.top-form form.form input#submit{
-  background-image:url(/images/round-btn.gif);
+input[type="submit"] {
+  cursor:pointer;
+}
+
+.status-button {
+  background-image:url("/images/round-btn.gif");
   border:medium none navajoWhite;
   color:#AAAAAA;
-  cursor:pointer;
   float:right;
   height:32px;
-  margin-right:28px;
-  width:115px;
+  width:116px;
 }
 
-div.top-form form.form textarea#tweet_content{
+textarea {
   border: 1px solid #AAAAAA;
   padding: 4px 2px;
 }
@@ -124,6 +124,7 @@ div.message {
   padding-bottom:2px;
   padding-top:2px;
 }
+
 div.tweet{
 }
 
@@ -270,10 +271,10 @@ div.user{
   margin-top: 2%;
 }
 
-div.member_list {
+div.member-list {
 }
 
-div.group_messages {
+div.group-messages {
 }
 
 div.tag {
@@ -284,19 +285,44 @@ table.table .cell {
   border:1px solid;
 }
 
-ul#tabs {
-  border-bottom: .5em solid #000;
-  margin: 0;
-  padding: 0;
+ul.tab-menu {
+  display:block;
+  margin:25px 0 0;
+  text-align:center;
 }
 
-ul#tabs li {
-  cursor: pointer;
+ul.tab-menu li {
   display:inline;
-  border-top: .1em solid #000;
-  border-left: .1em solid #000;
-  border-right: .1em solid #000;
-  padding:1%;
+  cursor: pointer;
+  margin:0px 0px 0px 5px;
+  padding:0px 5px 3px 5px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+}
+
+.selected {
+  background-color: #E6E6E6;
+}
+
+#for_users {
+  left:190px;
+  position:relative;
+  top:-25px;
+}
+  
+#for_group {
+  left:210px;
+  position:relative;
+  top:-25px;
+}
+
+select {
+  border: 1px solid #AAAAAA
+}
+
+div.fragment {
+  border-top: 1px solid;
 }
 
 .hidden{
@@ -315,6 +341,6 @@ ol#details{
   left: 70px;
 }
 
-.action_icon {
+.action-icon {
   border: none;
 }

@@ -2,7 +2,7 @@
   %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
     %span.black
       what are you doing?
-  = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+  = form_for(Tweet.new, :action=>url(:tweets)) do
     = partial 'fields', :action => 'update'
 
 %ol.list#updates

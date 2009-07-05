@@ -2,32 +2,10 @@
   %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
     %span.black
       what are you doing?
-  = form_for(@tweet, :action=>url(:tweets), :class=>'form') do
+  = form_for(Tweet.new, :action=>url(:tweets)) do
     = partial 'fields', :action => 'update'
 
-%ol.list#replies
-  - for reply in @replies
-    %li
-      %span.imgn
-        = image_tag reply.made_by.image.url(:thumb), :height=>'50px'
-      %span.body
-        -if reply.made_by.nick
-          %strong
-            = link_to reply.made_by.nick, url(:user, reply.made_by)
-        %span.content
-          = reply.content[0..139]
-        %span.meta
-          - if not reply.tags.empty?
-            == Tags:- 
-            - reply.tag_list.each do |tag|
-              = tag
-            %br
-          == #{reply.comments.count} Comments
-          - if reply.file?
-            = link_to "1 Attachment", reply.file.url
-      %span.actions
-        = link_to 'More', url(:edit_tweet, reply)
-        %br
-        - if session.user.id == reply.made_by_id
-          = link_to 'Delete', url(:delete_tweet, reply)
+%ol.list#updates
+  = partial 'message', :messages => @replies
+
 - throw_content :for_sidebar, partial('sidebar')
