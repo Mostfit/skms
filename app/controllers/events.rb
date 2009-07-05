@@ -2,8 +2,7 @@ class Events < Application
   # provides :xml, :yaml, :js
 
   def index
-    @current_page = ( params[:page] && ( params[:page].to_i > 0 ) ) ? params[:page].to_i : 1 
-    @page_count, @events = Event.paginated(:order => [:created_at.desc], :page => @current_page, :per_page => 20)
+    @events = Event.all
     display @events
   end
 

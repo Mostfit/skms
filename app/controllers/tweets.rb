@@ -78,10 +78,7 @@ class Tweets < Application
 
     if @tweet.save
       redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
-      send_mail(NotifyMailer, :notify_on_event, {:from => 'anurag08priyam@gmail.com',
-                                        :to => 'anurag08priyam@gmail.com',
-                                        :subject => 'Test mail'},
-                                       {:user => @user })
+      add_event
     else
       message[:error] = "Tweet failed to be created"
       render :index
@@ -100,10 +97,9 @@ class Tweets < Application
   end
 
   def delete(id)
-    debugger
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
-    raise NotPrivileged unless (session.user.id == @tweet.can_delete?)
+    raise NotPrivileged unless (session.user == @tweet.made_by)
     if @tweet.destroy
       redirect resource(:tweets)
     else

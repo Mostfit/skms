@@ -10,15 +10,17 @@
         = message.excerpt
       %span.meta
         - if not message.tags.empty?
-          == Tags:- 
-          - message.tag_list.each do |tag|
-            = tag
+          = image_tag 'tag_blue.png'
+          = message.tag_list.join(',')
           %br
-        == #{message.comments.count} Comments
+        - if not message.comments.empty?
+          = link_to(image_tag('comment.png', :class => 'action_icon', :title => message.comments.count))
         - if message.file?
           = link_to "1 Attachment", message.file.url
-    %span.actions.hidden
-      = link_to 'More', url(:edit_tweet, message)
+    %span.actions
+      = link_to(image_tag('application_edit.png', :class => 'action_icon', :title => 'Comment, Tag and much More'), url(:edit_tweet, message))
+      %br
+      = link_to(image_tag('email.png', :class => 'action_icon', :title => 'Email this Message'))
       %br
       - if session.user.id == message.made_by_id
-        = link_to 'Delete', url(:delete_tweet, message)
+        = link_to(image_tag('icon_trash.gif', :class => 'action_icon', :title => 'Delete this Message'), url(:delete_tweet, message))

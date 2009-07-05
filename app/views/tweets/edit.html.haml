@@ -1,10 +1,10 @@
 %h3 Tweet
-.tweet
+.message
   %span.imgn
     = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px'
   %span.body
-    -if @tweet.made_by.nick
-      %strong
+    %strong
+      = @tweet.made_by.nick
     %span.content
       = @tweet.content
     %span.actions

@@ -11,9 +11,12 @@
   %body
     .container
       .header
-        .nav-panel#header-panel
+        .top_text.round
+          %h1{:style => "margin-top: 0px; margin-bottom: 0px;"}
+            == Intellecap - KMS
+        #header-panel
           - if session.authenticated?
-            %ul.nav-panel.round#header-panel
+            %ul.nav-panel.round
               %li.nav-panel#header-panel
                 = link_to 'Home', url(:tweets), :title => 'Home' 
                 &nbsp
@@ -37,14 +40,6 @@
                 &nbsp
               %li.nav-panel#header-panel
                 = link_to 'Logout', url(:logout), :title => 'Logout'
-        .banner
-          = image_tag 'banner.gif', :height => '100px', :width => '200px', :class => 'round'
-
-        - if session.authenticated?
-          -if session.user.nick
-            .current-user.round
-              %h1{:style => "margin-top: 0px; margin-bottom: 0px;"}
-                =session.user.nick
 
       .body
         .body-left.round

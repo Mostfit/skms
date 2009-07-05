@@ -4,10 +4,7 @@ $(document).ready(function(){
     $("div.tabbed div:eq(" + $('ul#tabs li').index(this)  + ")").removeClass("hidden");
   });
 
-  $("li.status").hover(function(event){
-    $(this).children("span.actions").removeClass("hidden");
-  });
-  $("li.status").mouseout(function(event){
-    $(this).children("span.actions").addClass("hidden");
+  $('li.menu_title').mouseover(function(){
+    $(this).children('ul.menu_body').slideToggle(300);
   });
 })

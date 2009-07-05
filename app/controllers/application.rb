@@ -9,7 +9,6 @@ class Application < Merb::Controller
 
   def add_event(user, verb, thing, link)
     @object = eval "#{link.split('/')[-2].singular.camel_case}.get(#{link.split('/')[-1]})"
-    link = "<a href='http://loyola90.net#{link}'>#{thing}</a>"
     message = "#{user.name} #{verb} #{link}"
     email_subject = "#{user.name} #{verb} #{thing}"
     e = Event.new(:message => CGI.escapeHTML(message), :user_id => user.id)
@@ -21,11 +20,10 @@ class Application < Merb::Controller
       email_users.each do |user|
         debugger
         Merb.logger.info "Sending mail to #{user.email}"
-        send_mail(MailMailer, template, {
-                 :from => 'loyola90@loyola90.net',
-                 :to   => user.email,
-                 :subject => "[loyola90] #{email_subject}",
-               }, {:object => @object, :user => user, :link => link, :verb => verb, :thing => thing, :message => message})
+        send_mail(NotifyMailer, :notify_on_event, {:from => 'anurag08priyam@gmail.com',
+                                                   :to => 'anurag08priyam@gmail.com',
+                                                   :subject => 'Test mail'},
+                                                  {:user => @user })
       end
     end
   end
