@@ -121,7 +121,7 @@ class Tweets < Application
 
   def replies
     @replies = session.user.replies
-    display @replies, 'tweets/index'
+    display @replies
   end
 
   def messages #group or private messages

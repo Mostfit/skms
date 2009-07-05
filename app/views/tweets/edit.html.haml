@@ -1,14 +1,15 @@
-%h3 Tweet
 .message
-  %span.imgn
-    = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px'
-  %span.body
-    %strong
-      = @tweet.made_by.nick
-    %span.content
-      = @tweet.content
-    %span.actions
-      = link_to 'Delete', url(:delete_tweet, @tweet)
+  %h3 Tweet
+  .tweet
+    %span.imgn
+      = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px', :align => 'left'
+    %span.body
+      %strong
+        = @tweet.made_by.nick
+      %span.content
+        = @tweet.content
+      %span.actions
+        = link_to 'Delete', url(:delete_tweet, @tweet)
 .comment
   %h3 Comments
   = render :template => 'comments/index', :layout => false

@@ -4,7 +4,7 @@
     %li#tab2 Group Messages
 
   #fragment0.fragment
-    .top-form
+    .top-form#message_form
       %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
         %span.black
           Send a private tweet to:
@@ -15,7 +15,7 @@
       = partial 'message', :messages => @pms
 
   #fragment1.fragment.hidden
-    .top-form
+    .top-form#message_form
       %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
         %span.black
           Send a group message to:

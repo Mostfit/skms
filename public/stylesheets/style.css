@@ -317,6 +317,10 @@ ul.tab-menu li {
   top:-25px;
 }
 
+#message_form{
+  min-height: 140px;
+}
+
 select {
   border: 1px solid #AAAAAA
 }
