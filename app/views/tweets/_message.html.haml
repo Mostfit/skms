@@ -12,7 +12,6 @@
         - if not message.tags.empty?
           = image_tag 'tag_blue.png'
           = message.tag_list.join(',')
-          %br
         - if not message.comments.empty?
           = link_to(image_tag('comment.png', :class => 'action-icon', :title => message.comments.count))
         - if message.file?

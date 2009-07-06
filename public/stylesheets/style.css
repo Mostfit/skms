@@ -111,9 +111,20 @@ input[type="submit"] {
   width:116px;
 }
 
-textarea {
+.button {
+  border:medium none navajoWhite;
+  color:#AAAAAA;
+}
+
+textarea, input[type="text"] {
   border: 1px solid #AAAAAA;
   padding: 4px 2px;
+}
+
+.heading {
+   margin-top: 0px;
+   margin-bottom: 0px;
+   padding: 5px;
 }
 
 div.message {
@@ -139,16 +150,13 @@ span.imgn{
   margin:0 10px 0 5px;
   overflow:hidden;
   width:50px;
+  float:left;
 }
 
 span.body{
   display:block;
-  margin-left:65px;
-  min-height:50px;
   overflow:hidden;
-  position:absolute;
-  top:10px;
-  width:88%;
+  width:90%;
 }
 
 span.meta{
@@ -196,10 +204,7 @@ ul.collapsed {
 
 ol.list{
   padding-left:0px;
-  list-style-image:none;
-  list-style-position:outside;
   list-style-type:none;
-  margin-right:20px;
 }
 
 ol.list li:hover span.actions {
@@ -242,6 +247,7 @@ ol.list > li  {
   line-height:1.1em;
   padding:0.7em 0 0.6em;
   position:relative;
+  min-height:50px;
 }
 
 ol#profile > li {

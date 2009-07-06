@@ -1,15 +1,22 @@
 .message
   %h3 Tweet
-  .tweet
-    %span.imgn
-      = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px', :align => 'left'
-    %span.body
-      %strong
-        = @tweet.made_by.nick
-      %span.content
-        = @tweet.content
-      %span.actions
-        = link_to 'Delete', url(:delete_tweet, @tweet)
+  = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px', :align => 'left'
+  %span.body
+    %strong
+      = @tweet.made_by.nick
+    %span.content
+      = @tweet.content
+    %span.actions
+      = link_to 'Delete', url(:delete_tweet, @tweet)
+.tags
+  %h5.heading Tags
+  = image_tag 'tag_blue.png', :class => 'action-icon'
+  - if @tweet.tags
+    = @tweet.tag_list.join(', ')
+  = form_for(@tweet, :action => url(:tag_tweet, @tweet)) do
+    = text_field :tag_list, :value => ''
+    = submit "Tag", :class => 'button'
+
 .comment
   %h3 Comments
   = render :template => 'comments/index', :layout => false
@@ -22,17 +29,5 @@
       = submit "Attach File"
   - if @tweet.file?
     = @tweet.file_file_name
-.tags
-  %h3 Tags
-  = form_for(@tweet, :action => url(:tag_tweet, @tweet), :html =>'multiparttrue') do
-    %p
-      = text_field :tag_list, :value => ''
-    %p
-      = submit "Tag"
-
-  - if @tweet.tags
-    - @tweet.tag_list.each do |tag|
-      = tag
-      %br
 
 = link_to 'Back', url(:tweets)
