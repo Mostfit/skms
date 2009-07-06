@@ -21,8 +21,8 @@
             - group.tag_list.each do |tag|
               = tag
       %span.actions
-        = link_to 'View',  url(:group, group)
+        = link_to(image_tag('application_edit.png', :class => 'action-icon'), url(:group, group), :title => 'View')
         %br
-        = link_to 'Join', url(:join, group)
+        = link_to(image_tag('user_add.png', :class => 'action-icon'), url(:join, group), :title => 'Join the Group')
 
 - throw_content :for_sidebar, partial('sidebar')

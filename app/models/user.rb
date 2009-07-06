@@ -32,43 +32,43 @@ class User
   def password_required?; false end 
 
   def is_moderator? group
-    return true if Moderation.first(:user_id => self.id, :group_id => group.id)
+    return true if Moderation.first(:user_id => id, :group_id => group.id)
     false
   end
 
   def groups_moderated
-    Group.all 'moderations.user_id' => self.id
+    Group.all 'moderations.user_id' => id
   end
 
   def is_owner? group
-    return true if Moderation.first(:user_id => self.id, :group_id => group.id, :owner => true)
+    return true if Moderation.first(:user_id => id, :group_id => group.id, :owner => true)
     false
   end
 
   def groups_owned
-    Group.all 'moderations.user_id' => self.id, 'moderations.owner' => true
+    Group.all 'moderations.user_id' => id, 'moderations.owner' => true
   end
 
   def member_of
-    Group.all('memberships.user_id' => self.id, 'memberships.approved' => true) 
+    Group.all('memberships.user_id' => id, 'memberships.approved' => true) 
   end
 
   def is_member? group
-    return true if Membership.all(:user_id => self.id, :group_id => group.id, :approved => true)
+    return true if Membership.all(:user_id => id, :group_id => group.id, :approved => true)
     false
   end
 
   def replies
-    Tweet.all 'for_users.user_id' => self.id, :protected => false
+    Tweet.all 'for_users.user_id' => id, :protected => false
   end
 
   def private_messages
-    Tweet.all 'for_users.user_id' => self.id, :protected => true
+    Tweet.all 'for_users.user_id' => id, :protected => true
   end
 
   def group_messages
     messages = {}
-    self.member_of.each do |group|
+    member_of.each do |group|
       messages[group.name] = group.messages
     end
     return messages

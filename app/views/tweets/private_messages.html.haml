@@ -1,0 +1,20 @@
+.top-form#message_form
+  %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
+    %span.black
+      Send a private tweet to:
+  = form_for(Tweet.new, :action=>url(:tweets), :class=>'form') do
+    = select :name => 'for_users', :collection => User.all.map {|x| [x.id.to_s, x.nick.to_s]}
+    = partial 'fields', :action => 'send'
+
+.tabbed
+  %ul.tab-menu
+    %li#tab1 Received
+    %li#tab2 Sent
+
+  #fragment0.fragment
+    %ol.list#pms
+      = partial 'message', :messages => @pms
+
+  #fragment1.fragment.hidden
+
+- throw_content :for_sidebar, partial('sidebar')

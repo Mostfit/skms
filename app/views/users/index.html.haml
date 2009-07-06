@@ -9,7 +9,10 @@
         %span.content
           = user.bio
         %span.meta
-          = link_to 'View',  url(:user, user)
       %span.actions
+        = link_to(image_tag('user.png', :class => 'action-icon'), url(:user, user), :title => 'Profile')
+        %br
+        - if session.user == user
+          = link_to(image_tag('user_edit.png', :class => 'action-icon'), url(:edit_user, user), :title => 'Edit Profile')
 
 - throw_content :for_sidebar, partial('sidebar')

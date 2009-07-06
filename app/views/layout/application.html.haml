@@ -24,7 +24,10 @@
                 = link_to "@#{session.user.nick}", url(:replies), :title => 'Replies'
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to 'Messages', url(:messages), :title => 'Private and Group Messages'
+                = link_to 'Private Messages', url(:private_messages), :title => 'Private Messages'
+                &nbsp
+              %li.nav-panel#header-panel
+                = link_to 'Group Messages', url(:group_messages), :title => 'Group Messages'
                 &nbsp
               %li.nav-panel#header-panel
                 = link_to 'Profile', url(:profile, session.user.nick), :title => 'Settings'

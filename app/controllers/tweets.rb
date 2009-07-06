@@ -77,8 +77,9 @@ class Tweets < Application
     end
 
     if @tweet.save
-      redirect url(:tweets), :message => {:notice => "Tweet was successfully created"}
-      add_event
+      redirect(url(:private_messages), :message => {:notice => "Private Message sent successfully."}) if is_pm
+      redirect(url(:group_messages), :message => {:notice => "Group Message sent successfully."}) if is_gm
+      redirect url(:tweets), :message => {:notice => "Tweet was successfully created."}
     else
       message[:error] = "Tweet failed to be created"
       render :index
@@ -124,11 +125,14 @@ class Tweets < Application
     display @replies
   end
 
-  def messages #group or private messages
+  def private_messages #group or private messages
     @pms = session.user.private_messages
-    @gms = session.user.group_messages
     display @pms
   end
 
+  def group_messages
+    @gms = session.user.group_messages
+    display @gms
+  end
 
 end # Tweets
