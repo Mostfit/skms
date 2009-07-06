@@ -1,33 +1,43 @@
-.message
-  %h3 Tweet
-  = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px', :align => 'left'
+.tweet.message
+  %h3.heading Tweet
+  %span.imgn
+    = image_tag @tweet.made_by.image.url(:thumb), :height=>'50px', :align => 'left'
   %span.body
     %strong
-      = @tweet.made_by.nick
+      = link_to @tweet.made_by.nick, url(:profile, @tweet.made_by.nick)
     %span.content
       = @tweet.content
+    %span.meta
+      = image_tag 'tag_blue.png', :class => 'action-icon'
+      = @tweet.tags.empty? ? "None" : @tweet.tag_list.join(', ') 
+      %br
+      = image_tag('comment.png', :class => 'action-icon')
+      = @tweet.comments.empty? ? "0 Comment" : "#{@tweet.comments.count} Comments"
+      = image_tag('attach.png', :class => 'action-icon')
+      = @tweet.file? ? "1 Attachment" : "No Attachment"
     %span.actions
-      = link_to 'Delete', url(:delete_tweet, @tweet)
-.tags
-  %h5.heading Tags
-  = image_tag 'tag_blue.png', :class => 'action-icon'
-  - if @tweet.tags
-    = @tweet.tag_list.join(', ')
-  = form_for(@tweet, :action => url(:tag_tweet, @tweet)) do
-    = text_field :tag_list, :value => ''
-    = submit "Tag", :class => 'button'
-
+      = link_to(image_tag('email.png', :class => 'action-icon', :title => 'Email this Message'))
+      %br
+      - if session.user.id == @tweet.made_by_id
+        = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Message'), url(:delete_tweet, @tweet))
+- if @tweet.made_by == session.user
+  .tags
+    %h5.heading Tags
+    = image_tag 'tag_blue.png', :class => 'action-icon'
+    - if @tweet.tags
+      = @tweet.tag_list.join(', ')
+    = form_for(@tweet, :action => url(:tag_tweet, @tweet)) do
+      = text_field :tag_list, :value => ''
+      = submit "Tag"
+  .attachment
+    %h5.heading Attachments
+    - if @tweet.file?
+      = @tweet.file_file_name
+    = form_for(@tweet, :action => url(:tweet, @tweet), :html =>'multiparttrue') do
+      = file_field :file
+      = submit "Attach File"
 .comment
   %h3 Comments
   = render :template => 'comments/index', :layout => false
-.attachment
-  %h3 Attachments
-  = form_for(@tweet, :action => url(:tweet, @tweet), :html =>'multiparttrue') do
-    %p
-      = file_field :file
-    %p
-      = submit "Attach File"
-  - if @tweet.file?
-    = @tweet.file_file_name
 
 = link_to 'Back', url(:tweets)

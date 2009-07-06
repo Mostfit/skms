@@ -127,16 +127,12 @@ textarea, input[type="text"] {
    padding: 5px;
 }
 
-div.message {
-  border-top: 1px solid;
-  border-bottom: 1px solid;
+div.tweet {
+  border-bottom:1px dashed #D2DADA;
   position: relative;
   margin-top: 5px;
   padding-bottom:2px;
   padding-top:2px;
-}
-
-div.tweet{
 }
 
 span.nick{
@@ -207,15 +203,8 @@ ol.list{
   list-style-type:none;
 }
 
-ol.list li:hover span.actions {
+.message:hover span.actions {
   visibility: visible;
-}
-
-span.element-container{
-  border-bottom:1px dashed #D2DADA;
-  line-height:1.1em;
-  padding:0.7em 0 0.6em;
-  position:relative;
 }
 
 .round {
@@ -283,8 +272,17 @@ div.member-list {
 div.group-messages {
 }
 
-div.tag {
-  position:absolute;
+div.tags {
+  border-bottom:1px dashed #D2DADA;
+  padding-bottom: 2px;
+  float:left;
+  width:45%;
+}
+
+div.attachment {
+  border-bottom:1px dashed #D2DADA;
+  float:right;
+  width:45%;
 }
 
 table.table .cell {
@@ -354,3 +352,14 @@ ol#details{
 .action-icon {
   border: none;
 }
+
+hr
+{
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 0 0 20px;
+  height: 0;
+}
+

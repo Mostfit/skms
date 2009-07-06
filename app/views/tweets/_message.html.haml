@@ -1,21 +1,20 @@
 - for message in messages
-  %li.status
+  %li.message
     %span.imgn
       = image_tag message.made_by.image.url(:thumb), :height=>'50px'
     %span.body
-      -if message.made_by.nick
-        %strong
-          = link_to message.made_by.nick, url(:profile, message.made_by.nick)
+      %strong
+        = link_to message.made_by.nick, url(:profile, message.made_by.nick)
       %span.content
         = message.excerpt
       %span.meta
-        - if not message.tags.empty?
-          = image_tag 'tag_blue.png'
-          = message.tag_list.join(',')
-        - if not message.comments.empty?
-          = link_to(image_tag('comment.png', :class => 'action-icon', :title => message.comments.count))
-        - if message.file?
-          = link_to "1 Attachment", message.file.url
+        = image_tag 'tag_blue.png', :class => 'action-icon'
+        = message.tags.empty? ? "None" : message.tag_list.join(', ') 
+        %br
+        = image_tag('comment.png', :class => 'action-icon')
+        = message.comments.empty? ? "0 Comment" : "#{message.comments.count} Comments"
+        = image_tag('attach.png', :class => 'action-icon')
+        = message.file? ? "1 Attachment" : "No Attachment"
     %span.actions
       = link_to(image_tag('application_edit.png', :class => 'action-icon', :title => 'Comment, Tag and much More'), url(:edit_tweet, message))
       %br
