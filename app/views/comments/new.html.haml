@@ -1,0 +1,4 @@
+= error_messages_for @tweet
+= form_for(Comment.new, :action=>url(:comments) ) do
+  = hidden_field :name => 'tweet', :value => @tweet.id
+  = partial 'fields', :action => 'comment'

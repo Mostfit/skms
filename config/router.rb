@@ -15,14 +15,13 @@ Merb::Router.prepare do
   resources :polls 
   resources :tweets
   resources :users
+  resources :comments
 
   resource :tweets do
-    resources :comments
     resources :tags
   end
 
   resources :polls do
-    resources :comments
     resources :tags
   end
   

@@ -1,17 +1,6 @@
 class Comments < Application
   # provides :xml, :yaml, :js
 
-  def index
-    @comments = Comment.all
-    display @comments
-  end
-
-  def show(id)
-    @comment = Comment.get(id)
-    raise NotFound unless @comment
-    display @comment
-  end
-
   def new
     only_provides :html
     @comment = Comment.new
@@ -27,8 +16,8 @@ class Comments < Application
 
   def create(comment)
     @comment = Comment.new(comment)
-    @comment.user=session.user
-    @comment.tweet=Tweet.get params[:tweet]
+    @comment.user = session.user
+    @comment.tweet = Tweet.get params[:tweet]
     if @comment.save
       redirect url(:edit_tweet,  @comment.tweet), :message => {:notice => "Comment was successfully created"}
     else

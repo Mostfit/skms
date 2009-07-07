@@ -1,7 +1,7 @@
 .top-form
   %h3{:style => "margin-top: 0px; margin-bottom: 0px; padding: 5px;"}
     %span.black
-      what are you doing?
+      What are you doing?
   = form_for(Tweet.new, :action=>url(:tweets)) do
     = partial 'fields', :action => 'update'
 

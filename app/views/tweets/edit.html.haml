@@ -15,11 +15,11 @@
       = @tweet.comments.empty? ? "0 Comment" : "#{@tweet.comments.count} Comments"
       = image_tag('attach.png', :class => 'action-icon')
       = @tweet.file? ? "1 Attachment" : "No Attachment"
-    %span.actions
-      = link_to(image_tag('email.png', :class => 'action-icon', :title => 'Email this Message'))
-      %br
-      - if session.user.id == @tweet.made_by_id
-        = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Message'), url(:delete_tweet, @tweet))
+  %span.actions#eaction
+    = link_to(image_tag('email.png', :class => 'action-icon', :title => 'Email this Message'))
+    %br
+    - if session.user.id == @tweet.made_by_id
+      = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Message'), url(:delete_tweet, @tweet))
 - if @tweet.made_by == session.user
   .tags
     %h5.heading Tags
@@ -38,6 +38,7 @@
       = submit "Attach File"
 .comment
   %h3 Comments
+  = render :template => 'comments/new', :layout => false
   = render :template => 'comments/index', :layout => false
 
 = link_to 'Back', url(:tweets)

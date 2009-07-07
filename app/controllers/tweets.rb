@@ -2,7 +2,7 @@ class Tweets < Application
   provides :xml, :yaml, :js
 
   def index
-    @tweets = Tweet.all :protected => false
+    @tweets = Tweet.all(:protected => false).paginate(:per_page => 10, :page => params[:page])
     display @tweets
   end
 

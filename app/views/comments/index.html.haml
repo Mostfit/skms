@@ -1,11 +1,3 @@
-= error_messages_for @tweet
-= form_for(Comment.new, :action=>url(:tweets_comments) ) do
-  %p
-    = hidden_field :name=>'tweet', :value=>@tweet.id
-    = text_area :content, :class=>"comment", :row=>"5", :cols=>"80"
-  %p
-    = submit "Comment"
-
 %ol.list.comments
   -@tweet.comments.each do |comment|
     %li
