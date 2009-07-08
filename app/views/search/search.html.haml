@@ -1,0 +1,6 @@
+%form{:action => url(:search), :method => 'POST'}
+  %input{:type => 'text', :name => 'query'}
+  %input{:type => 'submit', :value => 'Search'}
+
+%ol.list#updates
+  = partial 'tweets/message', :messages => @result
