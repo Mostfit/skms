@@ -7,5 +7,5 @@
 
 %ol.list#updates
   = partial 'message', :messages => @tweets
-
+= paginate @tweets
 - throw_content :for_sidebar, partial('sidebar')

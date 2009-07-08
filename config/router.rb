@@ -61,4 +61,6 @@ Merb::Router.prepare do
 
   match('/:nick(.:format)').to(:controller => 'users', :action => 'profile').name(:profile)
 
+  default_routes
+
 end
