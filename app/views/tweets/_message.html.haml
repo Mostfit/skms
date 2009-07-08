@@ -16,7 +16,7 @@
         = image_tag('attach.png', :class => 'action-icon')
         = message.file? ? "1 Attachment" : "No Attachment"
     %span.actions
-      = link_to(image_tag('application_edit.png', :class => 'action-icon', :title => 'Comment, Tag and much More'), url(:edit_tweet, message))
+      = link_to(image_tag('application_edit.png', :class => 'action-icon', :title => 'Comment, Tag and much More'), url(:tweet, message))
       %br
       = link_to(image_tag('email.png', :class => 'action-icon', :title => 'Email this Message'))
       %br

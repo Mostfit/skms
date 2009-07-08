@@ -38,6 +38,11 @@ class Groups < Application
   def update(id, group)
     @group = Group.get(id)
     raise NotFound unless @group
+
+    if not group[:tag_list].empty? #if a tag has been entered
+      group[:tag_list] = @group.tag_list.join(',') + ',' + group[:tag_list] #append the new tag to the existing list
+    end
+
     if @group.update_attributes(group)
        redirect resource(@group)
     else

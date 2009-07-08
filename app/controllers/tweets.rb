@@ -8,8 +8,8 @@ class Tweets < Application
 
   #no 'new', as a new tweet is created from the home page itself
 
-  #the individual page of each tweet is handeled by 'edit'.
-  def edit(id)
+  #the individual page of each tweet is handeled by 'show'.
+  def show(id)
     only_provides :html
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
@@ -97,11 +97,15 @@ class Tweets < Application
   end
 
   def update(id,tweet)
-    debugger
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
+
+    if not tweet[:tag_list].empty? #if a tag has been entered
+      tweet[:tag_list] = @tweet.tag_list.join(',') + ',' + tweet[:tag_list] #append the new tag to the existing list
+    end
+
     if @tweet.update_attributes(tweet)
-       redirect url(:edit_tweet, @tweet)
+       redirect url(:tweet, @tweet)
     else
       display @tweet, :edit
     end
@@ -122,7 +126,6 @@ class Tweets < Application
     debugger
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
-    tweet[:tag_list] = @tweet.tag_list.join(',') + ',' + tweet[:tag_list]
     if @tweet.update_attributes(tweet)
        redirect url(:edit_tweet, @tweet)
     else

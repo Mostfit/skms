@@ -12,6 +12,8 @@ class Poll
   has n, :comments
   belongs_to :user
 
+  has_tags #comes from the dm-tags plugin
+
   def editable_by?(user)
     editable or self.user == user
   end
