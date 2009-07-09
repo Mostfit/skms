@@ -1,38 +1,15 @@
 class Comments < Application
   # provides :xml, :yaml, :js
 
-  def new
-    only_provides :html
-    @comment = Comment.new
-    display @comment
-  end
-
-  def edit(id)
-    only_provides :html
-    @comment = Comment.get(id)
-    raise NotFound unless @comment
-    display @comment
-  end
-
   def create(comment)
     @comment = Comment.new(comment)
     @comment.user = session.user
-    @comment.tweet = Tweet.get params[:tweet]
+    @comment.tweet_id = params[:tweet]
     if @comment.save
-      redirect url(:edit_tweet,  @comment.tweet), :message => {:notice => "Comment was successfully created"}
+      redirect url(:tweet,  @comment.tweet), :message => {:notice => "Comment was successfully created"}
     else
       message[:error] = "Comment failed to be created"
-      redirect url(:edit_tweet,  tweet)
-    end
-  end
-
-  def update(id, comment)
-    @comment = Comment.get(id)
-    raise NotFound unless @comment
-    if @comment.update_attributes(comment)
-       redirect resource(@comment)
-    else
-      display @comment, :edit
+      redirect url(:tweet,  @comment.tweet)
     end
   end
 

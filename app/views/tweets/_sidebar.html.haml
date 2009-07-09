@@ -1,6 +1,6 @@
 %ul.collapsed
   %li
-    = link_to 'Home'
+    = link_to 'Home', url(:home)
   %li
     = link_to "@#{session.user.nick}", url(:replies), :title => 'Replies'
   %li.menu_title
@@ -21,33 +21,31 @@
           %li
             = link_to 'Received'
   %li.menu_title
-    = link_to 'Groups'
+    = link_to 'Groups', url(:groups)
     %ul.menu_body
       %li
-        = link_to 'Memberships'
+        = link_to 'Memberships', url(:memberships)
       %li
-        = link_to 'Owned'
+        = link_to 'Owned', url(:groups_owned)
       %li
-        = link_to 'Created'
+        = link_to 'Create', url(:new_group)
   %li.menu_title
     = link_to 'Polls', url(:polls), :title => 'Create, See or Vote on a Poll' 
     %ul.menu_body
       %li
-        = link_to 'My Polls'
+        = link_to 'My Polls', "/polls/my"
       %li
-        = link_to 'Open Polls'
+        = link_to 'Open Polls', "/polls/open"
       %li
-        = link_to 'All Polls'
+        = link_to 'All Polls', '/polls/all'
       %li
-        = link_to 'Closed Polls'
+        = link_to 'Closed Polls', "/polls/closed"
       %li
-        = link_to 'New Poll'
+        = link_to 'New Poll', resource(:polls, "new")
   %li.menu_title
     = link_to 'Profile', url(:profile, session.user.nick), :title => 'Settings'
     %ul.menu_body
       %li
-        = link_to 'View Profile'
+        = link_to 'View Profile', url(:user, session.user)
       %li
-        = link_to 'Edit Profile'
-      %li
-        = link_to 'Created'
+        = link_to 'Edit Profile', url(:edit_user, session.user)

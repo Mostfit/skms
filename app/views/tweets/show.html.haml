@@ -37,7 +37,10 @@
       = submit "Attach File"
 .comment
   %h3 Comments
-  = render :template => 'comments/new', :layout => false
+  = form_for(Comment.new, :action => url(:comments) ) do
+    = hidden_field :name => 'tweet', :value => @tweet.id
+    = partial 'fields', :action => 'comment'
   = render :template => 'comments/index', :layout => false
 
 = link_to 'Back', url(:tweets)
+- throw_content :for_sidebar, partial('sidebar')

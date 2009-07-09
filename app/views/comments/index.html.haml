@@ -1,14 +1,16 @@
 %ol.list.comments
   -@tweet.comments.each do |comment|
-    %li
+    %li.message
       %span.imgn
         = image_tag comment.user.image.url(:thumb), :height=>'50px'
       %span.body
-        -if comment.user.nick
-          %strong
-            = link_to comment.user.nick, url(:profile, comment.user.nick)
+        %strong
+          = link_to comment.user.nick, url(:profile, comment.user.nick)
         %span.content
           = comment.content
         %span.meta
-          - if comment.file?
-            == Attachments
+          = image_tag('attach.png', :class => 'action-icon')
+          = comment.file? ? "1 Attachment" : "No Attachment"
+        %span.actions
+          - if session.user == comment.user
+            = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Comment'), url(:delete_comment, comment))

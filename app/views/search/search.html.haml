@@ -1,3 +1,4 @@
 %ol.list
   = partial 'tweets/message', :messages => @result[:tweets]
   = partial 'groups/groups', :groups => @result[:groups]
+  = partial 'polls/polls', :polls => @result[:polls]
