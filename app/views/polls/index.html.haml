@@ -1,26 +1,4 @@
-%h2
-  - action = request.params[:action] == 'index' ? 'open' : request.params[:action]
-  = action.capitalize 
-  Polls
-- if @polls.blank?
-  .notice
-    No 
-    = action
-    polls
-%table{:width => "100%"}
-  - for poll in @polls
-    %tr{:class => cycle('odd','')}
-      %td
-        = link_to poll.topic, resource(poll)
-      %td
-        by
-        = link_to poll.user.nick, resource(poll.user)
-      %td
-        = Vote.all('poll_choice.poll_id' => poll.id).count
-        votes
-      %td
-        = poll.status
-        - if poll.status == :open
-          == (closes #{poll.closing_date})
-
+%h2 Polls
+%ol#polls.list
+  = partial 'polls', :polls => @polls
 - throw_content :for_sidebar, partial('sidebar')

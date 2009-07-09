@@ -82,8 +82,12 @@ li.nav-panel a:hover {
   font-weight:bold
 }
 
-a, a:hover, a:visited {
+a, a:visited {
   text-decoration:none;
+}  
+
+a:hover {
+  text-decoration:underline;
 }
 
 a{

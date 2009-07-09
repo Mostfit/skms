@@ -1,0 +1,20 @@
+- polls.each do |poll|
+  %li.message
+    %span.imgn
+      = image_tag poll.user.image.url(:thumb), :height=>'50px'
+    %span.body
+      %span.content
+        = poll.description
+      %span.meta
+        = image_tag('vote_icon.png', :class => 'action-icon')
+        == #{poll.votes} Votes 
+        = image_tag 'tag_blue.png', :class => 'action-icon'
+        = poll.tags.empty? ? "None" : poll.tag_list.join(', ') 
+        %br
+        = image_tag 'user_red.png', :class => 'action-icon', :title => 'Owner'
+        = link_to poll.user.nick, url(:user, poll.user)
+    %span.actions
+      = link_to(image_tag('vote_icon.png', :class => 'action-icon'), url(:poll, poll), :title => 'View')
+      %br
+      - if session.user == poll.user
+        = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Message'), url(:delete_poll, poll))

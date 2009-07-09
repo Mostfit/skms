@@ -4,8 +4,10 @@ class Tags < Application
   def show(id)
     tag = Tag.get id
     raise NotFound unless tag
-    @result = {}
+    @result = {:tweets => [], :group => [], :polls => []}
     @result [:tweets] = Tweet.all('taggings.tag_id' => id)
+    @result [:groups] = Group.all('taggings.tag_id' => id)
+    @result [:polls] = Poll.all('taggings.tag_id' => id)
     render @result
   end
 

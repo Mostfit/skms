@@ -3,7 +3,7 @@ class Poll
   
   property :id, Serial
   property :topic, String, :nullable => false
-  property :description, Text
+  property :description, Text, :laxy => false
   property :published, Boolean
   property :closing_date, Date, :set => ((Date.today + 1)..1.0/0) 
   property :editable, Boolean
@@ -30,6 +30,10 @@ class Poll
     else
       :unpublished
     end
+  end
+
+  def votes
+    Vote.all('poll_choice.poll_id' => id).count
   end
 
 end

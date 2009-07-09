@@ -1,5 +1,5 @@
 - groups.each do |group|
-  %li
+  %li.message
     %span.imgn
       = image_tag group.image.url(:thumb), :height=>'50px'
     %span.body
@@ -8,16 +8,12 @@
       %span.content
         = group.description[0..139]
       %span.meta
-        == Owner:- #{link_to group.owner.nick, url(:profile, group.owner.nick)}
-        = group.protected? ? 'Moderated': 'Open'
-        - if group.protected?
-          == Moderators:-
-          - group.moderators.each do |moderator|
-            = link_to moderator.nick, url(:profile, moderator.nick)
-        - if not group.tags.empty?
-          == Tags:- 
-          - group.tag_list.each do |tag|
-            = tag
+        = image_tag 'tag_blue.png', :class => 'action-icon'
+        = group.tags.empty? ? "None" : group.tag_list.join(', ') 
+        %br
+        = group.protected? ? "#{image_tag 'lock.png', :class => 'action-icon'} Closed" : "#{image_tag 'lock_open.png', :class => 'action-icon'} Open"
+        = image_tag 'user_red.png', :class => 'action-icon', :title => 'Moderators'
+        = ( group.moderators.collect { |moderator| link_to moderator.nick, url(:profile, moderator.nick) } ).join(', ')
     %span.actions
       = link_to(image_tag('application_edit.png', :class => 'action-icon'), url(:group, group), :title => 'View')
       %br
