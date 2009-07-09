@@ -1,8 +1,6 @@
 %ol.list.comments
   -@tweet.comments.each do |comment|
     %li.message
-      %span.imgn
-        = image_tag comment.user.image.url(:thumb), :height=>'50px'
       %span.body
         %strong
           = link_to comment.user.nick, url(:profile, comment.user.nick)

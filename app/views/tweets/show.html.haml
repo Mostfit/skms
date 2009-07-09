@@ -20,7 +20,6 @@
     %br
     - if session.user.id == @tweet.made_by_id
       = link_to(image_tag('icon_trash.gif', :class => 'action-icon', :title => 'Delete this Message'), url(:delete_tweet, @tweet))
-- if @tweet.made_by == session.user
   .tags
     %h5.heading Tags
     = image_tag 'tag_blue.png', :class => 'action-icon'
@@ -39,7 +38,8 @@
   %h3 Comments
   = form_for(Comment.new, :action => url(:comments) ) do
     = hidden_field :name => 'tweet', :value => @tweet.id
-    = partial 'fields', :action => 'comment'
+    = text_area :content, :size=>40, :rows=>2, :cols=>105, :class => 'status-box'
+    = submit 'comment', :class => 'status-button'
   = render :template => 'comments/index', :layout => false
 
 = link_to 'Back', url(:tweets)
