@@ -1,0 +1,24 @@
+- groups.each do |group|
+  %li
+    %span.imgn
+      = image_tag group.image.url(:thumb), :height=>'50px'
+    %span.body
+      %strong
+        = link_to group.name, url(:group, group)
+      %span.content
+        = group.description[0..139]
+      %span.meta
+        == Owner:- #{link_to group.owner.nick, url(:profile, group.owner.nick)}
+        = group.protected? ? 'Moderated': 'Open'
+        - if group.protected?
+          == Moderators:-
+          - group.moderators.each do |moderator|
+            = link_to moderator.nick, url(:profile, moderator.nick)
+        - if not group.tags.empty?
+          == Tags:- 
+          - group.tag_list.each do |tag|
+            = tag
+    %span.actions
+      = link_to(image_tag('application_edit.png', :class => 'action-icon'), url(:group, group), :title => 'View')
+      %br
+      = link_to(image_tag('user_add.png', :class => 'action-icon'), url(:join, group), :title => 'Join the Group')

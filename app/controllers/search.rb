@@ -1,12 +1,16 @@
 class Search < Application
 
   def search
-    @result = []
+    @result = {:tweets => [], :groups => []}
     if params[:query]
       query = params[:query]
-      search = ActsAsXapian::Search.new ['Tweet'], query, :limit => 10
+      search = ActsAsXapian::Search.new ['Tweet', 'Group'], query, :limit => 10
       search.results.each do |value|
-        @result << value[:model]
+        if value[:model].class == Tweet
+          @result[:tweets] << value[:model]
+        elsif value[:model].class == Group
+          @result[:groups] << value[:model]
+        end
       end
     end
     render

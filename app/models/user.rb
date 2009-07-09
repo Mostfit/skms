@@ -29,6 +29,8 @@ class User
 
   validates_is_unique :email
 
+  is_indexed :texts => [:name, :email, :bio], :values => [[:name, 3, 'name', :string],[:email, 4, 'email', :string],[:bio, 5, 'bio', :string]], :terms => [[:name, 'D', 'user'], [:email, 'E', 'user'], [:bio, 'F', 'user']] #uses dm-xapian plugin for 'full text searching'. Read more at: 'http://github.com/frabcus/acts_as_xapian/tree/master'
+
   def password_required?; false end 
 
   def is_moderator? group

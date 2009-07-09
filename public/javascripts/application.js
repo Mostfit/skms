@@ -4,8 +4,4 @@ $(document).ready(function(){
     $("div.fragment").addClass("hidden");
     $(search).removeClass("hidden");
   });
-
-  $('li.menu_title').mouseover(function(){
-    $(this).children('ul.menu_body').slideToggle(300);
-  });
 })

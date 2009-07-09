@@ -24,16 +24,15 @@
   .tags
     %h5.heading Tags
     = image_tag 'tag_blue.png', :class => 'action-icon'
-    - if @tweet.tags
-      = @tweet.tag_list.join(', ')
+    = @tweet.tags.empty? ? "None" : @tweet.tag_list.join(', ') 
     = form_for(@tweet, :action => resource(@tweet)) do
       = text_field :tag_list, :value => ''
       = submit "Tag"
   .attachment
     %h5.heading Attachments
-    - if @tweet.file?
-      = @tweet.file_file_name
-    = form_for(@tweet, :action => url(:tweet, @tweet), :html =>'multiparttrue') do
+    = image_tag 'attach.png', :class => 'action-icon'
+    = @tweet.file? ? "1 Attachment" : "No Attachment"
+    = form_for(@tweet, :action => resource(@tweet), :html =>'multiparttrue') do
       = file_field :file
       = submit "Attach File"
 .comment

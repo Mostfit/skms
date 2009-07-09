@@ -60,10 +60,7 @@ div.top-text {
 }
 
 div#header-panel{
-  float:left;
-  position: relative;
-  left: 20px;
-  top: 30px;
+  margin-right:5px;
 }
 
 ul.nav-panel {
@@ -363,3 +360,38 @@ hr
   height: 0;
 }
 
+#search {
+  left:30%;
+  position:absolute;
+  top:12%;
+}
+
+#search .submit {
+  -moz-border-radius-bottomright:3px;
+  -moz-border-radius-topright:3px;
+  background-color:#EEEEEE;
+  background-position:center top;
+  border-style:solid;
+  border-width:1px;
+  cursor:pointer;
+  padding:0.4em 0.9em;
+}
+
+#search input, #search_submit {
+  border-color:#999999 !important;
+  padding-bottom:5px !important;
+  padding-top:5px !important;
+  vertical-align:middle;
+}
+
+#search_submit {
+  background:transparent url("/images/search_submit.png") repeat scroll -2px 0 !important;
+}
+
+#search_submit:hover {
+  background:transparent url("/images/search_submit.png") repeat scroll -2px -25px !important;
+}
+
+div.pagination {
+  float:right;
+}

@@ -100,7 +100,7 @@ class Tweets < Application
     @tweet = Tweet.get(id)
     raise NotFound unless @tweet
 
-    if not tweet[:tag_list].empty? #if a tag has been entered
+    if tweet[:tag_list] #if a tag has been entered
       tweet[:tag_list] = @tweet.tag_list.join(',') + ',' + tweet[:tag_list] #append the new tag to the existing list
     end
 

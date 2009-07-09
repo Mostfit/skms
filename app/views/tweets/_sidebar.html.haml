@@ -2,19 +2,19 @@
   %li
     = link_to 'Home'
   %li
-    = link_to '@yeban'
+    = link_to "@#{session.user.nick}", url(:replies), :title => 'Replies'
   %li.menu_title
     = link_to 'Messages'
     %ul.menu_body
       %li.menu_title
-        = link_to 'Private'
+        = link_to 'Private', url(:private_messages), :title => 'Private Messages'
       %ul.menu_body
         %li
           = link_to 'Sent'
         %li
           = link_to 'Received'
       %li.menu_title
-        = link_to 'Group'
+        = link_to 'Group', url(:group_messages), :title => 'Group Messages'
         %ul.menu_body
           %li
             = link_to 'Sent'
@@ -30,7 +30,7 @@
       %li
         = link_to 'Created'
   %li.menu_title
-    = link_to 'Polls'
+    = link_to 'Polls', url(:polls), :title => 'Create, See or Vote on a Poll' 
     %ul.menu_body
       %li
         = link_to 'My Polls'
@@ -43,7 +43,7 @@
       %li
         = link_to 'New Poll'
   %li.menu_title
-    = link_to 'Profile'
+    = link_to 'Profile', url(:profile, session.user.nick), :title => 'Settings'
     %ul.menu_body
       %li
         = link_to 'View Profile'

@@ -16,18 +16,7 @@ Merb::Router.prepare do
   resources :tweets
   resources :users
   resources :comments
-
-  resource :tweets do
-    resources :tags
-  end
-
-  resources :polls do
-    resources :tags
-  end
-  
-  resources :groups do
-    resources :tags
-  end
+  resources :tags
 
   slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "") #this line is required for the logout functionality. will find something better
 
@@ -56,8 +45,6 @@ Merb::Router.prepare do
   match('/replies').to(:controller => 'tweets', :action => 'replies').name(:replies) #the @reply feature
   match('/private_messages(.:format)').to(:controller => 'tweets', :action => 'private_messages').name(:private_messages) 
   match('/group_messages(.:format)').to(:controller => 'tweets', :action => 'group_messages').name(:group_messages)
-  match('/tweets/:id/tag').to(:controller => 'tweets', :action => 'tag').name(:tag_tweet)
-  match('/groups/:id/tag').to(:controller => 'groups', :action => 'tag').name(:tag_group)
 
   match('/:nick(.:format)').to(:controller => 'users', :action => 'profile').name(:profile)
 

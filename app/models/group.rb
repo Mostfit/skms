@@ -24,6 +24,8 @@ class Group
 
   default_scope(:default).update(:order => [:created_at.desc]) #this will sort the tweets in descending order by time of creation, when you query for anything
 
+  is_indexed :texts => [:description, :name], :values => [[:description, 1, 'description', :string], [:name, 2, 'name', :string]], :terms => [[:description, 'B', 'group'], [:name, 'C', 'group']] #uses dm-xapian plugin for 'full text searching'. Read more at: 'http://github.com/frabcus/acts_as_xapian/tree/master'
+
   def is_moderated?
     self.protected
   end

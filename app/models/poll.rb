@@ -14,6 +14,8 @@ class Poll
 
   has_tags #comes from the dm-tags plugin
 
+  is_indexed :texts => [:topic, :description], :values => [[:topic, 6, 'topic', :string],[:description, 7, 'description', :string]], :terms => [[:topic, 'G', 'poll'], [:description, 'H', 'poll']] #uses dm-xapian plugin for 'full text searching'. Read more at: 'http://github.com/frabcus/acts_as_xapian/tree/master'
+
   def editable_by?(user)
     editable or self.user == user
   end

@@ -21,28 +21,14 @@
                 = link_to 'Home', url(:tweets), :title => 'Home' 
                 &nbsp
               %li.nav-panel#header-panel
-                = link_to "@#{session.user.nick}", url(:replies), :title => 'Replies'
-                &nbsp
-              %li.nav-panel#header-panel
-                = link_to 'Private Messages', url(:private_messages), :title => 'Private Messages'
-                &nbsp
-              %li.nav-panel#header-panel
-                = link_to 'Group Messages', url(:group_messages), :title => 'Group Messages'
-                &nbsp
-              %li.nav-panel#header-panel
-                = link_to 'Profile', url(:profile, session.user.nick), :title => 'Settings'
-                &nbsp
-              %li.nav-panel#header-panel
-                = link_to 'Groups', url(:groups), :title => 'Join, Create or Manage groups' 
-                &nbsp
-              %li.nav-panel#header-panel
-                = link_to 'Polls', url(:polls), :title => 'Create, See or Vote on a Poll' 
-                &nbsp
-              %li.nav-panel#header-panel
                 = link_to 'Users', url(:users), :title => 'See all the users in your office network' 
                 &nbsp
               %li.nav-panel#header-panel
                 = link_to 'Logout', url(:logout), :title => 'Logout'
+        #search
+          %form{:action => url(:search), :method => 'POST'}
+            %input{:type => 'text', :name => 'query'}
+            %input{:type => 'submit', :value => '', :class => 'submit', :id => 'search_submit'}
 
       .body
         .body-left.round
