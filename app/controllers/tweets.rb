@@ -19,7 +19,7 @@ class Tweets < Application
   #creating a new tweet.
   def create(tweet)
     # create a new tweet
-    @tweet = Tweet.new
+    @tweet = Tweet.new(tweet)
     @tweet.made_by=session.user
 
     content = tweet[:content].strip #remove whitespace from front and back of the tweet's content
