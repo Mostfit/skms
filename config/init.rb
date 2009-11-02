@@ -21,4 +21,7 @@ end
  
 Merb::BootLoader.after_app_loads do
   # This will get executed after your app's classes have been loaded.
+	OpenID::Util.logger = Merb.logger
+	ENV['http_proxy'] = 'http://144.16.192.245:8080' # <- set your http_proxy env var
+	OpenID.fetcher_use_env_http_proxy
 end
