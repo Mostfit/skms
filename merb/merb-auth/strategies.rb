@@ -6,8 +6,9 @@
 # To load and set the order of strategy processing
 
 Merb::Slices::config[:"merb-auth-slice-password"][:no_default_strategies] = true
-Merb::Authentication.register(:google_federated_login, "#{Merb.root}/merb/merb-auth/google_federated_login.rb")
-Merb::Authentication.activate!(:google_federated_login)
+
+# for google and google app federated login
+Merb::Authentication.activate!(:gafl)
 
 #Merb::Authentication.activate!(:default_password_form)
 #Merb::Authentication.activate!(:default_basic_auth)

@@ -36,3 +36,4 @@ dependency "dm-tags", dm_gems_version
 dependency "dm-paperclip"
 dependency "dm-pagination"
 dependency "dm-xapian"
+dependency "gafl"

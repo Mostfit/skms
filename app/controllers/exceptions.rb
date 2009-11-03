@@ -18,6 +18,11 @@ class Exceptions < Merb::Controller
     end
   end
 
+  def unauthenticated
+    @openid_url = Merb::Authentication::Strategies::GOpenID.gafl_url
+    render
+  end
+
 end
 
 class NotPrivileged <  Merb::ControllerExceptions::Unauthorized; end

@@ -12,5 +12,5 @@
 
   = error_messages_for session.authentication
   %form{:action => url(:openid)}
-    %input{:name=>'openid_url', :value=>'https://www.google.com/accounts/o8/id', :type=>'hidden'}
+    %input{:name=>'openid_url', :value => @openid_url, :type=>'hidden'}
     %input{:type => 'submit',:name => 'login', :value=>'Log in using Google'}
